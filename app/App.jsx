@@ -1,21 +1,14 @@
-import React from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Home } from './jsx';
 
-export default class App extends React.Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     return (
       <div>
-        <div className="app">
-          bar
-        </div>
-        <Jumbotron>
-          <h1>
-            Well...
-          </h1>
-        </Jumbotron>
+        <Home />
       </div>
     );
   }
