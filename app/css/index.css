@@ -1,0 +1,5 @@
+/*Don't write any CSS here, add CSS into appropriate modules instead*/
+@charset 'UTF-8';
+
+/*Import all the css files in here*/
+@import './main.css';
