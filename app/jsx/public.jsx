@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
-import { Login, Signup } from './';
+import { Login, Signup } from './components';
 
 export default class Public extends Component {
   constructor(props) {
