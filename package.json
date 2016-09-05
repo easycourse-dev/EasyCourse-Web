@@ -5,7 +5,7 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thousight/easycourse-web.git"
+    "url": "https://github.com/thousight/EasyCourse-Web.git"
   },
   "keywords": [
     "chat",

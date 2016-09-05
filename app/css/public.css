@@ -1,0 +1,28 @@
+/*Outside form*/
+.publicFormWrapper {
+  margin-top: 200px;
+}
+.publicFormSwitches {
+  text-align: center;
+}
+.publicFormSwitches Button {
+  text-decoration: underline;
+}
+
+/*Log in form*/
+.loginForm input {
+  margin: 5px 0;
+}
+.loginFormSubmitButton {
+  display: block;
+  margin: 15px auto;
+}
+
+/*Sign up form*/
+.signupForm input {
+  margin: 5px 0;
+}
+.signupFormSubmitButton {
+  display: block;
+  margin: 15px auto;
+}

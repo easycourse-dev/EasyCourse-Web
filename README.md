@@ -2,9 +2,9 @@
 EasyCourse web client
 
 ## Install and Running
-`git clone https://github.com/thousight/easycourse-web.git`
+`git clone https://github.com/thousight/EasyCourse-Web.git`
 
-1. cd easycourse-web
+1. cd EasyCourse-Web
 2. npm install
 3. npm start
 4. Navigate to http://localhost:2333 in your browser.

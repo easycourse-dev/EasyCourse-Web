@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { Home } from './jsx';
+import { Public, Home } from './jsx';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
   }
+
+  // TODO
+  isLoggedIn() {
+    return false;
+  }
+
   render() {
     return (
       <div>
-        <Home />
+        {this.isLoggedIn() ?
+          <Home />
+          :
+          <Public />
+        }
       </div>
     );
   }
