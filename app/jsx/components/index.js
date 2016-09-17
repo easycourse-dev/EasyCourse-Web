@@ -10,3 +10,4 @@ List all the .jsx files below
 export Login from './login.jsx';
 export Signup from './signup.jsx';
 export OnLoad from './onLoad.jsx';
+export NavBar from './navBar.jsx';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Public, Home } from './jsx';
+import { NavBar } from './jsx/components';
 
 export default class App extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         {this.isLoggedIn() ?
           <Home />
           :
