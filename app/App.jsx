@@ -4,11 +4,9 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware, { Provider } from 'react-redux';
 import { Public, Home } from './jsx';
 import { NavBar } from './jsx/components';
-// import api from './redux/api.js';
 import rootReducer from './jsx/redux/reducers';
 import './css/index.css'; // Importing all the CSS files
 
-// let createStoreWithMiddleware= applyMiddleware(thunkMiddleware, api)(createStore);
 
 let store = createStore(rootReducer);
 
