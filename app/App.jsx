@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware, { Provider } from 'react-redux';
 import { Public, Home } from './jsx';
 import { NavBar } from './jsx/components';
+// import api from './redux/api.js';
+import rootReducer from './jsx/redux/reducers';
+import './css/index.css'; // Importing all the CSS files
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+// let createStoreWithMiddleware= applyMiddleware(thunkMiddleware, api)(createStore);
 
+let store = createStore(rootReducer);
+
+class App extends Component {
   // TODO
   isLoggedIn() {
     return false;
@@ -25,3 +31,10 @@ export default class App extends Component {
     );
   }
 }
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
