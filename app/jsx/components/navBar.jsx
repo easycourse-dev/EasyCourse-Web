@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes as PT } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { isLoggedIn } from '../redux/actions/user';
 
 class NavBar extends Component {
+
+  static propTypes = {
+    user: PT.Object
+  }
+
   render() {
     return (
       <nav>
-        <p>{this.props.isLoggedIn ?
+      {this.props}
+        <p>{this.props.user ?
           this.props.user.username
           :
           'Welcome, please log in'
@@ -20,15 +25,8 @@ class NavBar extends Component {
 // Anything returned from this function will end up as props
 const mapStateToProps = (state) => {
   return {
-    user: state.currentUser
+    user: state.user
   };
 }
 
-// Anything returned from this function will end up as props
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    isLoggedIn: isLoggedIn
-  }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps)(NavBar);
