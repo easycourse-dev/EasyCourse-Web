@@ -29,3 +29,37 @@
   display: inline-block;
   margin-top: 20px;
 }
+
+.NavbarToggle {
+  border: 0px solid transparent;
+  margin-top: 15px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+
+.NavbarLinks {
+  color: white;
+  font-size: 16px;
+  margin-top: 7px;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: inherit;
+}
+
+/*Smaller than smartphone*/
+@media (max-width: 425px) {
+  .BrandIcon {
+    margin-left: 10px;
+  }
+  /*Navbar toggle background after clicked*/
+  .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #494B6C;
+  }
+
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    margin-top: 9px;
+  }
+}
