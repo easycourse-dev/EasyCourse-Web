@@ -31,6 +31,8 @@
   position: relative;
   float: right;
   width: 100%;
+  min-width: 384px;
+  max-width: 450px;
 }
 
 .PublicPhones1 {
@@ -55,13 +57,47 @@
   position: absolute;
 }
 
-@media (max-width: 768px) {
+/*Smaller than tablet*/
+@media (max-width: 991px) {
   .Banner {
     height: 100vh;
   }
+  .SloganWrapper {
+    text-align: center;
+    padding-top: 80px;
+  }
+  .AppStore {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .PublicPhonesWrapper {
+    display: block;
+    margin: 0 auto;
+    float: initial;
+  }
+  .PublicPhones1 {
+    margin-right: 25px;
+  }
+  .PublicPhones2 {
+    margin-left: 25px;
+  }
 }
 
-
+/*Smaller than smartphone*/
+@media (max-width: 425px) {
+  .PublicPhonesWrapper {
+    min-width: 0;
+  }
+  .PublicPhones1 {
+    display: block;
+    margin: 50px auto;
+    float: initial;
+    position: initial;
+  }
+  .PublicPhones2 {
+    display: none;
+  }
+}
 
 /*Outside form*/
 .publicFormWrapper {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes as PT } from 'react';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -18,12 +18,16 @@ export default class NavBar extends Component {
           :
           'Welcome, please log in'
         }</p> */}
-        <h3 className="BrandIconWrapper" href="#">
-          <div className="BrandIcon" />
-        </h3>
-        <h3 href="#" className="BrandName">
-          EasyCourse
-        </h3>
+        <Row>
+          <Col lgOffset={2} mdOffset={1}>
+            <h3 className="BrandIconWrapper" href="#">
+              <div className="BrandIcon" />
+            </h3>
+            <h3 href="#" className="BrandName">
+              EasyCourse
+            </h3>
+          </Col>
+        </Row>
       </Navbar>
     );
   }
