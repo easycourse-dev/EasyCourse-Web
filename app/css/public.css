@@ -1,13 +1,18 @@
+/*Public*/
 .Public {
   margin-left: 0;
   margin-right: 0;
 }
 
 .Banner {
-  background-image: url(../img/PublicBackground.jpg);
+  background: url(../img/PublicBackground.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   width: 100%;
   height: 575px;
+  margin-top: 64px;
 }
 
 .SloganWrapper {
@@ -99,6 +104,15 @@
   }
 }
 
+
+/*Public Section*/
+.PublicSection {
+  height: 500px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+
+/*Forms*/
 /*Outside form*/
 .publicFormWrapper {
   margin-top: 200px;
