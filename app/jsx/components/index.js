@@ -4,10 +4,13 @@ So that feature below can be achieved:
 
   import { Login, Signup } from './jsx'
 
-List all the .jsx files below
+List all the .jsx files below in alphabetical order to
+easily find items and avoid duplicates
 */
 
+export Footer from './footer.jsx';
 export Login from './login.jsx';
-export Signup from './signup.jsx';
-export OnLoad from './onLoad.jsx';
 export NavBar from './navBar.jsx';
+export OnLoad from './onLoad.jsx';
+export PublicSection from './publicSection.jsx';
+export Signup from './signup.jsx';

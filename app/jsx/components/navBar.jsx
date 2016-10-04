@@ -19,7 +19,7 @@ export default class NavBar extends Component {
           'Welcome, please log in'
         }</p> */}
         <h3 className="BrandIconWrapper" href="#">
-          <img className="BrandIcon" />
+          <div className="BrandIcon" />
         </h3>
         <h3 href="#" className="BrandName">
           EasyCourse
