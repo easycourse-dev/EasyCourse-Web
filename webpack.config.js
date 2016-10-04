@@ -46,6 +46,12 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: 'style!css'
+    }, {
+      test: /img.*\.(jpg|jpeg|gif|png|svg)$/i,
+      loader: 'url-loader?name=/app/img/[name].[ext]'
+    }, {
+      test: /\.ico$/,
+      loader: 'file-loader?name=app/img/[name].[ext]'
     }]
   }
 };

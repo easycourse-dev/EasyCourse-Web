@@ -7,7 +7,7 @@ const initialState = {
 
 export default function userReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case 'LOGGED_IN':
+    case 'LOGIN_START':
       return action.payload;
 
     default:

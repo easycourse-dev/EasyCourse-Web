@@ -1,0 +1,30 @@
+.Navbar {
+  height: 64px;
+  margin-bottom: 0;
+  background-color: #2BBBAD;
+  border: 0;
+  border-radius: 0;
+}
+
+.BrandIconWrapper {
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.BrandIcon {
+  background-image: url(../img/Logo/Logo.png);
+  background-size: contain;
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  border-image: 0;
+}
+
+.BrandName {
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+  display: inline-block;
+  margin-top: 20px;
+}
