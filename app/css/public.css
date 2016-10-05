@@ -5,7 +5,7 @@
 }
 
 .Banner {
-  background: url(../img/PublicBackground.jpg) no-repeat center center fixed;
+  background: url(../img/Public/Background.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -26,7 +26,7 @@
 }
 
 .AppStore {
-  background-image: url(../img/AppStore.svg);
+  background-image: url(../img/Public/AppStore.svg);
   width: 135px;
   height: 40px;
   margin-top: 40px;
@@ -41,7 +41,7 @@
 }
 
 .PublicPhones1 {
-  background-image: url(../img/home.png);
+  background-image: url(../img/Public/HomePhone1.png);
   background-size: contain;
   background-repeat: no-repeat;
   height: 480px;
@@ -52,7 +52,7 @@
 }
 
 .PublicPhones2 {
-  background-image: url(../img/home2.png);
+  background-image: url(../img/Public/HomePhone2.png);
   background-size: contain;
   background-repeat: no-repeat;
   height: 415px;
@@ -108,6 +108,7 @@
 /*Public Section*/
 .PublicSection {
   height: 500px;
+  border-bottom: 1px solid rgb(0, 0, 0);
   border-bottom: 1px solid rgba(0, 0, 0, 0.14);
 }
 .PublicSectionImage {
@@ -115,10 +116,15 @@
   width: 350px;
 }
 .TextImage {
-  background: url(../img/TEXTS.png);
+  background: url(../img/Public/TextsImage.png) no-repeat center center;
+  background-size: contain;
 }
 .ClassesImage {
-  background: url(../img/classes.png) no-repeat center center fixed;
+  background: url(../img/Public/ClassesImage.png) no-repeat center center;
+  background-size: contain;
+}
+.LanguageImage {
+  background: url(../img/Public/LanguageImage.png) no-repeat center center;
   background-size: contain;
 }
 

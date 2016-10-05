@@ -17,7 +17,10 @@ export default class PublicSection extends Component {
           <Row>
             <Col lg={8} md={10} lgOffset={2} mdOffset={1} sm={12}>
               {this.props.PicOnLeft ?
-                <h3>title</h3>
+                <div>
+                  <h3>{this.props.title}</h3>
+                  <h2>{this.props.subtitle}</h2>
+                </div>
               :
                 <div className={`PublicSectionImage ${this.props.img}`} />
               }
