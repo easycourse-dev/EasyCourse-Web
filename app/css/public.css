@@ -130,7 +130,7 @@
 @media (max-width: 991px) {
   /*Banner*/
   .Banner {
-    height: 100vh;
+    height: auto;
   }
   .SloganWrapper {
     text-align: center;
@@ -147,9 +147,11 @@
   }
   .PublicPhones1 {
     margin-right: 25px;
+    margin-bottom: 50px;
   }
   .PublicPhones2 {
     margin-left: 25px;
+    margin-bottom: 50px;
   }
 
   /*PublicSection*/
@@ -185,7 +187,4 @@
   .PublicPhones2 {
     display: none;
   }
-
-  /*PublicSection*/
-
 }
