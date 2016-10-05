@@ -32,6 +32,15 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development')
     })
   ],
+  resolve: {
+    root: path.resolve('./'),
+    alias: {
+      jsx: 'app/jsx',
+      components: 'app/jsx/components',
+      utils: 'app/jsx/utils'
+    },
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [{
       test: /\.jsx?$/,

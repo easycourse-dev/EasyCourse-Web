@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
-import { PublicSection, Footer, Login, Signup } from './components';
+import { PublicSection, Login, Signup } from 'components';
 
 export default class Public extends Component {
   constructor(props) {
@@ -31,12 +31,9 @@ export default class Public extends Component {
           </div>
         </div>
 
-        <PublicSection />
-        <PublicSection />
-        <PublicSection />
-
-        <Footer />
-
+        <PublicSection PicOnLeft={true} img="TextImage"/>
+        <PublicSection PicOnLeft={false} img="ClassesImage" />
+        <PublicSection PicOnLeft={true} img="LanguageImage" />
       {/* Login/Signup forms */}
         {/* <Col sm={12} md={4} mdOffset={4} lg={4} lgOffset={4}>
           <div className="publicFormWrapper">

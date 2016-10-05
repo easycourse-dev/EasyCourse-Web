@@ -2,9 +2,9 @@ import React, { Component, PropTypes as PT } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware, { Provider } from 'react-redux';
-import { Public, Home } from './jsx';
-import { NavBar } from './jsx/components';
-import rootReducer from './jsx/redux/reducers';
+import { Public, Home } from 'jsx';
+import { NavBar, Footer } from 'components';
+import rootReducer from 'jsx/redux/reducers';
 // import thunkMiddleware from 'redux-thunk';
 // import api from './utils/api';
 import './css/index.css'; // Importing all the CSS files
@@ -28,6 +28,8 @@ class App extends Component {
           <Public />
         } */}
         <Public />
+
+        <Footer />
       </div>
     );
   }

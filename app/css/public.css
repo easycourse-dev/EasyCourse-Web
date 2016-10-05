@@ -110,6 +110,17 @@
   height: 500px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.14);
 }
+.PublicSectionImage {
+  height: 500px;
+  width: 350px;
+}
+.TextImage {
+  background: url(../img/TEXTS.png);
+}
+.ClassesImage {
+  background: url(../img/classes.png) no-repeat center center fixed;
+  background-size: contain;
+}
 
 
 /*Forms*/
