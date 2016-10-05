@@ -17,6 +17,7 @@ const app = express();
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 2333 : process.env.PORT;
 
+/** ****************************** Output Setup **************************** **/
 if (isDeveloping) {
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
@@ -31,8 +32,6 @@ if (isDeveloping) {
       modules: false
     }
   });
-
-/** ****************************** Output Setup **************************** **/
   app.use(middleware);
   // Compress everything to speedup
   app.use(compression({threshold: 0}));
@@ -51,7 +50,7 @@ if (isDeveloping) {
 }
 
 /** **************************** Server Running **************************** **/
-app.listen(process.env.PORT || 2333, 'localhost', function onStart(err) {
+app.listen(port, 'localhost', function onStart(err) {
   if (err) {
     console.log(err);
   }
