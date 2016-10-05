@@ -10,6 +10,26 @@ export default class PublicSection extends Component {
     img: PT.string
   }
 
+  pictureComponent() {
+    return (
+      <Col lg={6} md={6} sm={12}>
+        <div className={`PublicSectionImage ${this.props.img}`} />
+      </Col>
+    );
+  }
+
+  textsComponent() {
+    return (
+      <Col lg={6} md={6} sm={12}>
+        <div className="TextsWrapper">
+          <h5 style={{textAlign: 'center'}}>{this.props.title}</h5>
+          <h2>{this.props.subtitle}</h2>
+          <p>{this.props.desc}</p>
+        </div>
+      </Col>
+    );
+  }
+
   render() {
     return (
       <div className="PublicSection">
@@ -18,11 +38,14 @@ export default class PublicSection extends Component {
             <Col lg={8} md={10} lgOffset={2} mdOffset={1} sm={12}>
               {this.props.PicOnLeft ?
                 <div>
-                  <h3>{this.props.title}</h3>
-                  <h2>{this.props.subtitle}</h2>
+                  {this.pictureComponent()}
+                  {this.textsComponent()}
                 </div>
               :
-                <div className={`PublicSectionImage ${this.props.img}`} />
+              <div>
+                {this.textsComponent()}
+                {this.pictureComponent()}
+              </div>
               }
             </Col>
           </Row>

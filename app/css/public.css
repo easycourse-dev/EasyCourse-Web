@@ -62,58 +62,18 @@
   position: absolute;
 }
 
-/*Smaller than tablet*/
-@media (max-width: 991px) {
-  .Banner {
-    height: 100vh;
-  }
-  .SloganWrapper {
-    text-align: center;
-    padding-top: 80px;
-  }
-  .AppStore {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .PublicPhonesWrapper {
-    display: block;
-    margin: 0 auto;
-    float: initial;
-  }
-  .PublicPhones1 {
-    margin-right: 25px;
-  }
-  .PublicPhones2 {
-    margin-left: 25px;
-  }
-}
-
-/*Smaller than smartphone*/
-@media (max-width: 425px) {
-  .PublicPhonesWrapper {
-    min-width: 0;
-  }
-  .PublicPhones1 {
-    display: block;
-    margin: 50px auto;
-    float: initial;
-    position: initial;
-  }
-  .PublicPhones2 {
-    display: none;
-  }
-}
-
 
 /*Public Section*/
 .PublicSection {
-  height: 500px;
+  height: auto;
   border-bottom: 1px solid rgb(0, 0, 0);
   border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+  background-color: #FCFCFC;
 }
 .PublicSectionImage {
-  height: 500px;
-  width: 350px;
+  height: 400px;
+  width: 100%;
+  margin: 50px auto;
 }
 .TextsImage {
   background: url(../img/Public/TextsImage.png) no-repeat center center;
@@ -126,6 +86,11 @@
 .LanguageImage {
   background: url(../img/Public/LanguageImage.png) no-repeat center center;
   background-size: contain;
+}
+.TextsWrapper {
+  display: block;
+  margin: 120px auto;
+  width: 80%;
 }
 
 
@@ -157,4 +122,70 @@
 .signupFormSubmitButton {
   display: block;
   margin: 15px auto;
+}
+
+
+/*Responsive Designs*/
+/*Smaller than tablet*/
+@media (max-width: 991px) {
+  /*Banner*/
+  .Banner {
+    height: 100vh;
+  }
+  .SloganWrapper {
+    text-align: center;
+    padding-top: 80px;
+  }
+  .AppStore {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .PublicPhonesWrapper {
+    display: block;
+    margin: 0 auto;
+    float: initial;
+  }
+  .PublicPhones1 {
+    margin-right: 25px;
+  }
+  .PublicPhones2 {
+    margin-left: 25px;
+  }
+
+  /*PublicSection*/
+  .PublicSectionImage {
+    margin-left: auto;;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+  .ClassesImage {
+    margin-bottom: 50px;
+    margin-top: 0;
+  }
+  .TextsWrapper {
+    text-align: center;
+    margin: 50px auto;
+    max-width: 400px;
+  }
+}
+
+/*Smaller than smartphone*/
+@media (max-width: 425px) {
+  /*Banner*/
+  .PublicPhonesWrapper {
+    min-width: 0;
+  }
+  .PublicPhones1 {
+    display: block;
+    margin: 50px auto;
+    float: initial;
+    position: initial;
+  }
+  .PublicPhones2 {
+    display: none;
+  }
+
+  /*PublicSection*/
+
 }

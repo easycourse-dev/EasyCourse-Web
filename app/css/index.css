@@ -6,3 +6,8 @@
 @import './home.css';
 @import './public.css';
 @import './navbar.css';
+
+/*Global Design Settings*/
+body {
+  background-color: #FCFCFC;
+}
