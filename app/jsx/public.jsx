@@ -16,7 +16,7 @@ export default class Public extends Component {
       title: 'TEXTS',
       subtitle: 'Free messaging with your classmates',
       desc: 'Chat with all of your classmates for homework problems, group formings, and even funny jokes.',
-      img: 'TextImage'
+      img: 'TextsImage'
     };
     const classes = {
       PicOnLeft: false,
