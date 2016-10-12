@@ -20,7 +20,9 @@
     "start": "node server",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
     "eslint": "eslint .",
-    "jscs": "jscs ."
+    "jscs": "jscs .",
+    "prod": "NODE_ENV=production node server",
+    "postinstall": "webpack -p"
   },
   "dependencies": {
     "babel-cli": "^6.4.0",
