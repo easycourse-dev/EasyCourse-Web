@@ -43,7 +43,11 @@ if (isDeveloping) {
     res.end();
   });
 } else {
-  app.use(express.static(__dirname + '/dist'));
+  // Compress everything to speedup
+  app.use(compression({threshold: 0}));
+  // Minify and cache everything
+  app.use(minify());
+  app.use(express.static(__dirname + 'dist/'));
   app.get('*', function response(req, res) {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
   });
