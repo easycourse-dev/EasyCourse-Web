@@ -22,7 +22,7 @@
     "eslint": "eslint .",
     "jscs": "jscs .",
     "prod": "NODE_ENV=production node server",
-    "postinstall": "build"
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "babel-cli": "^6.4.0",
