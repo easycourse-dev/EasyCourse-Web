@@ -41,6 +41,15 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
+  resolve: {
+    root: path.resolve('./'),
+    alias: {
+      jsx: 'app/jsx',
+      components: 'app/jsx/components',
+      utils: 'app/jsx/utils'
+    },
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [{
       test: /\.jsx?$/,
@@ -55,6 +64,12 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
+    }, {
+      test: /img.*\.(jpg|jpeg|gif|png|svg)$/i,
+      loader: 'url-loader?name=/app/img/[name].[ext]'
+    }, {
+      test: /\.ico$/,
+      loader: 'file-loader?name=app/img/[name].[ext]'
     }]
   },
   postcss: [
