@@ -12,12 +12,12 @@ var StatsPlugin = require('stats-webpack-plugin');
 
 module.exports = {
   entry: [
-    path.join(__dirname, 'app/app.jsx')
+    path.join(__dirname, 'app/App.jsx')
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name]-[hash].min.js',
-    publicPath: '/'
+    publicPath: '/dist/'
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -28,6 +28,7 @@ module.exports = {
     }),
     new ExtractTextPlugin('[name]-[hash].min.css'),
     new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
       compressor: {
         warnings: false,
         screw_ie8: true
