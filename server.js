@@ -39,7 +39,9 @@ if (isDeveloping) {
   app.use(minify());
   app.use(webpackHotMiddleware(compiler));
   app.get('*', function response(req, res) {
-    res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
+    res.sendFile(path.join(__dirname, '/dist'));
+    app.use(express.static(__dirname + '/dist'));
+    // res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '/dist')));
     res.end();
   });
 } else {
@@ -47,9 +49,9 @@ if (isDeveloping) {
   app.use(compression({threshold: 0}));
   // Minify and cache everything
   app.use(minify());
-  app.use(express.static(__dirname + 'dist/'));
+  app.use(express.static(__dirname + '/dist'));
   app.get('*', function response(req, res) {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
+    res.sendFile(path.join(__dirname, '/dist'));
   });
 }
 
