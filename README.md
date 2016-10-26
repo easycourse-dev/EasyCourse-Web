@@ -2,7 +2,7 @@
 EasyCourse web client
 
 ## Install and Running
-`git clone https://github.com/thousight/EasyCourse-Web.git`
+`git clone https://github.com/easycourse-dev/EasyCourse-Web.git`
 
 1. cd EasyCourse-Web
 2. npm install
@@ -16,25 +16,18 @@ EasyCourse web client
 - [Socket.io](http://socket.io/)
 - [Webpack](https://webpack.github.io/)
 
-## License
-The MIT License (MIT)
+## Coding Standards
 
-Copyright (c) 2015 Mark Wen
+1. #### Naming Standards
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+   Be as detailed as possible, always include type and purpose, for example: for the password textbox user input, name the input as passwordInput
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. #### Comments
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   Have at least one line of comment to describe each function, comments to describe each step within functions would be recommended
+
+## Git Development
+
+- "develop" branch is protected, only administrators are authorized to write
+- When developing new features, create new "feature/FeatureName" branch from "develop"
+- Always pull the latest "develop" branch and merge into your own feature branch before you start your work and when you find out new commits appear in "develop" branch
