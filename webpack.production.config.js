@@ -16,7 +16,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name]-[hash].min.js',
+    filename: 'bundle.min.js',
     publicPath: '/dist/'
   },
   plugins: [
@@ -26,7 +26,7 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     }),
-    new ExtractTextPlugin('[name]-[hash].min.css'),
+    new ExtractTextPlugin('bundle.min.css'),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compressor: {
@@ -64,7 +64,7 @@ module.exports = {
       loader: 'json'
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
+      loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[local]!postcss')
     }, {
       test: /img.*\.(jpg|jpeg|gif|png|svg)$/i,
       loader: 'url-loader?name=/app/img/[name].[ext]'
