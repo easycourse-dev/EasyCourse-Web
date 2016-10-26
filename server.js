@@ -49,9 +49,13 @@ if (isDeveloping) {
   app.use(compression({threshold: 0}));
   // Minify and cache everything
   app.use(minify());
-  app.use(express.static(__dirname + '/dist'));
-  app.get('*', function response(req, res) {
-    res.sendFile(path.join(__dirname, '/dist'));
+
+  const indexPath = path.join(__dirname, 'index.html')
+  const publicPath = express.static(path.join(__dirname, 'dist'))
+
+  app.use('/dist', publicPath);
+  app.get('/', function response(req, res) {
+    res.sendFile(indexPath);
   });
 }
 
