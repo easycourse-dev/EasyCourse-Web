@@ -1,8 +1,8 @@
 import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, Row, Col } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default class NavBar extends Component {
-
   render() {
     return (
       <Navbar className="Navbar">
@@ -19,8 +19,12 @@ export default class NavBar extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                <NavItem className="NavbarLinks" eventKey={1} >Home</NavItem>
-                <NavItem className="NavbarLinks" eventKey={2} >Download</NavItem>
+                <LinkContainer to="/">
+                  <NavItem className="NavbarLinks" eventKey={1}>Home</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/">
+                  <NavItem className="NavbarLinks" eventKey={2}>Download</NavItem>
+                </LinkContainer>
                 <NavItem className="NavbarLinks" eventKey={3} href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
               </Nav>
             </Navbar.Collapse>
