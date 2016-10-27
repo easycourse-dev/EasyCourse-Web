@@ -25,6 +25,11 @@
   font-weight: 400;
 }
 
+.SubSlogan {
+  color: white;
+  font-weight: 300;
+}
+
 .AppStore {
   background-image: url(../img/Public/AppStore.svg);
   width: 135px;
