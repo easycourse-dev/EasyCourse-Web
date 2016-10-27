@@ -12,14 +12,7 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        {/* Commented out temporarily for iOS release */}
-        {/* {this.props.isLoggedIn ?
-          <Home />
-          :
-          <Public />
-        } */}
         <Public />
-
         <Footer />
       </div>
     );

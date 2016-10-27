@@ -18,8 +18,11 @@ export default class Public extends Component {
           <div className="container">
             <Col className="SloganWrapper" lg={4} lgOffset={2} md={5} mdOffset={1} sm={12}>
               <h1 className="Slogan">The best way to learn together!</h1>
-              <a href="http://www.apple.com" target="_blank">
+              <a className="StoreLinks" href="http://www.apple.com" target="_blank">
                 <div className="AppStore" />
+              </a>
+              <a className="StoreLinks" href="http://play.google.com" target="_blank">
+                <div className="GooglePlay" />
               </a>
             </Col>
             <Col lg={4} md={5} sm={12}>
@@ -48,24 +51,6 @@ export default class Public extends Component {
           subtitle="Chat in your language"
           desc="Feel more comforatble expressing your ideas with students speaking your language."
           img="LanguageImage" />
-
-      {/* Login/Signup forms */}
-        {/* <Col sm={12} md={4} mdOffset={4} lg={4} lgOffset={4}>
-          <div className="publicFormWrapper">
-            {this.state.isSigningUp ?
-              <Signup />
-              :
-              <Login />
-            }
-          </div>
-          <div className="publicFormSwitches">
-            {this.state.isSigningUp ?
-              <Button bsStyle="link" onClick={()=> {this.setState({isSigningUp: false})}}>back to login</Button>
-              :
-              <Button bsStyle="link" onClick={()=> {this.setState({isSigningUp: true})}}>Sign up here</Button>
-            }
-          </div>
-        </Col> */}
       </Row>
     );
   }

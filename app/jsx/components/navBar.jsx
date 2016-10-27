@@ -1,23 +1,11 @@
-import React, { Component, PropTypes as PT } from 'react';
+import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, Row, Col } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 export default class NavBar extends Component {
-
-  // static propTypes = {
-  //   user: PT.Object
-  // }
 
   render() {
     return (
       <Navbar className="Navbar">
-      {/* {this.props}
-        <p>{this.props.user ?
-          this.props.user.username
-          :
-          'Welcome, please log in'
-        }</p> */}
         <Row>
           <Col lg={8} md={10} lgOffset={2} mdOffset={1}>
             <Navbar.Header>
@@ -31,7 +19,9 @@ export default class NavBar extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                <NavItem className="NavbarLinks" eventKey={1} href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
+                <NavItem className="NavbarLinks" eventKey={1} >Home</NavItem>
+                <NavItem className="NavbarLinks" eventKey={2} >Download</NavItem>
+                <NavItem className="NavbarLinks" eventKey={3} href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
               </Nav>
             </Navbar.Collapse>
           </Col>
@@ -40,12 +30,3 @@ export default class NavBar extends Component {
     );
   }
 }
-
-// Anything returned from this function will end up as props
-// const mapStateToProps = (state) => {
-//   return {
-//     user: state.user
-//   };
-// }
-
-// export default connect(mapStateToProps)(NavBar);
