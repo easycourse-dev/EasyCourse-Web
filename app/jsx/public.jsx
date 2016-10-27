@@ -17,10 +17,10 @@ export default class Public extends Component {
         <div className="Banner">
           <div className="container">
             <Col className="SloganWrapper" lg={4} lgOffset={2} md={5} mdOffset={1} sm={12}>
-              <h1 className="Slogan">The best way to learn together!</h1>
-              <a href="http://www.apple.com" target="_blank">
-                <div className="AppStore" />
-              </a>
+              <h1 className="Slogan">EasyCourse</h1>
+              <h3 className="SubSlogan">Connect students</h3>
+              <h3 className="SubSlogan">Boost learning efficiency</h3>
+              <h4 className="SubSlogan">Available in AppStore, Google Play and Web soon.</h4>
             </Col>
             <Col lg={4} md={5} sm={12}>
               <div className="PublicPhonesWrapper">
@@ -33,15 +33,15 @@ export default class Public extends Component {
 
         <PublicSection
           PicOnLeft
+          title="CLASSES"
+          subtitle="Joining all the course group"
+          desc="Search all the courses in your university and join the chat rooms for the courses you enrolled instantly."
+          img="ClassesImage" />
+        <PublicSection
           title="TEXTS"
-          subtitle="Free messaging with your classmates"
+          subtitle="Messaging with your classmates"
           desc="Chat with all of your classmates for homework problems, group formings, and even funny jokes."
           img="TextsImage" />
-        <PublicSection
-          title="CLASSES"
-          subtitle="Easily find your courses"
-          desc="Search all the courses in your university and join the chat rooms for those courses instantly."
-          img="ClassesImage" />
         <PublicSection
           PicOnLeft
           title="LANGUAGES"

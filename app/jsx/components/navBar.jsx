@@ -21,9 +21,11 @@ export default class NavBar extends Component {
         <Row>
           <Col lg={8} md={10} lgOffset={2} mdOffset={1}>
             <Navbar.Header>
+              {/*
               <h3 className="BrandIconWrapper" href="#">
                 <div className="BrandIcon" />
               </h3>
+              */}
               <h3 href="#" className="BrandName">
                 EasyCourse
               </h3>
@@ -31,7 +33,7 @@ export default class NavBar extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                <NavItem className="NavbarLinks" eventKey={1} href="#">Join Us</NavItem>
+                <NavItem className="NavbarLinks" eventKey={1} href="https://docs.google.com/forms/d/e/1FAIpQLSeKu9p0Al-E9LAQyjeQw06KmXQQ1DyoJenH2_tRwO2sbhvA_g/viewform">Join Us</NavItem>
               </Nav>
             </Navbar.Collapse>
           </Col>
