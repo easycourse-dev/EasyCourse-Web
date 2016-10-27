@@ -1,13 +1,22 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
+import React, { Component, PropTypes as PT } from 'react';
+import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware, { Provider } from 'react-redux';
 import { Public, Home } from 'jsx';
 import { NavBar, Footer } from 'components';
+import rootReducer from 'jsx/redux/reducers';
+// import thunkMiddleware from 'redux-thunk';
+// import api from './utils/api';
 import './css/index.css'; // Importing all the CSS files
-import store, { history } from './jsx/redux/Store.js';
+
+// let createStoreWithMiddleware = applyMiddleware(thunkMiddleware, api)(createStore);
+// let store = createStoreWithMiddleware(rootReducer);
 
 class App extends Component {
+  // static propTypes = {
+  //   isLoggedIn: PT.bool.isRequired
+  // };
+
   render() {
     return (
       <div>
@@ -26,12 +35,11 @@ class App extends Component {
   }
 }
 
-render(
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App} />
-    </Router>
-  </Provider>
+ReactDOM.render(
+  // <Provider store={store}>
+  //   <App />
+  // </Provider>
+  <App />
   ,
   document.getElementById('root')
 );
