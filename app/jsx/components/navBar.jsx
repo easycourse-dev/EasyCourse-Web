@@ -31,7 +31,7 @@ export default class NavBar extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                <NavItem className="NavbarLinks" eventKey={1} href="#">Join Us</NavItem>
+                <NavItem className="NavbarLinks" eventKey={1} href="https://goo.gl/forms/mZNI64fdYueRzLct2" target="_blank">Join Us</NavItem>
               </Nav>
             </Navbar.Collapse>
           </Col>
