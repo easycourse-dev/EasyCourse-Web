@@ -3,8 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import {
   Router,
-  Route,
-  IndexRoute,
+  Route
 } from 'react-router';
 import { Public, Home } from 'jsx';
 import { NavBar, Footer } from 'components';
@@ -33,7 +32,7 @@ class App extends Component {
 render(
   <Provider store={store}>
     <Router history={history}>
-      <IndexRoute component={App} />
+      <Route path="/" component={App} />
     </Router>
   </Provider>
   ,
