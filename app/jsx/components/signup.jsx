@@ -16,7 +16,8 @@ export default class Signup extends Component {
           <FormGroup className="signupForm">
             <FormControl type="email" placeholder="email" />
             <FormControl type="password" placeholder="password" />
-            <FormControl type="text" placeholder="university" />
+            <FormControl type="password" placeholder="verify password" />
+            <FormControl type="text" placeholder="username" />
             <Button className="signupFormSubmitButton" bsStyle="primary" type="submit">Signup</Button>
           </FormGroup>
         </form>
