@@ -13,9 +13,9 @@ import axios from 'axios';
 
 const ROOT_URL = 'https://zengjintaotest.com/api';
 
-export function signup(email, password, displayName) {
+export function signup({email, password, displayName}) {
   return function(dispatch) {
-    axios.post(`${ROOT_URL}/signup`, {email, password, displayName})
+    axios.post('https://zengjintaotest.com/api/signup', {email, password, displayName})
       .then(res => {
         console.log(res);
       })
