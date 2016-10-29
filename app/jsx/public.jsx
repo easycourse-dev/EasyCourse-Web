@@ -66,7 +66,7 @@ export default class Public extends Component {
           {/* Top banner with background image */}
           <div className="Banner">
             {
-              this.getSignupLogin()
+              this.getDownloadLinks()
             }
           </div>
 

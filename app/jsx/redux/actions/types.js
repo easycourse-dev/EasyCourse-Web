@@ -1,7 +1,6 @@
 // User Types
 export const USER_SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const USER_SIGNUP_FAILURE = 'SIGNUP_FAILURE';
-export const USER_LOGIN_START = 'LOGIN_START';
 export const USER_LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const USER_LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const USER_LOGOUT = 'LOGOUT';

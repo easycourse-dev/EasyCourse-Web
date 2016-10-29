@@ -11,7 +11,7 @@ import promise from 'redux-promise-middleware';
 import rootReducer from './reducers/index';
 
 // Create Middlware
-const middleware = applyMiddleware(promise(), thunk, logger());
+const middleware = applyMiddleware(thunk, promise(), logger());
 
 const store = createStore(rootReducer, middleware);
 

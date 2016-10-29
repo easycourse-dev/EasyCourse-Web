@@ -27,12 +27,7 @@ export default class NavBar extends Component {
                 <LinkContainer to="/">
                   <NavItem className="NavbarLinks" eventKey={1}>Home</NavItem>
                 </LinkContainer>
-                <LinkContainer to="">
-                  <NavItem className="NavbarLinks" eventKey={2}>Login</NavItem>
-                </LinkContainer>
-                <LinkContainer to="">
-                  <NavItem className="NavbarLinks" eventKey={3}>Signup</NavItem>
-                </LinkContainer>
+                
                 <NavItem className="NavbarLinks" eventKey={4} href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
               </Nav>
             </Navbar.Collapse>
