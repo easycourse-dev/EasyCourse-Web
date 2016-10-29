@@ -11,28 +11,6 @@ export default class Public extends Component {
     };
   }
 
-  getDownloads() {
-    return (
-      <div className="container">
-        <Col className="SloganWrapper" lg={4} lgOffset={2} md={5} mdOffset={1} sm={12}>
-          <h1 className="Slogan">The best way to learn together!</h1>
-          <a className="StoreLinks" href="http://www.apple.com" target="_blank">
-            <div className="AppStore" />
-          </a>
-          <a className="StoreLinks" href="http://play.google.com" target="_blank">
-            <div className="GooglePlay" />
-          </a>
-        </Col>
-        <Col lg={4} md={5} sm={12}>
-          <div className="PublicPhonesWrapper">
-            <div className="PublicPhones2" />
-            <div className="PublicPhones1" />
-          </div>
-        </Col>
-      </div>
-    );
-  }
-
   getSignupLogin() {
     return (
       <div className="container">
@@ -41,16 +19,16 @@ export default class Public extends Component {
             {
               this.state.showSignup ?
                 <Signup />
-                :
-                <Login />
+              :
+              <Login />
             }
             <Button bsStyle="link" className="SignupLoginSwitch" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
-            {
-              this.state.showSignup ?
+              {
+                this.state.showSignup ?
                 'Log in instead'
                 :
                 'I want to sign up'
-            }
+              }
             </Button>
           </Jumbotron>
         </Col>
@@ -63,12 +41,23 @@ export default class Public extends Component {
       <Row className="Public">
         {/* Top banner with background image */}
         <div className="Banner">
-          {
-            this.state.showDownload ?
-            this.getDownloads()
-              :
-              this.getSignupLogin()
-          }
+          <div className="container">
+            <Col className="SloganWrapper" lg={4} lgOffset={2} md={5} mdOffset={1} sm={12}>
+              <h1 className="Slogan">The best way to learn together!</h1>
+              <a className="StoreLinks" href="http://www.apple.com" target="_blank">
+                <div className="AppStore" />
+              </a>
+              <a className="StoreLinks" href="http://play.google.com" target="_blank">
+                <div className="GooglePlay" />
+              </a>
+            </Col>
+            <Col lg={4} md={5} sm={12}>
+              <div className="PublicPhonesWrapper">
+                <div className="PublicPhones2" />
+                <div className="PublicPhones1" />
+              </div>
+            </Col>
+          </div>
         </div>
 
         <PublicSection

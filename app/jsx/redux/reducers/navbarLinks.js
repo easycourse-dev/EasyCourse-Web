@@ -1,4 +1,4 @@
-import { SHOW_DOWNLOAD_LINKS } from './types';
+import { SHOW_DOWNLOAD_LINKS } from '../actions/types';
 
 const initState = {
   showDownloadLink: false
@@ -16,4 +16,4 @@ const navbarLinks = (state = initState, action) => {
   return state;
 }
 
-export default navbarLinksReducer;
+export default navbarLinks;
