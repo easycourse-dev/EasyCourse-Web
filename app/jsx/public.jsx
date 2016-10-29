@@ -65,7 +65,7 @@ export default class Public extends Component {
         <div className="Banner">
           {
             this.state.showDownload ?
-              this.getDownloads()
+            this.getDownloads()
               :
               this.getSignupLogin()
           }

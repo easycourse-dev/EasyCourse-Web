@@ -2,7 +2,16 @@ import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-export default class NavBar extends Component {
+// Redux
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/navbarLinks';
+
+class NavBar extends Component {
+
+  handleDownloadLinkToggle() {
+    this.props.showDownloadLink
+  }
+
   render() {
     return (
       <Navbar className="Navbar">
@@ -23,7 +32,7 @@ export default class NavBar extends Component {
                   <NavItem className="NavbarLinks" eventKey={1}>Home</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/">
-                  <NavItem className="NavbarLinks" eventKey={2}>Download</NavItem>
+                  <NavItem className="NavbarLinks" eventKey={2} onClick={() => this.handleDownloadLinkToggle()}>Download</NavItem>
                 </LinkContainer>
                 <NavItem className="NavbarLinks" eventKey={3} href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
               </Nav>
@@ -34,3 +43,5 @@ export default class NavBar extends Component {
     );
   }
 }
+
+export default connect(actions)(NavBar);
