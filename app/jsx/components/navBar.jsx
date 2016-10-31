@@ -22,10 +22,15 @@ export default class NavBar extends Component {
             <Navbar.Collapse>
               <Nav pullRight>
                 <LinkContainer to="/">
-                  <NavItem className="NavbarLinks" eventKey={1}>Home</NavItem>
+                  <NavItem className="NavbarLinks">Home</NavItem>
                 </LinkContainer>
-
-                <NavItem className="NavbarLinks" eventKey={4} href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
+                <LinkContainer to="/login">
+                  <NavItem className="NavbarLinks">Log In</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/signup">
+                  <NavItem className="NavbarLinks">Sign Up</NavItem>
+                </LinkContainer>
+                <NavItem className="NavbarLinks" href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
               </Nav>
             </Navbar.Collapse>
           </Col>
