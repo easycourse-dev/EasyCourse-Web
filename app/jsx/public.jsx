@@ -72,15 +72,15 @@ export default class Public extends Component {
 
         <PublicSection
           PicOnLeft
+          title="CLASSES"
+          subtitle="Joining all the course group"
+          desc="Search all the courses in your university and join the chat rooms for the courses you enrolled instantly."
+          img="ClassesImage" />
+        <PublicSection
           title="TEXTS"
-          subtitle="Free messaging with your classmates"
+          subtitle="Messaging with your classmates"
           desc="Chat with all of your classmates for homework problems, group formings, and even funny jokes."
           img="TextsImage" />
-        <PublicSection
-          title="CLASSES"
-          subtitle="Easily find your courses"
-          desc="Search all the courses in your university and join the chat rooms for those courses instantly."
-          img="ClassesImage" />
         <PublicSection
           PicOnLeft
           title="LANGUAGES"
