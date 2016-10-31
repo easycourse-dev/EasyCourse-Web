@@ -41,7 +41,9 @@ export default class Public extends Component {
       <div className="Banner">
         <div className="container">
           <Col className="SloganWrapper" lg={4} lgOffset={2} md={5} mdOffset={1} sm={12}>
-            <h1 className="Slogan">The best way to learn together!</h1>
+            <h1 className="Slogan">EasyCourse</h1>
+            <h3 className="SubSlogan">Connect students</h3>
+            <h3 className="SubSlogan">Boost learning efficiency</h3>
             <a className="StoreLinks" href="http://www.apple.com" target="_blank">
               <div className="AppStore" />
             </a>
