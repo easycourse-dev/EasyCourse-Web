@@ -7,6 +7,7 @@ import { NavBar, Footer } from 'components';
 import './css/index.css'; // Importing all the CSS files
 import store, { history } from './jsx/redux/Store.js';
 
+
 class App extends Component {
   render() {
     return (

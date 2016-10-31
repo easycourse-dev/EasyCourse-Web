@@ -5,12 +5,13 @@ import { browserHistory } from 'react-router';
 
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import promise from 'redux-promise-middleware';
 
 // Root Reducer
 import rootReducer from './reducers/index';
 
 // Create Middlware
-const middleware = applyMiddleware(thunk, logger());
+const middleware = applyMiddleware(thunk, promise(), logger());
 
 const store = createStore(rootReducer, middleware);
 

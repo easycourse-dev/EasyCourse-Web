@@ -1,5 +1,10 @@
 import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, Row, Col } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
+// Redux
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/navbarLinks';
 
 export default class NavBar extends Component {
 
@@ -19,9 +24,11 @@ export default class NavBar extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                <NavItem className="NavbarLinks" eventKey={1} >Home</NavItem>
-                <NavItem className="NavbarLinks" eventKey={2} >Download</NavItem>
-                <NavItem className="NavbarLinks" eventKey={3} href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
+                <LinkContainer to="/">
+                  <NavItem className="NavbarLinks" eventKey={1}>Home</NavItem>
+                </LinkContainer>
+                
+                <NavItem className="NavbarLinks" eventKey={4} href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
               </Nav>
             </Navbar.Collapse>
           </Col>
