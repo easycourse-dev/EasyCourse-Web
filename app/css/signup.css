@@ -1,0 +1,7 @@
+.signupForm input {
+  margin: 5px 0;
+}
+.signupFormSubmitButton {
+  display: block;
+  margin: 15px auto;
+}

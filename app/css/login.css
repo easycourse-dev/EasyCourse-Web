@@ -1,0 +1,12 @@
+.LoginPage {
+  height: 100%;
+  margin-top: 128px;
+}
+
+.loginForm input {
+  margin: 5px 0;
+}
+.loginFormSubmitButton {
+  display: block;
+  margin: 15px auto;
+}

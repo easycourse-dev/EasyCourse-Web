@@ -4,8 +4,10 @@
 /*Import all the css files in here*/
 @import './footer.css';
 @import './home.css';
-@import './public.css';
+@import './login.css';
 @import './navbar.css';
+@import './public.css';
+@import './signup.css';
 @import url('https://fonts.googleapis.com/css?family=Lato:400,300italic,300,100');
 
 /*Global Design Settings*/

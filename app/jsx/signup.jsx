@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { signup } from '../redux/actions/user';
+import { signup } from './redux/actions/user';
 
 class Signup extends Component {
 
