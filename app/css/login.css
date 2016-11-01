@@ -9,24 +9,24 @@
 }
 
 @-webkit-keyframes LoginPageBackgroundAnimation {
-    0%{background-position:0 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0 50%}
+    0% {background-position:0 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0 50%}
 }
 @-moz-keyframes LoginPageBackgroundAnimation {
-    0%{background-position:0 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0 50%}
+    0% {background-position:0 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0 50%}
 }
 @-o-keyframes LoginPageBackgroundAnimation {
-    0%{background-position:0 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0 50%}
+    0% {background-position:0 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0 50%}
 }
 @keyframes LoginPageBackgroundAnimation {
-    0%{background-position:0 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0 50%}
+    0% {background-position:0 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0 50%}
 }
 
 .LoginPageWrapper {
@@ -47,32 +47,32 @@
   border-width: 0;
   border-bottom: 1px solid white;
   box-shadow: inset 0 0 0 transparent;
-  -webkit-animation: InputFieldsAnimation 1s ease;
-  -moz-animation: InputFieldsAnimation 1s ease;
-  -o-animation: InputFieldsAnimation 1s ease;
-  animation: InputFieldsAnimation 1s ease;
+  -webkit-animation: InputFieldsAnimation 0.5s ease;
+  -moz-animation: InputFieldsAnimation 0.5s ease;
+  -o-animation: InputFieldsAnimation 0.5s ease;
+  animation: InputFieldsAnimation 0.5s ease;
+}
+
+@-webkit-keyframes InputFieldsAnimation {
+  0% {border-bottom: 1px solid white}
+  100% {border-bottom: 2px solid white}
+}
+@-moz-keyframes InputFieldsAnimation {
+  0% {border-bottom: 1px solid white}
+  100% {border-bottom: 2px solid white}
+}
+@-o-keyframes InputFieldsAnimation {
+  0% {border-bottom: 1px solid white}
+  100% {border-bottom: 2px solid white}
+}
+@keyframes InputFieldsAnimation {
+  0% {border-bottom: 1px solid white}
+  100% {border-bottom: 2px solid white}
 }
 
 .loginForm input:focus, .loginForm input:hover {
   box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;
   border-bottom: 2px solid white;
-}
-
-@-webkit-keyframes InputFieldsAnimation {
-  0%{border-bottom: 1px solid white;}
-  100%{border-bottom: 2px solid white;}
-}
-@-moz-keyframes InputFieldsAnimation {
-  0%{border-bottom: 1px solid white;}
-  100%{border-bottom: 2px solid white;}
-}
-@-o-keyframes InputFieldsAnimation {
-  0%{border-bottom: 1px solid white;}
-  100%{border-bottom: 2px solid white;}
-}
-@keyframes InputFieldsAnimation {
-  0%{border-bottom: 1px solid white;}
-  100%{border-bottom: 2px solid white;}
 }
 
 /*Placeholder hint color*/
@@ -81,12 +81,14 @@
 .form-control::-moz-placeholder { color: white; }
 .form-control:-ms-input-placeholder { color: white; }
 
-/*Autofill*/
+/*Autofill, this won't work in Chrome as Google designed it to be*/
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill,
 input:-webkit-autofill:focus, textarea:-webkit-autofill:focus, select:-webkit-autofill:focus {
   background-color: transparent !important;
   color: white !important;
-  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -moz-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
 }
 
 .loginFormSubmitButton, .loginFormSubmitButton:active, .loginFormSubmitButton:focus,
