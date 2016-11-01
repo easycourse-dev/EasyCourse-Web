@@ -47,10 +47,11 @@ class App extends Component {
             {rel: "icon", "href": require('./img/Logo/favicon/favicon-96x96.png'), "sizes": "96x96", "type":"image/png"}
           ]}
         />
+
         <NavBar />
         {/* <Public /> */}
-        <Login />
-        {/* <Signup /> */}
+        {/* <Login /> */}
+        <Signup />
         <Footer />
       </div>
     );
