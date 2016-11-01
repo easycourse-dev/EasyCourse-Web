@@ -1,34 +1,3 @@
-.SignupPageBackground {
-  background: linear-gradient(270deg, #1ec7ac, #56b4d3, #9182FF, #6FA8FE);
-  background-size: 800% 800%;
-
-  -webkit-animation: SignupPageBackgroundAnimation 30s ease infinite;
-  -moz-animation: SignupPageBackgroundAnimation 30s ease infinite;
-  -o-animation: SignupPageBackgroundAnimation 30s ease infinite;
-  animation: SignupPageBackgroundAnimation 30s ease infinite;
-}
-
-@-webkit-keyframes SignupPageBackgroundAnimation {
-    0% {background-position:0 50%}
-    50% {background-position:100% 50%}
-    100% {background-position:0 50%}
-}
-@-moz-keyframes SignupPageBackgroundAnimation {
-    0% {background-position:0 50%}
-    50% {background-position:100% 50%}
-    100% {background-position:0 50%}
-}
-@-o-keyframes SignupPageBackgroundAnimation {
-    0% {background-position:0 50%}
-    50% {background-position:100% 50%}
-    100% {background-position:0 50%}
-}
-@keyframes SignupPageBackgroundAnimation {
-    0% {background-position:0 50%}
-    50% {background-position:100% 50%}
-    100% {background-position:0 50%}
-}
-
 .SignupPageWrapper {
   position: relative;
 }

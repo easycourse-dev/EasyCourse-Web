@@ -9,6 +9,8 @@ easily find items and avoid duplicates
 */
 
 export Footer from './footer.jsx';
+export Login from './login.jsx';
 export NavBar from './navBar.jsx';
 export OnLoad from './onload.jsx';
 export PublicSection from './publicSection.jsx';
+export Signup from './signup.jsx';
