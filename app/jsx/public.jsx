@@ -49,6 +49,8 @@ export default class Public extends Component {
           subtitle="Chat in your language"
           desc="Feel more comforatble expressing your ideas with students speaking your language."
           img="LanguageImage" />
+        {/* extra space for footer */}
+        <div style={{marginTop: '50px'}} />
       </Row>
     );
   }
