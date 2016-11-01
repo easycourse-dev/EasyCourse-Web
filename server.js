@@ -41,7 +41,6 @@ if (isDeveloping) {
   app.get('*', function response(req, res) {
     res.sendFile(path.join(__dirname, '/dist'));
     app.use(express.static(__dirname + '/dist'));
-    // res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '/dist')));
     res.end();
   });
 } else {
@@ -50,8 +49,8 @@ if (isDeveloping) {
   // Minify and cache everything
   app.use(minify());
 
-  const indexPath = path.join(__dirname, 'index.html')
-  const publicPath = express.static(path.join(__dirname, 'dist'))
+  const indexPath = path.join(__dirname, 'index.html');
+  const publicPath = express.static(path.join(__dirname, 'dist'));
 
   app.use('/dist', publicPath);
   app.get('/', function response(req, res) {

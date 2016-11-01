@@ -1,0 +1,106 @@
+.SignupPageBackground {
+  background: linear-gradient(270deg, #1ec7ac, #56b4d3, #9182FF, #6FA8FE);
+  background-size: 800% 800%;
+
+  -webkit-animation: SignupPageBackgroundAnimation 30s ease infinite;
+  -moz-animation: SignupPageBackgroundAnimation 30s ease infinite;
+  -o-animation: SignupPageBackgroundAnimation 30s ease infinite;
+  animation: SignupPageBackgroundAnimation 30s ease infinite;
+}
+
+@-webkit-keyframes SignupPageBackgroundAnimation {
+    0% {background-position:0 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0 50%}
+}
+@-moz-keyframes SignupPageBackgroundAnimation {
+    0% {background-position:0 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0 50%}
+}
+@-o-keyframes SignupPageBackgroundAnimation {
+    0% {background-position:0 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0 50%}
+}
+@keyframes SignupPageBackgroundAnimation {
+    0% {background-position:0 50%}
+    50% {background-position:100% 50%}
+    100% {background-position:0 50%}
+}
+
+.SignupPageWrapper {
+  position: relative;
+}
+
+.SignupPage {
+  padding-top: 150px;
+  height: 100vh;
+}
+
+.signupForm input {
+  margin: 15px 0;
+  background-color: transparent;
+  color: white;
+  border-color: white;
+  border-radius: 0;
+  border-width: 0;
+  border-bottom: 1px solid white;
+  box-shadow: inset 0 0 0 transparent;
+  -webkit-animation: InputFieldsAnimation 0.5s ease;
+  -moz-animation: InputFieldsAnimation 0.5s ease;
+  -o-animation: InputFieldsAnimation 0.5s ease;
+  animation: InputFieldsAnimation 0.5s ease;
+}
+
+@-webkit-keyframes InputFieldsAnimation {
+  0% {border-bottom: 1px solid white}
+  100% {border-bottom: 2px solid white}
+}
+@-moz-keyframes InputFieldsAnimation {
+  0% {border-bottom: 1px solid white}
+  100% {border-bottom: 2px solid white}
+}
+@-o-keyframes InputFieldsAnimation {
+  0% {border-bottom: 1px solid white}
+  100% {border-bottom: 2px solid white}
+}
+@keyframes InputFieldsAnimation {
+  0% {border-bottom: 1px solid white}
+  100% {border-bottom: 2px solid white}
+}
+
+.signupForm input:focus, .signupForm input:hover {
+  box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;
+  border-bottom: 2px solid white;
+}
+
+/*Placeholder hint color*/
+.form-control::-webkit-input-placeholder { color: white; }
+.form-control:-moz-placeholder { color: white; }
+.form-control::-moz-placeholder { color: white; }
+.form-control:-ms-input-placeholder { color: white; }
+
+/*Autofill, this won't work in Chrome as Google designed it to be*/
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill,
+input:-webkit-autofill:focus, textarea:-webkit-autofill:focus, select:-webkit-autofill:focus {
+  background-color: transparent !important;
+  color: white !important;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -moz-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+}
+
+.signupFormSubmitButton, .signupFormSubmitButton:active, .signupFormSubmitButton:focus,
+.signupFormSubmitButton:focus:active, .signupFormSubmitButton:hover{
+  display: block;
+  margin: 0 auto;
+  margin-top: 35px;
+  margin-bottom: 80px;
+  background-color: #525479;
+  border-color: #525479;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 10px 20px;
+  border-radius: 6px;
+}

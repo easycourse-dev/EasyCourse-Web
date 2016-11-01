@@ -1,5 +1,3 @@
-
-
 const initialState = {
   username: 'testing1',
   email: 'abc@123.com'
