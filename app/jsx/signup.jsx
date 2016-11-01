@@ -21,10 +21,10 @@ class Signup extends Component {
         <div className="container LoginPageWrapper">
           <Row className="SignupPage">
             <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
-                <h2 className="PageTitle">
-                  Sign Up
-                </h2>
-                <form onSubmit={handleSubmit(this.submit)}>
+              <h2 className="PageTitle">
+                Sign Up
+              </h2>
+              <form onSubmit={handleSubmit(this.submit)}>
                 <FormGroup className="signupForm">
                   <Field className="form-control" name="email" component="input" type="text" placeholder="Email"/>
                   <Field className="form-control" name="password" component="input" type="password" placeholder="Password"/>
@@ -32,7 +32,7 @@ class Signup extends Component {
                   <Field className="form-control" name="displayName" component="input" type="text" placeholder="Username"/>
                   <Button className="signupFormSubmitButton" bsStyle="primary" type="submit">Signup</Button>
                 </FormGroup>
-                </form>
+              </form>
             </Col>
           </Row>
         </div>
