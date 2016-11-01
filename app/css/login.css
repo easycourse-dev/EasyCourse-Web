@@ -1,12 +1,104 @@
+.LoginPageBackground {
+  background: linear-gradient(270deg, #1ec7ac, #56b4d3, #9182FF, #6FA8FE);
+  background-size: 800% 800%;
+
+  -webkit-animation: LoginPageBackgroundAnimation 30s ease infinite;
+  -moz-animation: LoginPageBackgroundAnimation 30s ease infinite;
+  -o-animation: LoginPageBackgroundAnimation 30s ease infinite;
+  animation: LoginPageBackgroundAnimation 30s ease infinite;
+}
+
+@-webkit-keyframes LoginPageBackgroundAnimation {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
+}
+@-moz-keyframes LoginPageBackgroundAnimation {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
+}
+@-o-keyframes LoginPageBackgroundAnimation {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
+}
+@keyframes LoginPageBackgroundAnimation {
+    0%{background-position:0 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0 50%}
+}
+
+.LoginPageWrapper {
+  position: relative;
+}
+
 .LoginPage {
-  height: 100%;
-  margin-top: 128px;
+  padding-top: 150px;
+  height: 100vh;
 }
 
 .loginForm input {
-  margin: 5px 0;
+  margin: 15px 0;
+  background-color: transparent;
+  color: white;
+  border-color: white;
+  border-radius: 0;
+  border-width: 0;
+  border-bottom: 1px solid white;
+  box-shadow: inset 0 0 0 transparent;
+  -webkit-animation: InputFieldsAnimation 1s ease;
+  -moz-animation: InputFieldsAnimation 1s ease;
+  -o-animation: InputFieldsAnimation 1s ease;
+  animation: InputFieldsAnimation 1s ease;
 }
-.loginFormSubmitButton {
+
+.loginForm input:focus, .loginForm input:hover {
+  box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;
+  border-bottom: 2px solid white;
+}
+
+@-webkit-keyframes InputFieldsAnimation {
+  0%{border-bottom: 1px solid white;}
+  100%{border-bottom: 2px solid white;}
+}
+@-moz-keyframes InputFieldsAnimation {
+  0%{border-bottom: 1px solid white;}
+  100%{border-bottom: 2px solid white;}
+}
+@-o-keyframes InputFieldsAnimation {
+  0%{border-bottom: 1px solid white;}
+  100%{border-bottom: 2px solid white;}
+}
+@keyframes InputFieldsAnimation {
+  0%{border-bottom: 1px solid white;}
+  100%{border-bottom: 2px solid white;}
+}
+
+/*Placeholder hint color*/
+.form-control::-webkit-input-placeholder { color: white; }
+.form-control:-moz-placeholder { color: white; }
+.form-control::-moz-placeholder { color: white; }
+.form-control:-ms-input-placeholder { color: white; }
+
+/*Autofill*/
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill,
+input:-webkit-autofill:focus, textarea:-webkit-autofill:focus, select:-webkit-autofill:focus {
+  background-color: transparent !important;
+  color: white !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+}
+
+.loginFormSubmitButton, .loginFormSubmitButton:active, .loginFormSubmitButton:focus,
+.loginFormSubmitButton:focus:active, .loginFormSubmitButton:hover{
   display: block;
-  margin: 15px auto;
+  margin: 0 auto;
+  margin-top: 35px;
+  margin-bottom: 80px;
+  background-color: #525479;
+  border-color: #525479;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 10px 20px;
+  border-radius: 6px;
 }

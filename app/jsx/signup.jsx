@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Button, FormGroup, FormControl } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React, { Component, PropTypes as PT } from 'react';
+import { Button, FormGroup } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { signup } from './redux/actions/user';
 
 class Signup extends Component {
+
+  static propTypes = {
+    handleSubmit: PT.func
+  };
 
   submit(values) {
     signup(values);
@@ -13,10 +15,11 @@ class Signup extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    return(
+
+    return (
       <div className="Signup">
         <h2 style={{'textAlign': 'center'}}>
-          Sign up
+          Sign Up
         </h2>
         <form onSubmit={handleSubmit(this.submit)}>
           <FormGroup className="signupForm">
@@ -28,7 +31,7 @@ class Signup extends Component {
           </FormGroup>
         </form>
       </div>
-    )
+    );
   }
 }
 
