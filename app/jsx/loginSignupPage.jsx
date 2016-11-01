@@ -18,6 +18,8 @@ export default class LoginSignupPage extends Component {
       <div className="LoginSignupPageBackground">
         <ReactCSSTransitionGroup
           transitionName="LoginSignupPageSwitch"
+          transitionAppearTimeout={500}
+          transitionAppear={true}
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}>
           {

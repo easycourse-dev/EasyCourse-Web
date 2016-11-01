@@ -16,13 +16,13 @@
   border-width: 0;
   border-bottom: 1px solid white;
   box-shadow: inset 0 0 0 transparent;
-  -webkit-animation: InputFieldsAnimation 0.5s ease;
+  /*-webkit-animation: InputFieldsAnimation 0.5s ease;
   -moz-animation: InputFieldsAnimation 0.5s ease;
   -o-animation: InputFieldsAnimation 0.5s ease;
-  animation: InputFieldsAnimation 0.5s ease;
+  animation: InputFieldsAnimation 0.5s ease;*/
 }
 
-@-webkit-keyframes InputFieldsAnimation {
+/*@-webkit-keyframes InputFieldsAnimation {
   0% {border-bottom: 1px solid white}
   100% {border-bottom: 2px solid white}
 }
@@ -37,7 +37,7 @@
 @keyframes InputFieldsAnimation {
   0% {border-bottom: 1px solid white}
   100% {border-bottom: 2px solid white}
-}
+}*/
 
 .signupForm input:focus, .signupForm input:hover {
   box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;

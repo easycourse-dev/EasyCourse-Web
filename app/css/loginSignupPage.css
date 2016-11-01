@@ -29,20 +29,11 @@
     100% {background-position:0 50%}
 }
 
-.LoginSignupPageSwitch-enter {
+.LoginSignupPageSwitch-appear {
   opacity: 0.01;
 }
 
-.LoginSignupPageSwitch-enter.LoginSignupPageSwitch-enter-active {
+.LoginSignupPageSwitch-appear.LoginSignupPageSwitch-appear-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.LoginSignupPageSwitch-leave {
-  opacity: 1;
-}
-
-.LoginSignupPageSwitch-leave.LoginSignupPageSwitch-leave-active {
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
+  transition: opacity .5s ease-in;
 }
