@@ -56,6 +56,12 @@
   background-color: transparent;
 }
 
+.navbar-default .navbar-nav > .NavbarSignIn > a:focus,
+.navbar-default .navbar-nav > .NavbarSignIn > a:hover {
+  color: white;
+  outline-width: 0;
+}
+
 .navbar-default .navbar-nav>li>a {
   color: inherit;
 }
@@ -107,6 +113,13 @@
     background-color: #494B6C;
     border-radius: 0;
     margin-left: 0;
+  }
+
+  .navbar-default .navbar-nav > .NavbarSignIn > a:focus,
+  .navbar-default .navbar-nav > .NavbarSignIn > a:hover {
+    color: white;
+    outline-width: 0;
+    background-color: #1EC7AC;
   }
 
   .navbar-default .navbar-nav > .NavbarSignIn > a,

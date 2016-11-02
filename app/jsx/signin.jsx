@@ -1,6 +1,6 @@
 import React, { Component, PropTypes as PT } from 'react';
 import { Login, Signup } from 'components';
-import { Button, Jumbotron, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class SignIn extends Component {
@@ -32,7 +32,7 @@ export default class SignIn extends Component {
                     <Login />
                   }
                 </ReactCSSTransitionGroup>
-                <a className="SignInSwitch btn" bsStyle="link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
+                <a className="SignInSwitch btn btn-link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
                   {
                     this.state.showSignup ?
                     'Already have an account?'
