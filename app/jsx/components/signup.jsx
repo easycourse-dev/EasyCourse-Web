@@ -22,12 +22,12 @@ class Signup extends Component {
           Sign Up
         </h2>
         <form onSubmit={handleSubmit(this.submit)}>
-          <FormGroup className="signupForm">
+          <FormGroup className="Form">
             <Field className="form-control" name="email" component="input" type="text" placeholder="Email"/>
             <Field className="form-control" name="password" component="input" type="password" placeholder="Password"/>
             <Field className="form-control" name="passwordConfirmation" component="input" type="password" placeholder="Confirm Password"/>
             <Field className="form-control" name="displayName" component="input" type="text" placeholder="Username"/>
-            <Button className="signupFormSubmitButton" bsStyle="primary" type="submit">Signup</Button>
+            <Button className="FormSubmitButton" bsStyle="primary" type="submit">Signup</Button>
           </FormGroup>
         </form>
       </div>

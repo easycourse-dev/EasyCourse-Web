@@ -21,10 +21,10 @@ class Login extends Component {
           Log In
         </h2>
         <form onSubmit={handleSubmit(this.submit)}>
-          <FormGroup className="loginForm">
+          <FormGroup className="Form">
             <Field className="form-control" name="email" component="input" type="text" placeholder="Email"/>
             <Field className="form-control" name="password" component="input" type="password" placeholder="Password"/>
-            <Button className="loginFormSubmitButton" bsStyle="primary" type="submit">Login</Button>
+            <Button className="FormSubmitButton" bsStyle="primary" type="submit">Login</Button>
           </FormGroup>
         </form>
       </div>

@@ -15,38 +15,38 @@ export default class SignIn extends Component {
   render() {
     return (
       <div className="SignInBackground">
-        <ReactCSSTransitionGroup
-          transitionName="SignInFormSwitchAnimation"
-          transitionAppearTimeout={500}
-          transitionAppear
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}>
-          <div className="container SignInFormWrapper">
-            <Row className="SignInFormRow">
-              <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
-                <div className="SignInForm">
+        <div className="container SignInFormWrapper">
+          <Row className="SignInFormRow">
+            <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
+              <div className="SignInForm">
+                <ReactCSSTransitionGroup
+                  transitionName="SignInFormSwitchAnimation"
+                  transitionAppearTimeout={500}
+                  transitionAppear
+                  transitionEnterTimeout={500}
+                  transitionLeaveTimeout={500}>
                   {
                     this.state.showSignup ?
                     <Signup />
                     :
                     <Login />
                   }
-                  <a className="SignInSwitch btn" bsStyle="link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
-                    {
-                      this.state.showSignup ?
-                      'Already have an account?'
-                      :
-                      "I don't have an account"
-                    }
-                  </a>
-                </div>
-                <p className="SignInFooterText">
-                  @2016 EasyCourse Inc.
-                </p>
-              </Col>
-            </Row>
-          </div>
-        </ReactCSSTransitionGroup>
+                </ReactCSSTransitionGroup>
+                <a className="SignInSwitch btn" bsStyle="link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
+                  {
+                    this.state.showSignup ?
+                    'Already have an account?'
+                    :
+                    "I don't have an account"
+                  }
+                </a>
+              </div>
+              <p className="SignInFooterText">
+                @2016 EasyCourse Inc.
+              </p>
+            </Col>
+          </Row>
+        </div>
       </div>
     );
   }
