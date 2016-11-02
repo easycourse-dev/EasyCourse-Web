@@ -2,6 +2,7 @@ import React, { Component, PropTypes as PT } from 'react';
 import { Button, FormGroup, Row, Col } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { signup } from '../redux/actions/user';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Signup extends Component {
 
@@ -17,7 +18,21 @@ class Signup extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div>
+      <ReactCSSTransitionGroup
+      transitionName={ {
+        enter: 'SignInFormSwitchAnimation-enter',
+        enterActive: 'SignInFormSwitchAnimation-enterActive',
+        leave: 'SignInFormSwitchAnimation-leave',
+        leaveActive: 'SignInFormSwitchAnimation-leaveActive',
+        appear: 'SignInFormSwitchAnimation-appear',
+        appearActive: 'SignInFormSwitchAnimation-appearActive'
+      } }
+      transitionEnterTimeout={500}
+      transitionEnter
+      transitionLeaveTimeout={500}
+      transitionLeave
+      transitionAppearTimeout={500}
+      transitionAppear>
         <h2 className="PageTitle">
           Sign Up
         </h2>
@@ -30,7 +45,7 @@ class Signup extends Component {
             <Button className="FormSubmitButton" bsStyle="primary" type="submit">Signup</Button>
           </FormGroup>
         </form>
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }

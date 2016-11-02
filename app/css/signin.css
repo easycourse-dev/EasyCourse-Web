@@ -29,11 +29,38 @@
     100% {background-position:0 50%}
 }
 
-.SignInFormSwitchAnimation-appear {
-  opacity: 0.01;
+.SignInStartAnimation-appear {
+  opacity: 0;
 }
 
-.SignInFormSwitchAnimation-appear.SignInFormSwitchAnimation-appear-active {
+.SignInStartAnimation-appear.SignInStartAnimation-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.SignInFormSwitchAnimation-enter {
+  opacity: 0;
+}
+
+.SignInFormSwitchAnimation-enter.SignInFormSwitchAnimation-enterActive {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.SignInFormSwitchAnimation-leave {
+  opacity: 0;
+}
+
+.SignInFormSwitchAnimation-leave.SignInFormSwitchAnimation-leaveActive {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.SignInFormSwitchAnimation-appear {
+  opacity: 0;
+}
+
+.SignInFormSwitchAnimation-appear.SignInFormSwitchAnimation-appearActive {
   opacity: 1;
   transition: opacity .5s ease-in;
 }
@@ -51,6 +78,7 @@
   background-color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 0.35);
   border-radius: 15px;
+  height: 480px;
   padding: 0 35px;
   position: relative;
 }
@@ -63,11 +91,19 @@
   padding-top: 35px;
 }
 
+.SignInSwitchButtonWrapper {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+}
+
 .SignInSwitch {
   color: white;
   text-decoration: underline;
   display: block;
   margin: 0 auto;
+  position: relative;
+  left: -50%;
 }
 
 .SignInSwitch:focus, .SignInSwitch:hover {
@@ -84,7 +120,7 @@
 .SignInFooterText {
   color: white;
   font-size: 16px;
-  margin-top: 35px;
+  margin-top: 70px;
   text-align: center;
 }
 
@@ -95,6 +131,16 @@
   }
   .SignInForm {
     background-color: transparent;
+  }
+  .SignInSwitchButtonWrapper {
+    position: relative;
+    left: 0;
+  }
+  .SignInSwitch {
+    left: 0;
+  }
+  .SignInFooterText {
+    margin-top: 35px;
   }
 }
 
@@ -143,4 +189,11 @@ input:-webkit-autofill:focus, textarea:-webkit-autofill:focus, select:-webkit-au
   font-weight: 300;
   padding: 10px 20px;
   border-radius: 6px;
+}
+
+/*Smaller than smartphone*/
+@media (max-width: 425px) {
+  .LoginSubmitButton {
+    margin-bottom: 178px;
+  }
 }
