@@ -1,5 +1,5 @@
 .SignInBackground {
-  background: linear-gradient(270deg, #1d6ab9, #43cea2, #1ec7ac, #56b4d3, #9182FF, #6FA8FE);
+  background: linear-gradient(270deg, #1d6ab9, #43cea2, #1ec7ac, #52adcb, #9182FF, #6FA8FE);
   background-size: 800% 800%;
 
   -webkit-animation: SignInBackgroundAnimation 30s ease infinite;
@@ -29,24 +29,71 @@
     100% {background-position:0 50%}
 }
 
-.SignInSwitch-appear {
+.SignInFormSwitchAnimation-appear {
   opacity: 0.01;
 }
 
-.SignInSwitch-appear.SignInSwitch-appear-active {
+.SignInFormSwitchAnimation-appear.SignInFormSwitchAnimation-appear-active {
   opacity: 1;
   transition: opacity .5s ease-in;
-}
-
-.SignInFormBackground {
-
 }
 
 .SignInFormWrapper {
   position: relative;
 }
 
-.SignInForm {
+.SignInFormRow {
   padding-top: 150px;
   height: 100vh;
+}
+
+.SignInForm {
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 0 35px;
+  position: relative;
+}
+
+.PageTitle {
+  text-align: center;
+  color: white;
+  font-weight: 300;
+  margin-bottom: 35px;
+  padding-top: 35px;
+}
+
+.SignInSwitch {
+  color: white;
+  text-decoration: underline;
+  display: block;
+  margin: 0 auto;
+}
+
+.SignInSwitch:focus, .SignInSwitch:hover {
+  color: white;
+  outline: 0;
+  text-decoration: underline;
+}
+
+.SignInSwitch.active, .SignInSwitch:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0 , 0);
+  text-decoration: underline;
+}
+
+.SignInFooterText {
+  color: white;
+  font-size: 16px;
+  margin-top: 35px;
+  text-align: center;
+}
+
+/*Smaller than smartphone*/
+@media (max-width: 425px) {
+  .SignInFormRow {
+    padding-top: 70px;
+  }
+  .SignInForm {
+    background-color: transparent;
+  }
 }

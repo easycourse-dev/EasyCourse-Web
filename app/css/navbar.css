@@ -61,7 +61,7 @@
 }
 
 .NavbarSignIn {
-  background-color: #1ec7ac;
+  background-color: #1EC7AC;
   border-radius: 6px;
   margin-top: 12px;
   margin-left: 5px;
@@ -111,7 +111,7 @@
 
   .navbar-default .navbar-nav > .NavbarSignIn > a,
   .navbar-default .navbar-nav > .NavbarSignIn + .active > a {
-    background-color: #1ec7ac;
+    background-color: #1EC7AC;
   }
 
   .active {

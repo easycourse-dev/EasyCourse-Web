@@ -16,33 +16,36 @@ export default class SignIn extends Component {
     return (
       <div className="SignInBackground">
         <ReactCSSTransitionGroup
-          transitionName="SignInSwitch"
+          transitionName="SignInFormSwitchAnimation"
           transitionAppearTimeout={500}
           transitionAppear
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}>
-          <div className="SignInFormBackground">
-            <div className="container SignInFormWrapper">
-              <Row className="SignInForm">
-                <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
+          <div className="container SignInFormWrapper">
+            <Row className="SignInFormRow">
+              <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
+                <div className="SignInForm">
                   {
                     this.state.showSignup ?
-                    <Login />
-                    :
                     <Signup />
+                    :
+                    <Login />
                   }
-                </Col>
-              </Row>
-            </div>
+                  <a className="SignInSwitch btn" bsStyle="link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
+                    {
+                      this.state.showSignup ?
+                      'Already have an account?'
+                      :
+                      "I don't have an account"
+                    }
+                  </a>
+                </div>
+                <p className="SignInFooterText">
+                  @2016 EasyCourse Inc.
+                </p>
+              </Col>
+            </Row>
           </div>
-          <Button bsStyle="link" onClick={() => this.setState({showSignup: !this.state.showSignup})} style={{marginTop: '-500px', color: 'white', }}>
-            {
-              this.state.showSignup ?
-              'Signup instead'
-              :
-              'Login instead'
-            }
-          </Button>
         </ReactCSSTransitionGroup>
       </div>
     );
