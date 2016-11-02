@@ -165,12 +165,15 @@
   }
   .ClassesImage {
     margin-bottom: 50px;
-    margin-top: 0;
+    margin-top: 50px;
   }
   .TextsWrapper {
     text-align: center;
     margin: 50px auto;
     max-width: 400px;
+  }
+  .TextsImage {
+    margin-bottom: 50px;
   }
 }
 

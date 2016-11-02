@@ -35,7 +35,7 @@ export default class PublicSection extends Component {
       <div className="PublicSection">
         <div className="container">
           <Row>
-            <Col lg={8} md={10} lgOffset={2} mdOffset={1} sm={12}>
+            <Col lg={10} md={10} lgOffset={1} mdOffset={1} sm={12}>
               {this.props.PicOnLeft ?
                 <div>
                   {this.pictureComponent()}

@@ -12,7 +12,7 @@ export default class NavBar extends Component {
     return (
       <Navbar className="Navbar">
         <Row>
-          <Col lg={8} md={10} lgOffset={2} mdOffset={1}>
+          <Col lg={10} md={10} lgOffset={1} mdOffset={1} style={{padding: '0'}}>
             <Navbar.Header>
               <h3 href="#" className="BrandName">
                 EasyCourse
@@ -24,13 +24,10 @@ export default class NavBar extends Component {
                 <LinkContainer to="/">
                   <NavItem className="NavbarLinks">Home</NavItem>
                 </LinkContainer>
-                <LinkContainer to="/login">
-                  <NavItem className="NavbarLinks">Log In</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/signup">
-                  <NavItem className="NavbarLinks">Sign Up</NavItem>
-                </LinkContainer>
                 <NavItem className="NavbarLinks" href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
+                <LinkContainer to="/signin">
+                  <NavItem className="NavbarLinks NavbarSignIn">Sign In</NavItem>
+                </LinkContainer>
               </Nav>
             </Navbar.Collapse>
           </Col>

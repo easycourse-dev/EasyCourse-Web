@@ -1,34 +1,3 @@
-.LoginPageBackground {
-  background: linear-gradient(270deg, #1ec7ac, #56b4d3, #9182FF, #6FA8FE);
-  background-size: 800% 800%;
-
-  -webkit-animation: LoginPageBackgroundAnimation 30s ease infinite;
-  -moz-animation: LoginPageBackgroundAnimation 30s ease infinite;
-  -o-animation: LoginPageBackgroundAnimation 30s ease infinite;
-  animation: LoginPageBackgroundAnimation 30s ease infinite;
-}
-
-@-webkit-keyframes LoginPageBackgroundAnimation {
-    0% {background-position:0 50%}
-    50% {background-position:100% 50%}
-    100% {background-position:0 50%}
-}
-@-moz-keyframes LoginPageBackgroundAnimation {
-    0% {background-position:0 50%}
-    50% {background-position:100% 50%}
-    100% {background-position:0 50%}
-}
-@-o-keyframes LoginPageBackgroundAnimation {
-    0% {background-position:0 50%}
-    50% {background-position:100% 50%}
-    100% {background-position:0 50%}
-}
-@keyframes LoginPageBackgroundAnimation {
-    0% {background-position:0 50%}
-    50% {background-position:100% 50%}
-    100% {background-position:0 50%}
-}
-
 .LoginPageWrapper {
   position: relative;
 }
@@ -47,12 +16,12 @@
   border-width: 0;
   border-bottom: 1px solid white;
   box-shadow: inset 0 0 0 transparent;
-  -webkit-animation: InputFieldsAnimation 0.5s ease;
+  /*-webkit-animation: InputFieldsAnimation 0.5s ease;
   -moz-animation: InputFieldsAnimation 0.5s ease;
   -o-animation: InputFieldsAnimation 0.5s ease;
-  animation: InputFieldsAnimation 0.5s ease;
+  animation: InputFieldsAnimation 0.5s ease;*/
 }
-
+/*
 @-webkit-keyframes InputFieldsAnimation {
   0% {border-bottom: 1px solid white}
   100% {border-bottom: 2px solid white}
@@ -68,7 +37,7 @@
 @keyframes InputFieldsAnimation {
   0% {border-bottom: 1px solid white}
   100% {border-bottom: 2px solid white}
-}
+}*/
 
 .loginForm input:focus, .loginForm input:hover {
   box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;
