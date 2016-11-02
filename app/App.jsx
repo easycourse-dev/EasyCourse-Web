@@ -49,8 +49,8 @@ class App extends Component {
         />
 
         <NavBar />
-        <Public />
-        {/* <SignIn /> */}
+        {/* <Public /> */}
+        <SignIn />
         <Footer />
       </div>
     );
