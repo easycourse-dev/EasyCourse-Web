@@ -75,6 +75,9 @@
 }
 
 .SignInForm {
+  /*background-color: #525479;
+  border-radius: 12px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);*/
   background-color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 0.35);
   border-radius: 15px;
@@ -113,7 +116,7 @@
 }
 
 .SignInSwitch.active, .SignInSwitch:active {
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0 , 0);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0);
   text-decoration: underline;
 }
 
@@ -151,8 +154,10 @@
   color: white;
   border-color: white;
   border-radius: 0;
+  /*border-radius: 6px;*/
   border-width: 0;
   border-bottom: 1px solid white;
+  /*border: 1px solid white;*/
   box-shadow: inset 0 0 0 transparent;
 }
 
@@ -183,8 +188,10 @@ input:-webkit-autofill:focus, textarea:-webkit-autofill:focus, select:-webkit-au
   margin: 0 auto;
   margin-top: 35px;
   margin-bottom: 80px;
-  background-color: #525479;
-  border-color: #525479;
+  background-color: #494B6C;
+  border-color: #494B6C;
+  /*background-color: #2BBBAD;
+  border-color: #2BBBAD;*/
   font-size: 16px;
   font-weight: 300;
   padding: 10px 20px;
