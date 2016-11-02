@@ -3,6 +3,40 @@ import { Button, FormGroup, Row, Col } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../redux/actions/user';
 
+const validate = values => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.password) {
+    errors.password = 'Required';
+  }
+  return errors;
+}
+
+const warn = values => {
+  const warnings = {}
+  if (values.password && (values.password.length > 1 && values.password.lenght < 6)) {
+    warnings.password = 'Password must be longer than 6 characters';
+  }
+
+  return warnings;
+}
+
+const validatedInput = ({ input, label, type, meta: { touched, error, warning } }) => (
+  <div>
+    <div>
+      <input {...input} className="form-control" placeholder={label} type={type} />
+      {((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+)
+
+
+
 class Login extends Component {
 
   static propTypes = {
@@ -11,7 +45,7 @@ class Login extends Component {
 
   submit(values) {
     login(values);
-  }
+  };
 
   render() {
     const { handleSubmit } = this.props;
@@ -22,8 +56,18 @@ class Login extends Component {
         </h2>
         <form onSubmit={handleSubmit(this.submit)}>
           <FormGroup className="loginForm">
-            <Field className="form-control" name="email" component="input" type="text" placeholder="Email"/>
-            <Field className="form-control" name="password" component="input" type="password" placeholder="Password"/>
+            <Field
+              name="email"
+              type="email"
+              component={validatedInput}
+              label="Email"
+            />
+            <Field
+              name="password"
+              component={validatedInput}
+              type="password"
+              label="Password"
+            />
             <Button className="loginFormSubmitButton" bsStyle="primary" type="submit">Login</Button>
           </FormGroup>
         </form>
@@ -34,4 +78,6 @@ class Login extends Component {
 
 export default reduxForm({
   form: 'login',
+  validate,
+  warn
 })(Login);
