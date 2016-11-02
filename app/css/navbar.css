@@ -60,11 +60,27 @@
   color: inherit;
 }
 
+.NavbarSignIn {
+  background-color: #1ec7ac;
+  border-radius: 6px;
+  margin-top: 12px;
+  margin-left: 5px;
+}
+
+.nav > .NavbarSignIn > a {
+  padding: 10px 15px;
+}
+
 /*Smaller than smartphone*/
 @media (max-width: 425px) {
   .BrandIcon {
     margin-left: 10px;
   }
+
+  .navbar-header, .navbar-collapse {
+    padding: 0 15px;
+  }
+
   /*Navbar toggle background after clicked*/
   .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
     background-color: transparent;
@@ -75,17 +91,44 @@
   }
 
   .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    margin-top: 9px;
-    border-color: #333;
+    margin-top: 8px;
+    border-color: transparent;
   }
+
+  .navbar-nav {
+    margin-top: 0;
+  }
+
   .NavbarLinks {
-    color: #333;
+    margin-top: 0;
+  }
+
+  .NavbarSignIn {
+    background-color: #494B6C;
+    border-radius: 0;
+    margin-left: 0;
+  }
+
+  .navbar-default .navbar-nav > .NavbarSignIn > a,
+  .navbar-default .navbar-nav > .NavbarSignIn + .active > a {
+    background-color: #1ec7ac;
+  }
+
+  .active {
+    background-color: #494B6C;
+    font-weight: bold;
+  }
+
+  .nav > li > a {
+    background-color: #494B6C;
+    font-size: 18px;
   }
 
   .navbar-default .navbar-nav>li>a {
     color: white;
-    padding: 5px 15px;
+    padding: 15px 25px;
   }
+
   /*Navbar links on hover*/
   .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav >

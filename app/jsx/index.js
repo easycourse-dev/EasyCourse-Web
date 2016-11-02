@@ -7,5 +7,5 @@ So that feature below can be achieved:
 List all the .jsx files below
 */
 export Home from './home.jsx';
-export LoginSignupPage from './loginSignupPage.jsx';
+export LoginSignupPage from './signin.jsx';
 export Public from './public.jsx';

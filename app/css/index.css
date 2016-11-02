@@ -5,9 +5,9 @@
 @import './footer.css';
 @import './home.css';
 @import './login.css';
-@import './loginSignupPage.css';
 @import './navbar.css';
 @import './public.css';
+@import './signin.css';
 @import './signup.css';
 @import url('https://fonts.googleapis.com/css?family=Lato:400,300italic,300,100');
 
@@ -19,6 +19,14 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+h5 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 18px;
+}
+
 .PageTitle {
   text-align: center;
   color: white;
@@ -28,4 +36,11 @@ body {
 
 .form-control:focus {
   border-color: white;
+}
+
+/*container*/
+@media (min-width: 1440px) {
+  .container {
+      width: 1400px;
+  }
 }

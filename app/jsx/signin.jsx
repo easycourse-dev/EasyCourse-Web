@@ -3,7 +3,7 @@ import { Login, Signup } from 'components';
 import { Button } from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-export default class LoginSignupPage extends Component {
+export default class SignIn extends Component {
 
   constructor(props) {
     super(props);

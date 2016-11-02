@@ -2,7 +2,7 @@ import React, { Component, PropTypes as PT } from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware, { Provider } from 'react-redux';
-import { Public, Home, LoginSignupPage } from 'jsx';
+import { Public, Home, SignIn } from 'jsx';
 import { NavBar, Footer } from 'components';
 import store, { history } from './jsx/redux/store.js'
 import rootReducer from 'jsx/redux/reducers';
@@ -49,8 +49,8 @@ class App extends Component {
         />
 
         <NavBar />
-        {/* <Public /> */}
-        <LoginSignupPage />
+        <Public />
+        {/* <SignIn /> */}
         <Footer />
       </div>
     );
