@@ -1,6 +1,6 @@
 import React, { Component, PropTypes as PT } from 'react';
 import { Login, Signup } from 'components';
-import { Button } from 'react-bootstrap';
+import { Button, Jumbotron, Row, Col } from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class SignIn extends Component {
@@ -13,21 +13,28 @@ export default class SignIn extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
     return (
-      <div className="LoginSignupPageBackground">
+      <div className="SignInBackground">
         <ReactCSSTransitionGroup
-          transitionName="LoginSignupPageSwitch"
+          transitionName="SignInSwitch"
           transitionAppearTimeout={500}
-          transitionAppear={true}
+          transitionAppear
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}>
-          {
-            this.state.showSignup ?
-            <Login />
-            :
-            <Signup />
-          }
+          <div className="SignInFormBackground">
+            <div className="container SignInFormWrapper">
+              <Row className="SignInForm">
+                <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
+                  {
+                    this.state.showSignup ?
+                    <Login />
+                    :
+                    <Signup />
+                  }
+                </Col>
+              </Row>
+            </div>
+          </div>
           <Button bsStyle="link" onClick={() => this.setState({showSignup: !this.state.showSignup})} style={{marginTop: '-500px', color: 'white', }}>
             {
               this.state.showSignup ?
