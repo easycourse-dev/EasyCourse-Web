@@ -1,39 +1,52 @@
-.LoginSignupPageBackground {
+.SignInBackground {
   background: linear-gradient(270deg, #1d6ab9, #43cea2, #1ec7ac, #56b4d3, #9182FF, #6FA8FE);
   background-size: 800% 800%;
 
-  -webkit-animation: LoginPageBackgroundAnimation 30s ease infinite;
-  -moz-animation: LoginPageBackgroundAnimation 30s ease infinite;
-  -o-animation: LoginPageBackgroundAnimation 30s ease infinite;
-  animation: LoginPageBackgroundAnimation 30s ease infinite;
+  -webkit-animation: SignInBackgroundAnimation 30s ease infinite;
+  -moz-animation: SignInBackgroundAnimation 30s ease infinite;
+  -o-animation: SignInBackgroundAnimation 30s ease infinite;
+  animation: SignInBackgroundAnimation 30s ease infinite;
 }
 
-@-webkit-keyframes LoginPageBackgroundAnimation {
+@-webkit-keyframes SignInBackgroundAnimation {
     0% {background-position:0 50%}
     50% {background-position:100% 50%}
     100% {background-position:0 50%}
 }
-@-moz-keyframes LoginPageBackgroundAnimation {
+@-moz-keyframes SignInBackgroundAnimation {
     0% {background-position:0 50%}
     50% {background-position:100% 50%}
     100% {background-position:0 50%}
 }
-@-o-keyframes LoginPageBackgroundAnimation {
+@-o-keyframes SignInBackgroundAnimation {
     0% {background-position:0 50%}
     50% {background-position:100% 50%}
     100% {background-position:0 50%}
 }
-@keyframes LoginPageBackgroundAnimation {
+@keyframes SignInBackgroundAnimation {
     0% {background-position:0 50%}
     50% {background-position:100% 50%}
     100% {background-position:0 50%}
 }
 
-.LoginSignupPageSwitch-appear {
+.SignInSwitch-appear {
   opacity: 0.01;
 }
 
-.LoginSignupPageSwitch-appear.LoginSignupPageSwitch-appear-active {
+.SignInSwitch-appear.SignInSwitch-appear-active {
   opacity: 1;
   transition: opacity .5s ease-in;
+}
+
+.SignInFormBackground {
+
+}
+
+.SignInFormWrapper {
+  position: relative;
+}
+
+.SignInForm {
+  padding-top: 150px;
+  height: 100vh;
 }
