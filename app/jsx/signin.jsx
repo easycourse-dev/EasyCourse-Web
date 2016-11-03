@@ -6,10 +6,19 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default class SignIn extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      showSignup: false
-    };
+      showSignup: true
+    }
+
+    this.toggleSignIn = this.toggleSignIn.bind(this);
+  }
+
+  toggleSignIn() {
+    console.log('In toggleSignIn')
+    this.setState({
+      showSignup: !this.state.showSignup
+    });
   }
 
   render() {
@@ -27,7 +36,7 @@ export default class SignIn extends Component {
                 <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
                   {
                     this.state.showSignup ?
-                    <Login />
+                      <Login />
                     :
                     <Signup />
                   }
@@ -35,7 +44,7 @@ export default class SignIn extends Component {
               </Row>
             </div>
           </div>
-          <Button bsStyle="link" onClick={() => this.setState({showSignup: !this.state.showSignup})} style={{marginTop: '-500px', color: 'white', }}>
+          <Button bsStyle="link" onClick={this.toggleSignIn} style={{marginTop: '-500px', color: 'white', }}>
             {
               this.state.showSignup ?
               'Signup instead'
