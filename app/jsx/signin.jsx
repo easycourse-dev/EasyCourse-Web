@@ -48,7 +48,7 @@ export default class SignIn extends Component {
                         this.state.showSignup ?
                         'Already have an account?'
                         :
-                        "I don't have an account"
+                        "Don't have an account?"
                       }
                     </a>
                   </div>
