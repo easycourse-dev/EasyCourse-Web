@@ -56,12 +56,18 @@
   background-color: transparent;
 }
 
+.navbar-default .navbar-nav > .NavbarSignIn > a:focus,
+.navbar-default .navbar-nav > .NavbarSignIn > a:hover {
+  color: white;
+  outline-width: 0;
+}
+
 .navbar-default .navbar-nav>li>a {
   color: inherit;
 }
 
 .NavbarSignIn {
-  background-color: #1ec7ac;
+  background-color: #2BBBAD;
   border-radius: 6px;
   margin-top: 12px;
   margin-left: 5px;
@@ -109,9 +115,16 @@
     margin-left: 0;
   }
 
+  .navbar-default .navbar-nav > .NavbarSignIn > a:focus,
+  .navbar-default .navbar-nav > .NavbarSignIn > a:hover {
+    color: white;
+    outline-width: 0;
+    background-color: #2BBBAD;
+  }
+
   .navbar-default .navbar-nav > .NavbarSignIn > a,
   .navbar-default .navbar-nav > .NavbarSignIn + .active > a {
-    background-color: #1ec7ac;
+    background-color: #2BBBAD;
   }
 
   .active {

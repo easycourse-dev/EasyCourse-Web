@@ -1,6 +1,6 @@
 import React, { Component, PropTypes as PT } from 'react';
 import { Login, Signup } from 'components';
-import { Button, Jumbotron, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class SignIn extends Component {
@@ -8,7 +8,7 @@ export default class SignIn extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showSignup: true
+      showSignup: false
     }
 
     this.toggleSignIn = this.toggleSignIn.bind(this);
@@ -25,33 +25,40 @@ export default class SignIn extends Component {
     return (
       <div className="SignInBackground">
         <ReactCSSTransitionGroup
-          transitionName="SignInSwitch"
-          transitionAppearTimeout={500}
-          transitionAppear
+          transitionName="SignInStartAnimation"
           transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}>
-          <div className="SignInFormBackground">
-            <div className="container SignInFormWrapper">
-              <Row className="SignInForm">
-                <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
+          transitionEnter
+          transitionLeaveTimeout={500}
+          transitionLeave
+          transitionAppearTimeout={500}
+          transitionAppear>
+          <div className="container SignInFormWrapper">
+            <Row className="SignInFormRow">
+              <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
+                <div className="SignInForm">
                   {
                     this.state.showSignup ?
-                      <Login />
-                    :
                     <Signup />
+                    :
+                    <Login />
                   }
-                </Col>
-              </Row>
-            </div>
+                  <div className="SignInSwitchButtonWrapper">
+                    <a className="SignInSwitch btn btn-link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
+                      {
+                        this.state.showSignup ?
+                        'Already have an account?'
+                        :
+                        "I don't have an account"
+                      }
+                    </a>
+                  </div>
+                </div>
+                <p className="SignInFooterText">
+                  @2016 EasyCourse Inc.
+                </p>
+              </Col>
+            </Row>
           </div>
-          <Button bsStyle="link" onClick={this.toggleSignIn} style={{marginTop: '-500px', color: 'white', }}>
-            {
-              this.state.showSignup ?
-              'Signup instead'
-              :
-              'Login instead'
-            }
-          </Button>
         </ReactCSSTransitionGroup>
       </div>
     );
