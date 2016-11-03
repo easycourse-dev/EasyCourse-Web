@@ -10,10 +10,13 @@ import Helmet from 'react-helmet';
 import { Router, Route, IndexRoute } from 'react-router';
 import './css/index.css'; // Importing all the CSS files
 
-
+// if (localStore.get('authToken')) {
+//   store.dispatch({
+//     type: 'USER_AUTHENTICATE_SUCCESS'
+//   });
+// }
 
 class App extends Component {
-
   render() {
     return (
       <div>
@@ -62,8 +65,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Home}/>
-        <Route path="signin" component={SignIn}/>
+        <IndexRoute component={SignIn}/>
+        <Route path="home" component={Home}/>
       </Route>
     </Router>
   </Provider>
