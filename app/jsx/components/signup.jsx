@@ -5,27 +5,20 @@ import { signup } from '../redux/actions/user';
 
 const validate = values => {
   const errors = {};
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+  
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
   }
 
-  if (!values.password) {
-    errors.password = 'Required';
-  } else if (values.password.length < 6) {
+  if (values.password && values.password.length < 6) {
     errors.password = 'Password must be longer than 6 characters';
   }
 
-  if (!values.passwordConfirmation) {
-    errors.passwordConfirmation = 'Required';
-  } else if (values.password != values.passwordConfirmation) {
+  if (values.password != values.passwordConfirmation) {
     errors.passwordConfirmation = 'Passwords must match'
   }
 
-  if (!values.displayName) {
-    errors.displayName = 'Required'
-  } else if(values.displayName.length < 6) {
+  if(values.displayName && values.displayName.length < 6) {
     errors.displayName = 'Display Name must be longer than 6 characters'
   }
 
@@ -44,8 +37,14 @@ const warn = values => {
 const validatedInput = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
     <div>
-      <input {...input} className="form-control" placeholder={label} type={type} />
-      {((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      <input 
+        style={{borderBottomColor: error ? 'red' : 'green'}} 
+        {...input} 
+        className="form-control" 
+        placeholder={label} 
+        type={type} 
+       />
+      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
   </div>
 )
