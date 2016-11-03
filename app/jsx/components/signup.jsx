@@ -5,7 +5,7 @@ import { signup } from '../redux/actions/user';
 
 const validate = values => {
   const errors = {};
-  
+
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
   }
@@ -37,13 +37,13 @@ const warn = values => {
 const validatedInput = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
     <div>
-      <input 
+      <input
         style={{borderBottomColor: error ? 'red' : 'green'}} 
-        {...input} 
-        className="form-control" 
-        placeholder={label} 
-        type={type} 
-       />
+        {...input}
+        className="form-control"
+        placeholder={label}
+        type={type}
+      />
       {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>
   </div>

@@ -7,7 +7,7 @@ import { NavBar, Footer } from 'components';
 import store, { history } from './jsx/redux/store.js'
 import rootReducer from 'jsx/redux/reducers';
 import Helmet from 'react-helmet';
-import { Router, Route } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import './css/index.css'; // Importing all the CSS files
 
 
@@ -50,7 +50,8 @@ class App extends Component {
 
         <NavBar />
         {/* <Public /> */}
-        <SignIn />
+        {/* <SignIn />*/}
+        {this.props.children}
         <Footer />
       </div>
     );
@@ -60,7 +61,10 @@ class App extends Component {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App} />
+      <Route path="/" component={App}>
+        <IndexRoute component={Home}/>
+        <Route path="signin" component={SignIn}/>
+      </Route>
     </Router>
   </Provider>
   ,
