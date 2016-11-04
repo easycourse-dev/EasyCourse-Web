@@ -10,7 +10,7 @@ import Helmet from 'react-helmet';
 import { Router, Route, IndexRoute } from 'react-router';
 import './css/index.css'; // Importing all the CSS files
 
-if (localStore.get('authToken')) {
+if (localStorage.get('authToken')) {
   store.dispatch({
    type: 'USER_AUTHENTICATE_SUCCESS'
   });
