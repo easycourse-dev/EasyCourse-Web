@@ -9,12 +9,15 @@ import rootReducer from 'jsx/redux/reducers';
 import Helmet from 'react-helmet';
 import { Router, Route, IndexRoute } from 'react-router';
 import './css/index.css'; // Importing all the CSS files
+import { browserHistory } from 'react-router';
 
-// if (localStore.get('authToken')) {
-//   store.dispatch({
-//     type: 'USER_AUTHENTICATE_SUCCESS'
-//   });
-// }
+if (localStorage.getItem('authToken')) {
+  store.dispatch({
+    type: 'USER_AUTHENTICATE_SUCCESS'
+  });
+
+  browserHistory.push('/home');
+}
 
 class App extends Component {
   render() {
@@ -62,7 +65,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={SignIn}/>
+        <IndexRoute component={Public}/>
         <Route path="home" component={Home}/>
       </Route>
     </Router>
