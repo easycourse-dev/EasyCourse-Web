@@ -38,7 +38,7 @@ const warn = values => {
 const validatedInput = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>
     <input
-      style={{borderBottomColor: error ? '#F44336' : '#2BBBAD'}}
+      style={{borderBottomColor: (touched && error) ? '#F44336' : '#2BBBAD'}}
       {...input}
       className="form-control"
       placeholder={label}
