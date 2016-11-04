@@ -21,7 +21,7 @@ export default class NavBar extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                <LinkContainer to="/">
+                <LinkContainer to="/home">
                   <NavItem className="NavbarLinks">Home</NavItem>
                 </LinkContainer>
                 <NavItem className="NavbarLinks" href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>

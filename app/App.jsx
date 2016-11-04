@@ -7,13 +7,16 @@ import { NavBar } from 'components';
 import store, { history } from './jsx/redux/store.js'
 import rootReducer from 'jsx/redux/reducers';
 import Helmet from 'react-helmet';
-import { Router, Route } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import './css/index.css'; // Importing all the CSS files
 
-
+// if (localStore.get('authToken')) {
+//   store.dispatch({
+//     type: 'USER_AUTHENTICATE_SUCCESS'
+//   });
+// }
 
 class App extends Component {
-
   render() {
     return (
       <div>
@@ -50,7 +53,9 @@ class App extends Component {
 
         <NavBar />
         {/* <Public /> */}
-        <SignIn />
+        {/* <SignIn />*/}
+        {this.props.children}
+        <Footer />
       </div>
     );
   }
@@ -59,7 +64,10 @@ class App extends Component {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App} />
+      <Route path="/" component={App}>
+        <IndexRoute component={SignIn}/>
+        <Route path="home" component={Home}/>
+      </Route>
     </Router>
   </Provider>
   ,
