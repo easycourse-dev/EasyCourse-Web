@@ -78,9 +78,6 @@
   background-color: #525479;
   border-radius: 12px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
-  /*background-color: rgb(255, 255, 255);
-  background-color: rgba(255, 255, 255, 0.35);
-  border-radius: 15px;*/
   height: 480px;
   padding: 0 35px;
   position: relative;
@@ -132,10 +129,10 @@
   .SignInFormRow {
     padding-top: 70px;
   }
-  .SignInForm {
+  /*.SignInForm {
     background-color: transparent;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.25);
-  }
+  }*/
   .SignInFooterText {
     margin-top: 35px;
   }
@@ -182,8 +179,6 @@ input:-webkit-autofill:focus, textarea:-webkit-autofill:focus, select:-webkit-au
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 80px;
-  /*background-color: #494B6C;
-  border-color: #494B6C;*/
   background-color: #2BBBAD;
   border-color: #2BBBAD;
   font-size: 16px;

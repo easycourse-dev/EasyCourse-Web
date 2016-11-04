@@ -39,7 +39,7 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
   <div>
     <div>
       <input
-        style={{borderBottomColor: error ? 'red' : 'green'}} 
+        style={{borderBottomColor: error ? '#F44336' : '#2BBBAD'}} 
         {...input}
         className="form-control"
         placeholder={label}

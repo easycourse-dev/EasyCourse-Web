@@ -52,10 +52,7 @@ class App extends Component {
         />
 
         <NavBar />
-        {/* <Public /> */}
-        {/* <SignIn />*/}
         {this.props.children}
-        <Footer />
       </div>
     );
   }
