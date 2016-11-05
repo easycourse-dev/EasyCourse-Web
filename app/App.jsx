@@ -11,15 +11,23 @@ import { Router, Route, IndexRoute } from 'react-router';
 import './css/index.css'; // Importing all the CSS files
 import { browserHistory } from 'react-router';
 
-if (localStorage.getItem('authToken')) {
-  store.dispatch({
-    type: 'USER_AUTHENTICATE_SUCCESS'
-  });
+// Function to determine the index route based on if there is a user authToken
+function getHomeComponent() {
+  if (localStorage.getItem('authToken')) {
+    store.dispatch({
+      type: 'USER_AUTHENTICATE_SUCCESS'
+    });
 
-  browserHistory.push('/home');
+    return (<Home />);
+  }
+  return (<Public />);
 }
 
 class App extends Component {
+  static propTypes = {
+    children: PT.object
+  }
+
   render() {
     return (
       <div>
@@ -64,10 +72,9 @@ class App extends Component {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Public}/>
-        <Route path="home" component={Home}/>
-        <Route path="signin" component={SignIn}/>
+      <Route path="/" component={App} >
+        <IndexRoute component={getHomeComponent} />
+        <Route path="signin" component={SignIn} />
       </Route>
     </Router>
   </Provider>
