@@ -2,10 +2,6 @@ import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-// Redux
-import { connect } from 'react-redux';
-import * as actions from '../redux/actions/navbarLinks';
-
 export default class NavBar extends Component {
 
   render() {

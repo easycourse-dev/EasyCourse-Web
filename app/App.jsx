@@ -1,15 +1,12 @@
 import React, { Component, PropTypes as PT } from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware, { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import { Public, Home, SignIn } from 'jsx';
 import { NavBar } from 'components';
 import store, { history } from './jsx/redux/store.js'
-import rootReducer from 'jsx/redux/reducers';
 import Helmet from 'react-helmet';
 import { Router, Route, IndexRoute } from 'react-router';
 import './css/index.css'; // Importing all the CSS files
-import { browserHistory } from 'react-router';
 
 // Function to determine the index route based on if there is a user authToken
 function getHomeComponent() {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes as PT } from 'react';
-import { Button, FormGroup, Row, Col } from 'react-bootstrap';
+import { Button, FormGroup } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { signup } from '../redux/actions/user';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -15,11 +15,11 @@ const validate = values => {
     errors.password = 'Password must be longer than 6 characters';
   }
 
-  if (values.password != values.passwordConfirmation) {
+  if (values.password !== values.passwordConfirmation) {
     errors.passwordConfirmation = 'Passwords must match'
   }
 
-  if(values.displayName && values.displayName.length < 6) {
+  if (values.displayName && values.displayName.length < 6) {
     errors.displayName = 'Display Name must be longer than 6 characters'
   }
 
