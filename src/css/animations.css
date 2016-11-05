@@ -1,0 +1,27 @@
+/*Fade In*/
+.FadeIn-enter {
+  opacity: 0;
+}
+
+.FadeIn-enter.FadeIn-enterActive {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.FadeIn-leave {
+  opacity: 0;
+}
+
+.FadeIn-leave.FadeIn-leaveActive {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.FadeIn-appear {
+  opacity: 0;
+}
+
+.FadeIn-appear.FadeIn-appearActive {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
