@@ -41,7 +41,7 @@
 .SignInForm {
   background-color: #525479;
   border-radius: 12px;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   height: 480px;
   padding: 0 35px;
   position: relative;
