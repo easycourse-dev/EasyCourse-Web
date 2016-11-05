@@ -1,5 +1,6 @@
 import axios from 'axios';
 import store from '../store';
+import { browserHistory } from 'react-router'
 import {
 	USER_SIGNUP_SUCCESS,
 	USER_SIGNUP_FAILURE,
@@ -38,6 +39,9 @@ export function login({email, password}) {
 
       // store authToken in localStorage
       localStorage.setItem('authToken', res.headers.auth);
+
+			// jump back to homepage
+			browserHistory.push('/');
     })
     .catch(error => {
       store.dispatch({
@@ -45,4 +49,16 @@ export function login({email, password}) {
         payload: error
       });
     });
+}
+
+export function logout() {
+	store.dispatch({
+		type: USER_LOGOUT,
+		payload: null
+	});
+
+  // Remove authToken to logout
+  localStorage.removeItem('authToken');
+	// jump back to homepage
+	browserHistory.push('/');
 }
