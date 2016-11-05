@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { PublicSection, Footer } from 'components';
 
 export default class Public extends Component {
 
   render() {
     return (
-      <div>
+      <ReactCSSTransitionGroup
+      transitionName={ {
+        enter: 'FadeIn-enter',
+        enterActive: 'FadeIn-enterActive',
+        leave: 'FadeIn-leave',
+        leaveActive: 'FadeIn-leaveActive',
+        appear: 'FadeIn-appear',
+        appearActive: 'FadeIn-appearActive'
+      } }
+      transitionEnterTimeout={500}
+      transitionEnter
+      transitionLeaveTimeout={500}
+      transitionLeave
+      transitionAppearTimeout={500}
+      transitionAppear>
         <Row className="Public">
           {/* Top banner with background image */}
           <div className="Banner">
@@ -54,7 +69,7 @@ export default class Public extends Component {
           <div style={{marginTop: '50px'}} />
         </Row>
         <Footer />
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }

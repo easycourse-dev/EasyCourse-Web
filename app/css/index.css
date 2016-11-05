@@ -2,6 +2,7 @@
 @charset 'UTF-8';
 
 /*Import all the css files in here*/
+@import './animations.css';
 @import './footer.css';
 @import './home.css';
 @import './navbar.css';

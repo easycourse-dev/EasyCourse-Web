@@ -64,12 +64,12 @@ class Signup extends Component {
     return (
       <ReactCSSTransitionGroup
       transitionName={ {
-        enter: 'SignInFormSwitchAnimation-enter',
-        enterActive: 'SignInFormSwitchAnimation-enterActive',
-        leave: 'SignInFormSwitchAnimation-leave',
-        leaveActive: 'SignInFormSwitchAnimation-leaveActive',
-        appear: 'SignInFormSwitchAnimation-appear',
-        appearActive: 'SignInFormSwitchAnimation-appearActive'
+        enter: 'FadeIn-enter',
+        enterActive: 'FadeIn-enterActive',
+        leave: 'FadeIn-leave',
+        leaveActive: 'FadeIn-leaveActive',
+        appear: 'FadeIn-appear',
+        appearActive: 'FadeIn-appearActive'
       } }
       transitionEnterTimeout={500}
       transitionEnter

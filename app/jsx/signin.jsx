@@ -16,13 +16,20 @@ export default class SignIn extends Component {
     return (
       <div className="SignInBackground">
         <ReactCSSTransitionGroup
-          transitionName="SignInStartAnimation"
-          transitionEnterTimeout={500}
-          transitionEnter
-          transitionLeaveTimeout={500}
-          transitionLeave
-          transitionAppearTimeout={500}
-          transitionAppear>
+        transitionName={ {
+          enter: 'FadeIn-enter',
+          enterActive: 'FadeIn-enterActive',
+          leave: 'FadeIn-leave',
+          leaveActive: 'FadeIn-leaveActive',
+          appear: 'FadeIn-appear',
+          appearActive: 'FadeIn-appearActive'
+        } }
+        transitionEnterTimeout={500}
+        transitionEnter
+        transitionLeaveTimeout={500}
+        transitionLeave
+        transitionAppearTimeout={500}
+        transitionAppear>
           <div className="container SignInFormWrapper">
             <Row className="SignInFormRow">
               <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>

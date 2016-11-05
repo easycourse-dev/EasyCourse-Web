@@ -29,42 +29,6 @@
     100% {background-position:0 50%}
 }
 
-.SignInStartAnimation-appear {
-  opacity: 0;
-}
-
-.SignInStartAnimation-appear.SignInStartAnimation-appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
-
-.SignInFormSwitchAnimation-enter {
-  opacity: 0;
-}
-
-.SignInFormSwitchAnimation-enter.SignInFormSwitchAnimation-enterActive {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
-
-.SignInFormSwitchAnimation-leave {
-  opacity: 0;
-}
-
-.SignInFormSwitchAnimation-leave.SignInFormSwitchAnimation-leaveActive {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
-
-.SignInFormSwitchAnimation-appear {
-  opacity: 0;
-}
-
-.SignInFormSwitchAnimation-appear.SignInFormSwitchAnimation-appearActive {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
-
 .SignInFormWrapper {
   position: relative;
 }
