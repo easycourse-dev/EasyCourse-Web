@@ -67,6 +67,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={Public}/>
         <Route path="home" component={Home}/>
+        <Route path="signin" component={SignIn}/>
       </Route>
     </Router>
   </Provider>
