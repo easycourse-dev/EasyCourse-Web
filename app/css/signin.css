@@ -124,6 +124,12 @@
   text-align: center;
 }
 
+@media (max-height: 638px) {
+  .SignInFormRow {
+    height: auto;
+  }
+}
+
 /*Smaller than smartphone*/
 @media (max-width: 425px) {
   .SignInFormRow {

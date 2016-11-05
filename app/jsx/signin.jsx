@@ -1,4 +1,4 @@
-import React, { Component, PropTypes as PT } from 'react';
+import React, { Component } from 'react';
 import { Login, Signup } from 'components';
 import { Row, Col } from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -6,19 +6,10 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default class SignIn extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       showSignup: false
-    }
-
-    this.toggleSignIn = this.toggleSignIn.bind(this);
-  }
-
-  toggleSignIn() {
-    console.log('In toggleSignIn')
-    this.setState({
-      showSignup: !this.state.showSignup
-    });
+    };
   }
 
   render() {
