@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Login from './components/login';
 import Signup from './components/signup';
+import SignUpSetup from './components/signupsetup';
 import { Row, Col } from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { connect } from 'react-redux';
 
-export default class SignIn extends Component {
+class SignIn extends Component {
 
   constructor(props) {
     super(props);
@@ -14,32 +16,33 @@ export default class SignIn extends Component {
   }
 
   render() {
+    const { initialSignUpComplete } = this.props;
     return (
       <div className="SignInBackground">
         <ReactCSSTransitionGroup
-        transitionName={ {
-          enter: 'FadeIn-enter',
-          enterActive: 'FadeIn-enterActive',
-          leave: 'FadeIn-leave',
-          leaveActive: 'FadeIn-leaveActive',
-          appear: 'FadeIn-appear',
-          appearActive: 'FadeIn-appearActive'
-        } }
-        transitionEnterTimeout={500}
-        transitionEnter
-        transitionLeaveTimeout={500}
-        transitionLeave
-        transitionAppearTimeout={500}
-        transitionAppear>
+          transitionName={ {
+            enter: 'FadeIn-enter',
+            enterActive: 'FadeIn-enterActive',
+            leave: 'FadeIn-leave',
+            leaveActive: 'FadeIn-leaveActive',
+            appear: 'FadeIn-appear',
+            appearActive: 'FadeIn-appearActive'
+          } }
+          transitionEnterTimeout={500}
+          transitionEnter
+          transitionLeaveTimeout={500}
+          transitionLeave
+          transitionAppearTimeout={500}
+          transitionAppear>
           <div className="container SignInFormWrapper" key="signinForm">
             <Row className="SignInFormRow">
               <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
                 <div className="SignInForm">
                   {
-                    this.state.showSignup ?
-                    <Signup />
+                    initialSignUpComplete ?
+                      this.state.showSignup ? <Signup /> : <Login />
                     :
-                    <Login />
+                    <SignUpSetup/>
                   }
                   <div className="SignInSwitchButtonWrapper">
                     <a className="SignInSwitch btn btn-link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
@@ -63,3 +66,11 @@ export default class SignIn extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    initialSignUpComplete: state.user.initialSignUpComplete
+  };
+}
+
+export default connect(null, mapStateToProps)(SignIn);

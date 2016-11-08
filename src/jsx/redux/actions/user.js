@@ -7,6 +7,11 @@ import {
 	USER_LOGIN_SUCCESS,
 	USER_LOGIN_FAILURE,
 	USER_LOGOUT,
+	USER_INITIAL_SIGNUP_FAILURE,
+	USER_INITIAL_SIGNUP_SUCCESS,
+	USER_UPDATE_SUCCESS,
+	USER_UPDATE_FAILURE,
+	SIGNUP_SETUP_CHOOSEN_UNIVERSITY
 } from './types';
 
 const ROOT_URL = 'https://zengjintaotest.com/api';
@@ -18,13 +23,18 @@ export function signup({email, password, displayName}) {
         type: USER_SIGNUP_SUCCESS,
         payload: res.data
       });
-
+			store.dispatch({
+        type: USER_INITIAL_SIGNUP_SUCCESS
+      });
       localStorage.setItem('authToken', res.headers.auth);
     })
     .catch(error => {
       store.dispatch({
         type: USER_SIGNUP_FAILURE,
-        payload: error
+        payload: 'Unable to signup user'
+      });
+			store.dispatch({
+        type: USER_INITIAL_SIGNUP_FAILURE
       });
     });
 }
@@ -61,4 +71,28 @@ export function logout() {
   localStorage.removeItem('authToken');
 	// jump back to homepage
 	browserHistory.push('/');
+}
+
+export function signUpSetUp({university}) {
+	store.dispatch({
+		type: SIGNUP_SETUP_CHOOSEN_UNIVERSITY,
+		payload: university
+	});
+	const authToken = localStorage.getItem('authToken');
+	axios.post(`${ROOT_URL}/update/user`,
+		{university},
+		headers: {auth: authToken}
+	)
+	.then(res => {
+		store.dispatch({
+			type: USER_UPDATE_SUCCESS,
+			payload: res.data
+		})
+	})
+	.catch(error => {
+		store.dispatch({
+			type: USER_UPDATE_FAILURE,
+			payload: 'Unable to update user'
+		})
+	});
 }

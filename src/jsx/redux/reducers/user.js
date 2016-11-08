@@ -2,6 +2,8 @@
 import {
 USER_SIGNUP_SUCCESS,
 USER_SIGNUP_FAILURE,
+USER_INITIAL_SIGNUP_SUCCESS,
+USER_INITIAL_SIGNUP_FAILURE,
 USER_LOGIN_SUCCESS,
 USER_LOGIN_FAILURE,
 USER_LOGOUT,
@@ -13,6 +15,7 @@ const initialState = {
   authenticated: false,
   loggedIn: false,
   current_user: '',
+  initialSignUpComplete: false
 }
 
 export default function userReducer(state = initialState, action) {
@@ -28,6 +31,16 @@ export default function userReducer(state = initialState, action) {
         current_user: '',
         error: 'USER_AUTHENTICATE_FAILURE'
       };
+    case USER_INITIAL_SIGNUP_SUCCESS:
+      return {
+        ...state,
+        initialSignUpComplete: true
+      }
+    case USER_INITIAL_SIGNUP_FAILURE:
+      return {
+        ...state,
+        initialSignUpComplete: false
+      }
     case USER_LOGIN_SUCCESS:
       return {
         ...state,
