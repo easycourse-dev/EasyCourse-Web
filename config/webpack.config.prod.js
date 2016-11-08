@@ -69,12 +69,7 @@ module.exports = {
     publicPath: publicPath
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'app/index.tpl.html',
-      inject: 'body',
-      filename: 'index.html'
-    }),
+    new webpack.optimize.OccurenceOrderPlugin()
     new ExtractTextPlugin('bundle.min.css'),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
