@@ -69,8 +69,7 @@ module.exports = {
     publicPath: publicPath
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin()
-    new ExtractTextPlugin('bundle.min.css'),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compressor: {
