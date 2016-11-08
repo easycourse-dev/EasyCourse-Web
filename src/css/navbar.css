@@ -77,8 +77,8 @@
   padding: 10px 15px;
 }
 
-/*Smaller than smartphone*/
-@media (max-width: 425px) {
+/*Smaller than tablets*/
+@media (max-width: 767px) {
   .BrandIcon {
     margin-left: 10px;
   }

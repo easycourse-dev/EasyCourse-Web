@@ -54,7 +54,10 @@ export default function userReducer(state = initialState, action) {
         ...state,
         authenticated: false
       };
-  };
-
-  return state;
+    default:
+      return {
+        ...state,
+        authenticated: false
+      };
+  }
 }

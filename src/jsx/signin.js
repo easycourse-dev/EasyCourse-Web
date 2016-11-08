@@ -37,9 +37,9 @@ export default class SignIn extends Component {
                 <div className="SignInForm">
                   {
                     this.state.showSignup ?
-                    <Signup />
+                    <Signup key="signup" />
                     :
-                    <Login />
+                    <Login key="login" />
                   }
                   <div className="SignInSwitchButtonWrapper">
                     <a className="SignInSwitch btn btn-link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
