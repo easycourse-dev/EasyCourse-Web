@@ -23,7 +23,7 @@ export default class Public extends Component {
       transitionLeave
       transitionAppearTimeout={500}
       transitionAppear>
-        <Row className="Public">
+        <Row className="Public" key="publicPage">
           {/* Top banner with background image */}
           <div className="Banner">
             <div className="Banner">

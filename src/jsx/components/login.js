@@ -70,10 +70,10 @@ class Login extends Component {
       transitionLeave
       transitionAppearTimeout={500}
       transitionAppear>
-        <h2 className="PageTitle">
+        <h2 className="PageTitle" key="loginFormTitle">
           Log In
         </h2>
-        <form onSubmit={handleSubmit(this.submit)}>
+        <form onSubmit={handleSubmit(this.submit)} key="loginForm">
           <FormGroup className="Form">
             <Field
               className="form-control"

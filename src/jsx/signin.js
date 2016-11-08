@@ -31,15 +31,15 @@ export default class SignIn extends Component {
         transitionLeave
         transitionAppearTimeout={500}
         transitionAppear>
-          <div className="container SignInFormWrapper">
+          <div className="container SignInFormWrapper" key="signinForm">
             <Row className="SignInFormRow">
               <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
                 <div className="SignInForm">
                   {
                     this.state.showSignup ?
-                    <Signup key="signup" />
+                    <Signup />
                     :
-                    <Login key="login" />
+                    <Login />
                   }
                   <div className="SignInSwitchButtonWrapper">
                     <a className="SignInSwitch btn btn-link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>

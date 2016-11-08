@@ -77,10 +77,10 @@ class Signup extends Component {
       transitionLeave
       transitionAppearTimeout={500}
       transitionAppear>
-        <h2 className="PageTitle">
+        <h2 className="PageTitle" key="signupFormTitle">
           Sign Up
         </h2>
-        <form onSubmit={handleSubmit(this.submit)}>
+        <form onSubmit={handleSubmit(this.submit)} key="signupForm">
           <FormGroup className="Form">
             <Field
               name="email"
