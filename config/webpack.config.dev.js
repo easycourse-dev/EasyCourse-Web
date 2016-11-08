@@ -111,7 +111,6 @@ module.exports = {
           // It enables caching results in ./node_modules/.cache/react-scripts/
           // directory for faster rebuilds. We use findCacheDir() because of:
           // https://github.com/facebookincubator/create-react-app/issues/483
-          "presets": ["react", "es2015", "stage-0", "react-hmre"],
           cacheDirectory: findCacheDir({
             name: 'react-scripts'
           })
