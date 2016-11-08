@@ -69,16 +69,13 @@ module.exports = {
     publicPath: publicPath
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compressor: {
         warnings: false,
         screw_ie8: true
       }
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ],
   resolve: {
