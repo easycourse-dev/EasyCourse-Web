@@ -73,26 +73,26 @@ export function logout() {
 	browserHistory.push('/');
 }
 
-export function signUpSetUp({university}) {
-	store.dispatch({
-		type: SIGNUP_SETUP_CHOOSEN_UNIVERSITY,
-		payload: university
-	});
-	const authToken = localStorage.getItem('authToken');
-	axios.post(`${ROOT_URL}/update/user`,
-		{university},
-		headers: {auth: authToken}
-	)
-	.then(res => {
-		store.dispatch({
-			type: USER_UPDATE_SUCCESS,
-			payload: res.data
-		})
-	})
-	.catch(error => {
-		store.dispatch({
-			type: USER_UPDATE_FAILURE,
-			payload: 'Unable to update user'
-		})
-	});
+export function signUpSetUpChooseUniversity(school) {
+  store.dispatch({
+  		type: SIGNUP_SETUP_CHOOSEN_UNIVERSITY,
+  		payload: school
+  });
+  //const authToken = localStorage.getItem('authToken');
+  //axios.post(`${ROOT_URL}/update/user`, {
+  //  headers: {'auth': authToken},
+  //  data: {university: school}
+  //})
+  //.then(res => {
+  // 	store.dispatch({
+  // 		type: USER_UPDATE_SUCCESS,
+  // 		payload: res.data
+  // 	})
+  //})
+  //.catch(error => {
+  //  store.dispatch({
+  //    type: USER_UPDATE_FAILURE,
+  //    payload: 'Unable to update user'
+  //  })
+  //});
 }

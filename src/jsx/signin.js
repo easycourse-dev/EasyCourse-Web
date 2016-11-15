@@ -40,9 +40,9 @@ class SignIn extends Component {
                 <div className="SignInForm">
                   {
                     initialSignUpComplete ?
-                      this.state.showSignup ? <Signup /> : <Login />
+                      <SignUpSetup/>
                     :
-                    <SignUpSetup/>
+                      this.state.showSignup ? <Signup /> : <Login />
                   }
                   <div className="SignInSwitchButtonWrapper">
                     <a className="SignInSwitch btn btn-link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
@@ -73,4 +73,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(null, mapStateToProps)(SignIn);
+export default connect(mapStateToProps, null)(SignIn);
