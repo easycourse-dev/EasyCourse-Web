@@ -15,26 +15,12 @@ export default class SignUpSetUp extends Component {
 
   render() {
     return (
-      <ReactCSSTransitionGroup
-        transitionName={ {
-          enter: 'FadeIn-enter',
-          enterActive: 'FadeIn-enterActive',
-          leave: 'FadeIn-leave',
-          leaveActive: 'FadeIn-leaveActive',
-          appear: 'FadeIn-appear',
-          appearActive: 'FadeIn-appearActive'
-        } }
-        transitionEnterTimeout={500}
-        transitionEnter
-        transitionLeaveTimeout={500}
-        transitionLeave
-        transitionAppearTimeout={500}
-        transitionAppear>
+      <div>
         <h2 className="PageTitle" key="loginFormTitle">
-          Choose Your School
+          Where Do You Go To School?
         </h2>
         <Button bsStyle="primary" type="submit" onClick={() => this.selectSchool('Purdue')}>Purdue</Button>
-      </ReactCSSTransitionGroup>
+      </div>
     );
   }
 }
