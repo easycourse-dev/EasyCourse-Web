@@ -44,8 +44,8 @@ class SignIn extends Component {
                     :
                       this.state.showSignup ? <Signup /> : <Login />
                   }
-                  <div className="SignInSwitchButtonWrapper" id="SignInSwitchButtonWrapper">
-                    <a className="SignInSwitch btn btn-link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
+                  <div className="SignInSwitchButtonWrapper">
+                    <a className="SignInSwitch btn btn-link" id="SignInSwitch" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
                       {
                         this.state.showSignup ?
                         'Already have an account?'

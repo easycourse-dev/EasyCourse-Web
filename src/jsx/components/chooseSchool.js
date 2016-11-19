@@ -16,10 +16,10 @@ export default class ChooseSchool extends Component {
   render() {
     return (
       <div>
-        <h2 className="PageTitle" key="loginFormTitle">
+        <h2 className="SignUpSetupPageTitle" key="loginFormTitle">
           Where Do You Go To School?
         </h2>
-        <Button bsStyle="primary" type="submit" onClick={() => this.selectSchool('Purdue')}>Purdue</Button>
+        <Button className="SignUpSetupChooseUniversityListItem" bsStyle="primary" type="submit" onClick={() => this.selectSchool('Purdue')}>Purdue</Button>
       </div>
     );
   }
