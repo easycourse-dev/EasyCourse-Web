@@ -11,7 +11,8 @@ import {
 	USER_INITIAL_SIGNUP_SUCCESS,
 	USER_UPDATE_SUCCESS,
 	USER_UPDATE_FAILURE,
-	SIGNUP_SETUP_CHOOSE_UNIVERSITY
+	SIGNUP_SETUP_CHOOSE_UNIVERSITY,
+	GET_UNIVERSITIES_SUCCESS
 } from './types';
 
 const ROOT_URL = 'https://zengjintaotest.com/api';
@@ -79,9 +80,9 @@ export function logout() {
 	browserHistory.push('/');
 }
 
-export function signUpSetUpChooseUniversity(school) {
+export function signUpSetUpChooseUniversity(schoolID) {
   store.dispatch({
   		type: SIGNUP_SETUP_CHOOSE_UNIVERSITY,
-  		payload: school
+  		payload: schoolID
   });
 }

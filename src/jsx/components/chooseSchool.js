@@ -1,26 +1,49 @@
 import React, { Component, PropTypes as PT } from 'react';
 import { Button } from 'react-bootstrap';
 import { signUpSetUpChooseUniversity } from '../redux/actions/user';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { getUniversities } from '../redux/actions/universities';
+import { connect } from 'react-redux';
 
-export default class ChooseSchool extends Component {
-
+class ChooseSchool extends Component {
   static propTypes = {
     handleSubmit: PT.func
   };
 
-  selectSchool(school) {
-    signUpSetUpChooseUniversity(school);
-  };
+  componentWillMount() {
+    getUniversities()
+  }
 
   render() {
+    const { universities } = this.props;
     return (
       <div>
         <h2 className="PageTitle" key="loginFormTitle">
           Where Do You Go To School?
         </h2>
-        <Button bsStyle="primary" type="submit" onClick={() => this.selectSchool('Purdue')}>Purdue</Button>
+        {
+          universities ?
+          universities.map((university) => {
+            return (
+              <Button
+                bsStyle="primary"
+                type="submit"
+                onClick={() => signUpSetUpChooseUniversity(university._id)}
+              >{university.name}</Button>
+            )
+          })
+          :
+          <h5>Loading...</h5>
+
+        }
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    universities: state.university.universities
+  };
+}
+
+export default connect(mapStateToProps, null)(ChooseSchool);
