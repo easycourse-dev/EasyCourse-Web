@@ -17,14 +17,16 @@ class ChooseSchool extends Component {
     const { universities } = this.props;
     return (
       <div>
-        <h2 className="PageTitle" key="loginFormTitle">
+        <h2 className="SignUpSetupPageTitle" key="loginFormTitle">
           Where Do You Go To School?
         </h2>
         {
           universities ?
-          universities.map((university) => {
+          universities.map((university, key) => {
             return (
               <Button
+                key={'University' + key}
+                className="SignupListItem"
                 bsStyle="primary"
                 type="submit"
                 onClick={() => signUpSetUpChooseUniversity(university._id)}
@@ -33,7 +35,6 @@ class ChooseSchool extends Component {
           })
           :
           <h5>Loading...</h5>
-
         }
       </div>
     );

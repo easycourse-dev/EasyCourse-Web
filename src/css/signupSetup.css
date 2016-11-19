@@ -1,0 +1,22 @@
+.hideElement {
+  display: none;
+}
+
+.SignUpSetupPageTitle {
+  color: white;
+  font-weight: 300;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.SignupListItem {
+  width: 100%;
+  color: #333333;
+  background-color: #FBFBFB;
+  font-size: initial;
+  height: 50px;
+  margin: 2px 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 2px;
+  text-align: left;
+}
