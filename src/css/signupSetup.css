@@ -13,10 +13,26 @@
   width: 100%;
   color: #333333;
   background-color: #FBFBFB;
+  border-color: #FBFBFB;
+  outline-color: #FBFBFB;
   font-size: initial;
   height: 50px;
   margin: 2px 0;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   border-radius: 2px;
   text-align: left;
+}
+
+.SignupListItem.active, .SignupListItem:active, .open>.dropdown-toggle.SignupListItem,
+.SignupListItem.focus, .SignupListItem:focus, .SignupListItem:hover,
+.SignupListItem.hover, .SignupListItem:hover .SignupListItem.active.focus,
+.SignupListItem.active:focus, .SignupListItem.active:hover,
+.SignupListItem:active.focus, .SignupListItem:active:focus, .SignupListItem:active:hover,
+.open>.dropdown-toggle.SignupListItem.focus, .open>.dropdown-toggle.SignupListItem:focus,
+.open>.dropdown-toggle.SignupListItem:hover {
+  color: #333333;
+  background-color: #FBFBFB;
+  border-color: #FBFBFB;
+  outline-color: #FBFBFB;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.32), 0 3px 6px rgba(0,0,0,0.46);
 }
