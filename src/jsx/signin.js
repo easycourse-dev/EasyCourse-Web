@@ -44,7 +44,7 @@ class SignIn extends Component {
                     :
                       this.state.showSignup ? <Signup /> : <Login />
                   }
-                  <div className="SignInSwitchButtonWrapper">
+                  <div className="SignInSwitchButtonWrapper" id="SignInSwitchButtonWrapper">
                     <a className="SignInSwitch btn btn-link" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
                       {
                         this.state.showSignup ?
@@ -56,7 +56,7 @@ class SignIn extends Component {
                   </div>
                 </div>
                 <p className="SignInFooterText">
-                  @2016 EasyCourse Inc.
+                  @2016 Colevate Inc.
                 </p>
               </Col>
             </Row>
