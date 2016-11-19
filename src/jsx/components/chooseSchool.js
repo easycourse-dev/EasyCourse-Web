@@ -22,10 +22,11 @@ class ChooseSchool extends Component {
         </h2>
         {
           universities ?
-          universities.map((university) => {
+          universities.map((university, key) => {
             return (
               <Button
-                className="SignUpSetupChooseUniversityListItem"
+                key={'University' + key}
+                className="SignupListItem"
                 bsStyle="primary"
                 type="submit"
                 onClick={() => signUpSetUpChooseUniversity(university._id)}
@@ -34,7 +35,6 @@ class ChooseSchool extends Component {
           })
           :
           <h5>Loading...</h5>
-
         }
       </div>
     );
