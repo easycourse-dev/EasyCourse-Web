@@ -35,7 +35,7 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
       className="form-control"
       placeholder={label}
       type={type}
-     />
+    />
     {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
   </div>
 )
@@ -56,20 +56,20 @@ class Login extends Component {
     const { handleSubmit } = this.props;
     return (
       <ReactCSSTransitionGroup
-      transitionName={ {
-        enter: 'FadeIn-enter',
-        enterActive: 'FadeIn-enterActive',
-        leave: 'FadeIn-leave',
-        leaveActive: 'FadeIn-leaveActive',
-        appear: 'FadeIn-appear',
-        appearActive: 'FadeIn-appearActive'
-      } }
-      transitionEnterTimeout={500}
-      transitionEnter
-      transitionLeaveTimeout={500}
-      transitionLeave
-      transitionAppearTimeout={500}
-      transitionAppear>
+        transitionName={ {
+          enter: 'FadeIn-enter',
+          enterActive: 'FadeIn-enterActive',
+          leave: 'FadeIn-leave',
+          leaveActive: 'FadeIn-leaveActive',
+          appear: 'FadeIn-appear',
+          appearActive: 'FadeIn-appearActive'
+        } }
+        transitionEnterTimeout={500}
+        transitionEnter
+        transitionLeaveTimeout={500}
+        transitionLeave
+        transitionAppearTimeout={500}
+        transitionAppear>
         <h2 className="PageTitle" key="loginFormTitle">
           Log In
         </h2>
