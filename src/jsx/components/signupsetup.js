@@ -6,6 +6,12 @@ import ChooseLanguage from './chooseLanguage';
 import ChooseSchool from './chooseSchool';
 
 class SignUpSetUp extends Component {
+
+  componentDidMount() {
+    // Hide SignInSwitch when SignUpSetUp loads
+    document.getElementById("SignInSwitch").className += " hideElement"
+  }
+
   renderSignUpStage(signUpStage) {
     switch(signUpStage) {
       case 1:

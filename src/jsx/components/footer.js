@@ -9,7 +9,7 @@ export default class Footer extends Component {
           <Row>
             <Col lg={8} md={10} lgOffset={2} mdOffset={1}>
               <p className="FooterText">
-                @2016 EasyCourse Inc.
+                @2016 Colevate Inc.
               </p>
             </Col>
           </Row>
