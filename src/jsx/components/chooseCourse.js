@@ -1,37 +1,59 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { getCourses } from '../redux/actions/courses';
+import {
+  getCourses,
+  addSelectedCourse,
+  removeSelectedCourse
+} from '../redux/actions/courses';
 
 class ChooseCourse extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: ''
+  state = {
+    searchText: '',
+    coursesToShow: []
+  }
+
+  updateCourses = (universityID) => {
+    getCourses(this.state.searchText, universityID)
+  }
+
+  onAddCourse = (course) => {
+    addSelectedCourse(course)
+  }
+
+  onRemoveSelectedCourse = (course) => {
+    removeSelectedCourse(course)
+  }
+
+  renderCourses = (availableCourses, selectedCourses) => {
+    if (this.state.searchText) {
+      return(
+        availableCourses.map(course => {
+          return(
+            <Button
+              className="SignupListItem"
+              onClick={() => this.onAddCourse(course)}
+            >{course.name}</Button>
+          )
+        })
+      )
+    } else {
+      return(
+        selectedCourses.map(course => {
+          return(
+            <Button
+              className="SignupListItem"
+              onClick={() => this.onRemoveSelectedCourse(course)}
+            >{course.name}</Button>
+          )
+        })
+      )
     }
   }
 
-  updateCourses(searchText, universityID) {
-    getCourses(searchText, universityID)
-  }
-
-  renderCourses(courses) {
-    return(
-      courses.map(course => {
-        return(
-          <li>
-            <Button className="SignupListItem">
-              <p>{course.name}</p>
-              <p>{course.title}</p>
-            </Button>
-          </li>
-        )
-      })
-    )
-  }
-
   render() {
-    const { courses, universityID } = this.props;
+    const { availableCourses, selectedCourses, universityID } = this.props;
+
     return (
       <div>
         <h2 className="PageTitle" key="loginFormTitle">
@@ -45,14 +67,14 @@ class ChooseCourse extends Component {
               placeholder="Search For A Class"
               onChange={(event) => {
                 this.setState({ searchText: event.target.value })
-                this.updateCourses(event.target.value, universityID)
+                this.updateCourses(universityID)
               }}
             />
           </FormGroup>
         </form>
         <ul style={{ listStyle: 'none' }}>
           {
-            this.renderCourses(courses)
+            this.renderCourses(availableCourses, selectedCourses)
           }
         </ul>
       </div>
@@ -60,11 +82,9 @@ class ChooseCourse extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    courses: state.courses.coursesBySchool,
-    universityID: state.user.postInitialSignUpValues.school
-  };
-}
-
-export default connect(mapStateToProps, null)(ChooseCourse);
+const mapStateToProps = (state) => ({
+  availableCourses: state.courses.coursesBySchool,
+  selectedCourses: state.courses.selectedCourses,
+  universityID: state.user.postInitialSignUpValues.school
+})
+export default connect(mapStateToProps)(ChooseCourse);
