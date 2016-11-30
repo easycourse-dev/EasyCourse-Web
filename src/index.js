@@ -19,14 +19,10 @@ USER_AUTHENTICATE_FAILURE,
 USER_INITIAL_SIGNUP_SUCCESS,
 } from './jsx/redux/actions/types'
 
-let getHomeComponentComplete = false;
-
 function getHomeComponent() {
   if (localStorage.getItem('authToken')) {
-    getHomeComponentComplete = true;
     return (<Home />)
   }
-  getHomeComponentComplete = true;
   return (<Public />)
 }
 

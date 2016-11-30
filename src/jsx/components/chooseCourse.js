@@ -1,8 +1,7 @@
-import React, { Component, PropTypes as PT } from 'react';
+import React, { Component } from 'react';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getCourses } from '../redux/actions/courses';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class ChooseCourse extends Component {
   constructor(props) {
@@ -18,7 +17,16 @@ class ChooseCourse extends Component {
 
   renderCourses(courses) {
     return(
-      courses.map(course => <li>{course.title}</li>)
+      courses.map(course => {
+        return(
+          <li>
+            <Button className="SignupListItem">
+              <p>{course.name}</p>
+              <p>{course.title}</p>
+            </Button>
+          </li>
+        )
+      })
     )
   }
 
@@ -42,7 +50,7 @@ class ChooseCourse extends Component {
             />
           </FormGroup>
         </form>
-        <ul>
+        <ul style={{ listStyle: 'none' }}>
           {
             this.renderCourses(courses)
           }

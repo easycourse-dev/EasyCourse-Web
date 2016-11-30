@@ -1,6 +1,5 @@
-import React, { Component, PropTypes as PT } from 'react';
+import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class ChooseCourse extends Component {
   render() {

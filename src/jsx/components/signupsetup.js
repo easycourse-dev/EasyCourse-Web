@@ -1,5 +1,4 @@
-import React, { Component, PropTypes as PT } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChooseCourse from './chooseCourse';
 import ChooseLanguage from './chooseLanguage';

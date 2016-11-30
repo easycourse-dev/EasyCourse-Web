@@ -19,6 +19,8 @@ export default function universityReducer(state = initialState, action) {
         ...state,
         error: 'GET_UNIVERSITIES_FAILURE'
       }
+    default:
+      break;
   }
   return state;
 }
