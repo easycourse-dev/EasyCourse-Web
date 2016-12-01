@@ -12,10 +12,9 @@ class ChooseCourse extends Component {
   }
 
   updateCourses = (universityID) => {
-    getCourses(this.state.searchText, universityID)
+    if (this.state.searchText.length > 1) {
+    }
   }
-
-
 
   renderCourses = (availableCourses, selectedCourses) => {
     if (this.state.searchText) {
@@ -59,7 +58,7 @@ class ChooseCourse extends Component {
               placeholder="Search For A Class"
               onChange={(event) => {
                 this.setState({ searchText: event.target.value })
-                this.updateCourses(universityID)
+                getCourses(event.target.value, universityID)
               }}
             />
           </FormGroup>

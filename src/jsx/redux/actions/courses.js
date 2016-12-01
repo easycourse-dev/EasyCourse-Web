@@ -9,18 +9,22 @@ import {
 const ROOT_URL = 'https://zengjintaotest.com/api';
 
 export const getCourses = (searchText, universityID) => {
-	axios.get(`${ROOT_URL}/course?q=${searchText}&limit=10&skip=10&univ=${universityID}`)
-		.then(res => {
-			store.dispatch({
-				type: GET_COURSES_SUCCESS,
-				payload: res.data
-			})
-		})
-		.catch(error => {
-			store.dispatch({
-				type: GET_COURSES_FAILURE
-			})
-		});
+  if (searchText.length < 2) {
+    console.log('Need more text to search');
+  } else {
+    axios.get(`${ROOT_URL}/course?q=${searchText}&limit=10&skip=0&univ=${universityID}`)
+      .then(res => {
+        store.dispatch({
+          type: GET_COURSES_SUCCESS,
+          payload: res.data
+        })
+      })
+      .catch(error => {
+        store.dispatch({
+          type: GET_COURSES_FAILURE
+        })
+      });
+  }
 }
 
 export const addSelectedCourse = (course) => {
