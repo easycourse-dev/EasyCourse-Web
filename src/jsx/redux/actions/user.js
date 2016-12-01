@@ -10,6 +10,7 @@ import {
 	USER_INITIAL_SIGNUP_FAILURE,
 	USER_INITIAL_SIGNUP_SUCCESS,
 	SIGNUP_SETUP_CHOOSE_UNIVERSITY,
+	SIGNUP_SETUP_CHOOSE_COURSES,
 } from './types';
 
 const ROOT_URL = 'https://zengjintaotest.com/api';
@@ -77,9 +78,22 @@ export function logout() {
 	browserHistory.push('/');
 }
 
-export function signUpSetUpChooseUniversity(schoolID) {
+export function signUpSetUpChooseUniversity(schoolID, stage) {
   store.dispatch({
-  		type: SIGNUP_SETUP_CHOOSE_UNIVERSITY,
-  		payload: schoolID
+  	type: SIGNUP_SETUP_CHOOSE_UNIVERSITY,
+  	payload: {
+			schoolID,
+			stage
+		}
+  });
+}
+
+export function signUpSetUpChooseCourses(selectedCourses, stage) {
+  store.dispatch({
+  	type: SIGNUP_SETUP_CHOOSE_COURSES,
+  	payload: {
+			selectedCourses,
+			stage
+		}
   });
 }

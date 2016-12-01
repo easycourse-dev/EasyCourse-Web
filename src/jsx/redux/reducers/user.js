@@ -54,17 +54,17 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         postInitialSignUpValues: {
-          school: action.payload
+          school: action.payload.schoolID
         },
-        signUpStage: 2,
+        signUpStage: action.payload.stage,
       }
     case SIGNUP_SETUP_CHOOSE_COURSES:
       return {
         ...state,
         postInitialSignUpValues: {
-          courses: action.payload
+          courses: action.payload.selectedCourses
         },
-        signUpStage: 3,
+        signUpStage: action.payload.stage,
       }
     case SIGNUP_SETUP_CHOOSE_LANGUAGES:
       return {

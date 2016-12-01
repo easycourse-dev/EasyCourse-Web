@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { Button, FormGroup, FormControl } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import {
-  getCourses,
-  addSelectedCourse,
-  removeSelectedCourse
-} from '../redux/actions/courses';
+import React, { Component } from 'react'
+import { Button, FormGroup, FormControl } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { getCourses } from '../redux/actions/courses'
+import { signUpSetUpChooseCourses, signUpSetUpChooseUniversity } from '../redux/actions/user'
+import ChooseCourseList from './chooseCourseList'
 
 class ChooseCourse extends Component {
   state = {
@@ -17,13 +15,7 @@ class ChooseCourse extends Component {
     getCourses(this.state.searchText, universityID)
   }
 
-  onAddCourse = (course) => {
-    addSelectedCourse(course)
-  }
 
-  onRemoveSelectedCourse = (course) => {
-    removeSelectedCourse(course)
-  }
 
   renderCourses = (availableCourses, selectedCourses) => {
     if (this.state.searchText) {
@@ -72,11 +64,21 @@ class ChooseCourse extends Component {
             />
           </FormGroup>
         </form>
-        <ul style={{ listStyle: 'none' }}>
-          {
-            this.renderCourses(availableCourses, selectedCourses)
-          }
-        </ul>
+        <div style={{ overflow: 'scroll', height: 300}}>
+          <ChooseCourseList
+            availableCourses={availableCourses}
+            selectedCourses={selectedCourses}
+            searchText={this.state.searchText}
+          />
+        </div>
+        <Button
+          bsStyle="warning"
+          onClick={() => signUpSetUpChooseUniversity(universityID, 1)}
+        >Previous</Button>
+        <Button
+          bsStyle="success"
+          onClick={() => signUpSetUpChooseCourses(selectedCourses, 3)}
+        >Next</Button>
       </div>
     );
   }

@@ -9,6 +9,12 @@ export default class ChooseCourse extends Component {
           Speak Any Other Languages?
         </h2>
         <Button bsStyle="primary">Spanish</Button>
+        <Button
+          bsStyle="warning"
+        >Previous</Button>
+        <Button
+          bsStyle="success"
+        >Next</Button>
       </div>
     );
   }

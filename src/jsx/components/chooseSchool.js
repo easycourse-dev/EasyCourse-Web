@@ -29,7 +29,7 @@ class ChooseSchool extends Component {
                 className="SignupListItem"
                 bsStyle="primary"
                 type="submit"
-                onClick={() => signUpSetUpChooseUniversity(university._id)}
+                onClick={() => signUpSetUpChooseUniversity(university._id, 2)}
               >{university.name}</Button>
             )
           })
@@ -41,10 +41,8 @@ class ChooseSchool extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    universities: state.university.universities
-  };
-}
+const mapStateToProps = (state) => ({
+  universities: state.university.universities
+})
 
-export default connect(mapStateToProps, null)(ChooseSchool);
+export default connect(mapStateToProps)(ChooseSchool);
