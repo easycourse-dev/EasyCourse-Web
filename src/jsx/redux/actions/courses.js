@@ -11,6 +11,10 @@ const ROOT_URL = 'https://zengjintaotest.com/api';
 export const getCourses = (searchText, universityID) => {
   if (searchText.length < 2) {
     console.log('Need more text to search');
+		store.dispatch({
+			type: GET_COURSES_SUCCESS,
+			payload: []
+		})
   } else {
     axios.get(`${ROOT_URL}/course?q=${searchText}&limit=10&skip=0&univ=${universityID}`)
       .then(res => {
