@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
+import { signUpSetUpChooseLanguage } from '../redux/actions/user'
 
-export default class ChooseCourse extends Component {
+class ChooseLanguage extends Component {
   render() {
     return (
       <div>
@@ -11,9 +12,11 @@ export default class ChooseCourse extends Component {
         <Button bsStyle="primary">Spanish</Button>
         <Button
           bsStyle="warning"
+          onClick={() => signUpSetUpChooseLanguage(universityID, 1)}
         >Previous</Button>
         <Button
           bsStyle="success"
+          onClick={() => signUpSetUpChooseLanguage(selectedCourses, 3)}
         >Next</Button>
       </div>
     );
