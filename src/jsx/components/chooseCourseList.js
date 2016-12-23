@@ -1,24 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
-import { addSelectedCourse, removeSelectedCourse } from '../redux/actions/courses'
+import { connect } from 'react-redux'
+import actions from '../redux/actions/index'
 
-const ChooseCourseList = ({ availableCourses, selectedCourses, searchText }) => {
+class ChooseCourseList extends Component {
 
-  const onAddCourse = (course) => {
-    addSelectedCourse(course)
+  onAddCourse = (course) => {
+    this.props.addSelectedCourse(course)
   }
 
-  const onRemoveSelectedCourse = (course) => {
-    removeSelectedCourse(course)
+  onRemoveSelectedCourse = (course) => {
+    this.props.removeSelectedCourse(course)
+  }
+  
+  loadMore = () => {
+    const { searchText, skip, universityID } = this.props
+    let newSkip = skip + 10
+    this.props.loadMoreCourses(searchText, universityID, newSkip)
   }
 
-  const renderButton = (course, flag) => {
-    if (flag === 1) {
+  renderButton = (course, flag) => {
+    if (flag) {
       return(
         <li key={course.originCourseId}>
           <Button
             className="SignupListItem"
-            onClick={() => onAddCourse(course)}
+            onClick={() => this.onAddCourse(course)}
           >{course.name}</Button>
         </li>
       )
@@ -27,30 +34,52 @@ const ChooseCourseList = ({ availableCourses, selectedCourses, searchText }) => 
         <li key={course.originCourseId}>
           <Button
             className="SignupListItem"
-            onClick={() => onRemoveSelectedCourse(course)}
+            onClick={() => this.onRemoveSelectedCourse(course)}
           >{course.name}</Button>
         </li>
       )
     }
   }
 
-  const renderCourses = (availableCourses, selectedCourses, searchText) => {
-    if (searchText) {
-      return(
-        availableCourses.map(course => renderButton(course, 1))
-      )
+  renderCourses = () => {
+    const {availableCourses, selectedCourses, searchText} = this.props
+    if (searchText.length >= 2) {
+      return availableCourses.map(course => this.renderButton(course, true))
     } else {
-      return(
-        selectedCourses.map(course => renderButton(course, 0))
-      )
+      return selectedCourses.map(course => this.renderButton(course, false))
     }
   }
 
-  return(
-    <ul style={{ listStyle: 'none'}}>
-      { renderCourses(availableCourses, selectedCourses, searchText) }
-    </ul>
-  )
+  render() {
+    const { searchText } = this.props
+    return(
+      <ul style={{ listStyle: 'none'}}>
+        {this.renderCourses()}
+        {
+          searchText ?
+          <li>
+            <Button
+              className="SignupListItem"
+              onClick={() => this.loadMore()}
+            >Load More</Button>
+          </li>
+          :
+          <li></li> 
+        }
+      </ul>
+    )
+  }
 }
 
-export default ChooseCourseList
+const mapStateToProps = (state) => ({
+  availableCourses: state.courses.coursesBySchool,
+  selectedCourses: state.courses.selectedCourses,
+  universityID: state.user.postInitialSignUpValues.school,
+  searchText: state.courses.searchText,
+  skip: state.courses.skip
+})
+
+export default connect(
+  mapStateToProps,
+  actions
+)(ChooseCourseList)

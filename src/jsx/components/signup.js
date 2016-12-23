@@ -1,18 +1,19 @@
-import React, { Component, PropTypes as PT } from 'react';
-import { Button, FormGroup } from 'react-bootstrap';
-import { Field, reduxForm } from 'redux-form';
-import { signup } from '../redux/actions/user';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { Component, PropTypes as PT } from 'react'
+import { Button, FormGroup } from 'react-bootstrap'
+import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import actions from '../redux/actions/index'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const validate = values => {
-  const errors = {};
+  const errors = {}
 
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = 'Invalid email address'
   }
 
   if (values.password && values.password.length < 6) {
-    errors.password = 'Password must be longer than 6 characters';
+    errors.password = 'Password must be longer than 6 characters'
   }
 
   if (values.password !== values.passwordConfirmation) {
@@ -29,7 +30,7 @@ const validate = values => {
 const warn = values => {
   const warnings = {}
   if (values.password) {
-    warnings.password = '';
+    warnings.password = ''
   }
 
   return warnings;
@@ -55,22 +56,22 @@ class Signup extends Component {
   };
 
   submit(values) {
-    signup(values);
+    this.props.signup(values)
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit } = this.props
 
     return (
       <ReactCSSTransitionGroup
-      transitionName={ {
+      transitionName={{
         enter: 'FadeIn-enter',
         enterActive: 'FadeIn-enterActive',
         leave: 'FadeIn-leave',
         leaveActive: 'FadeIn-leaveActive',
         appear: 'FadeIn-appear',
         appearActive: 'FadeIn-appearActive'
-      } }
+      }}
       transitionEnterTimeout={500}
       transitionEnter
       transitionLeaveTimeout={500}
@@ -117,8 +118,15 @@ class Signup extends Component {
   }
 }
 
-export default reduxForm({
+Signup = reduxForm({
   form: 'signup',
   validate,
   warn
-})(Signup);
+})(Signup)
+
+Signup = connect(
+  null,
+  actions
+)(Signup)
+
+export default Signup

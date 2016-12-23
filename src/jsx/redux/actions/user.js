@@ -1,5 +1,5 @@
-import axios from 'axios';
-import store from '../store';
+import axios from 'axios'
+import store from '../store'
 import { browserHistory } from 'react-router'
 import {
 	USER_SIGNUP_SUCCESS,
@@ -11,89 +11,89 @@ import {
 	USER_INITIAL_SIGNUP_SUCCESS,
 	SIGNUP_SETUP_CHOOSE_UNIVERSITY,
 	SIGNUP_SETUP_CHOOSE_COURSES,
-} from './types';
+} from './types'
 
-const ROOT_URL = 'https://zengjintaotest.com/api';
+const ROOT_URL = 'https://zengjintaotest.com/api'
 
-export function signup({email, password, displayName}) {
-  axios.post(`${ROOT_URL}/signup`,{ email, password, displayName })
-    .then(res => {
-      store.dispatch({
-        type: USER_SIGNUP_SUCCESS,
-        payload: res.data
-      });
-			store.dispatch({
-        type: USER_INITIAL_SIGNUP_SUCCESS
-      });
-      localStorage.setItem('authToken', res.headers.auth);
+const signup = ({email, password, displayName}) => {
+  return dispatch => {
+    axios.post(`${ROOT_URL}/signup`,{ email, password, displayName })
+      .then(res => {
+        dispatch({
+          type: USER_SIGNUP_SUCCESS,
+          payload: res.data
+        })
+        dispatch({ type: USER_INITIAL_SIGNUP_SUCCESS })
+        localStorage.setItem('authToken', res.headers.auth)
+      })
+      .catch(error => {
+        dispatch({
+          type: USER_SIGNUP_FAILURE,
+          payload: 'Unable to signup user'
+        })
+        dispatch({ type: USER_INITIAL_SIGNUP_FAILURE })
+      })
+  }
+}
+
+const login = ({email, password}) => {
+  return dispatch => {
+    axios.post(`${ROOT_URL}/login`, {email, password})
+      .then(res => {
+        dispatch({ type: USER_LOGIN_SUCCESS, payload: res.data })
+        if (res.data.joinedRoom.length === 0) {
+          dispatch({ type: USER_INITIAL_SIGNUP_SUCCESS })
+          browserHistory.push('/signin')
+        } else {
+          browserHistory.push('/')
+        }
+        localStorage.setItem('authToken', res.headers.auth)
+      })
+      .catch(error => {
+        dispatch({
+          type: USER_LOGIN_FAILURE,
+          payload: error
+        })
+      })
+  }
+}
+
+const logout = () => {
+  return dispatch => {
+    store.dispatch({ type: USER_LOGOUT, payload: null })
+    localStorage.removeItem('authToken')
+    browserHistory.push('/')
+  }
+}
+
+const signUpSetUpChooseUniversity = (schoolID, stage) => {
+  return dispatch => {
+    dispatch({
+      type: SIGNUP_SETUP_CHOOSE_UNIVERSITY,
+      payload: {
+        schoolID,
+        stage
+      }
     })
-    .catch(error => {
-      store.dispatch({
-        type: USER_SIGNUP_FAILURE,
-        payload: 'Unable to signup user'
-      });
-			store.dispatch({
-        type: USER_INITIAL_SIGNUP_FAILURE
-      });
-    });
+  }
 }
 
-export function login({email, password}) {
-  axios.post(`${ROOT_URL}/login`, {email, password})
-    .then(res => {
-			console.log(res.data);
-			let user = res.data;
-			store.dispatch({
-        type: USER_LOGIN_SUCCESS,
-        payload: user
-      });
-			if (user.joinedRoom.length === 0) {
-				store.dispatch({
-					type: USER_INITIAL_SIGNUP_SUCCESS,
-				})
-				browserHistory.push('/signin');
-			} else {
-				browserHistory.push('/');
-			}
-      // store authToken in localStorage
-      localStorage.setItem('authToken', res.headers.auth);
+const signUpSetUpChooseCourses = (selectedCourses, stage) => {
+  return dispatch => {
+    dispatch({
+      type: SIGNUP_SETUP_CHOOSE_COURSES,
+      payload: {
+        selectedCourses,
+        stage
+      }
     })
-    .catch(error => {
-      store.dispatch({
-        type: USER_LOGIN_FAILURE,
-        payload: error
-      });
-    });
+  }
 }
 
-export function logout() {
-	store.dispatch({
-		type: USER_LOGOUT,
-		payload: null
-	});
-
-  // Remove authToken to logout
-  localStorage.removeItem('authToken');
-	// jump back to homepage
-	browserHistory.push('/');
-}
-
-export function signUpSetUpChooseUniversity(schoolID, stage) {
-  store.dispatch({
-  	type: SIGNUP_SETUP_CHOOSE_UNIVERSITY,
-  	payload: {
-			schoolID,
-			stage
-		}
-  });
-}
-
-export function signUpSetUpChooseCourses(selectedCourses, stage) {
-  store.dispatch({
-  	type: SIGNUP_SETUP_CHOOSE_COURSES,
-  	payload: {
-			selectedCourses,
-			stage
-		}
-  });
+module.exports = {
+  signup,
+  login,
+  logout,
+  signUpSetUpChooseUniversity,
+  signUpSetUpChooseCourses
 }

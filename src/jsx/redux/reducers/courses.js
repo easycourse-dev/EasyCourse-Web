@@ -2,12 +2,18 @@ import {
   GET_COURSES_SUCCESS,
   GET_COURSES_FAILURE,
   ADD_SELECTED_COURSE,
-  REMOVE_SELECTED_COURSE
+  REMOVE_SELECTED_COURSE,
+  CLEAR_SKIP,
+  CLEAR_SEARCH_TEXT,
+  LOAD_MORE_SUCCESS,
+  LOAD_MORE_FAILURE
 } from '../actions/types';
 
 const initialState = {
   coursesBySchool: [],
-  selectedCourses: []
+  selectedCourses: [],
+  skip: 0,
+  searchText: ''
 }
 
 export const coursesReducer = (state = initialState, action) => {
@@ -16,23 +22,41 @@ export const coursesReducer = (state = initialState, action) => {
     case GET_COURSES_SUCCESS:
       return {
         ...state,
-        coursesBySchool: payload
+        coursesBySchool: payload.courses,
+        searchText: payload.searchText
       }
     case GET_COURSES_FAILURE:
       return {
         ...state,
-        coursesBySchool: [],
         error: 'GET_COURSES_FAILURE'
       }
     case ADD_SELECTED_COURSE:
       return {
         ...state,
-        selectedCourses: [payload, ...state.selectedCourses],
+        selectedCourses: [...state.selectedCourses, payload],
       }
     case REMOVE_SELECTED_COURSE:
       return {
         ...state,
         selectedCourses: state.selectedCourses.filter(course => course !== payload),
+      }
+    case CLEAR_SKIP:
+      return {
+        ...state,
+        skip: 0
+      }
+    case CLEAR_SEARCH_TEXT:
+      return {
+        ...state,
+        searchText: ''
+      }
+    case LOAD_MORE_FAILURE:
+      return { ...state }
+    case LOAD_MORE_SUCCESS:
+      return {
+        ...state,
+        coursesBySchool: [...state.coursesBySchool, ...payload.courses],
+        skip: payload.skip
       }
     default:
       break;

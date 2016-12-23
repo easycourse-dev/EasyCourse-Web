@@ -27,9 +27,7 @@ class SignUpSetUp extends Component {
     const { signUpStage } = this.props;
     return (
       <div>
-        {
-          this.renderSignUpStage(signUpStage)
-        }
+        {this.renderSignUpStage(signUpStage)}
       </div>
     );
   }

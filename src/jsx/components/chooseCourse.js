@@ -1,50 +1,53 @@
 import React, { Component } from 'react'
 import { Button, FormGroup, FormControl } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { getCourses } from '../redux/actions/courses'
-import { signUpSetUpChooseCourses, signUpSetUpChooseUniversity } from '../redux/actions/user'
+import actions from '../redux/actions/index'
 import ChooseCourseList from './chooseCourseList'
 
 class ChooseCourse extends Component {
-  state = {
-    searchText: '',
-    coursesToShow: []
-  }
+  state = { searchText: '' }
 
-  updateCourses = (universityID) => {
-    if (this.state.searchText.length > 1) {
+  renderCourses = (availableCourses, selectedCourses) => {
+    const { searchText } = this.props
+    if (searchText.length > 0) {
+      return availableCourses.map(course => {
+        return(
+          <Button
+            className="SignupListItem"
+            onClick={() => this.props.addCourse(course)}
+          >{course.name}</Button>
+        )
+      })
+    } else {
+      return selectedCourses.map(course => {
+        return(
+          <Button
+            className="SignupListItem"
+            onClick={() => this.props.removeSelectedCourse(course)}
+          >{course.name}</Button>
+        )
+      })
     }
   }
 
-  renderCourses = (availableCourses, selectedCourses) => {
-    if (this.state.searchText) {
-      return(
-        availableCourses.map(course => {
-          return(
-            <Button
-              className="SignupListItem"
-              onClick={() => this.onAddCourse(course)}
-            >{course.name}</Button>
-          )
-        })
-      )
+
+  handleChange = e => {
+    const { universityID } = this.props
+    if (e.target.value.length === 0) {
+      this.props.clearSkip()
+      this.props.clearSearchText()
+    }
+    this.setState({ searchText: e.target.value })
+    if (e.target.value.length >= 2) {
+      this.props.getCourses(e.target.value, universityID)
     } else {
-      return(
-        selectedCourses.map(course => {
-          return(
-            <Button
-              className="SignupListItem"
-              onClick={() => this.onRemoveSelectedCourse(course)}
-            >{course.name}</Button>
-          )
-        })
-      )
+      return;
     }
   }
 
   render() {
-    const { availableCourses, selectedCourses, universityID } = this.props;
-
+    const { availableCourses, selectedCourses, universityID } = this.props
+    const { searchText } = this.state
     return (
       <div>
         <h2 className="PageTitle" key="loginFormTitle">
@@ -54,29 +57,26 @@ class ChooseCourse extends Component {
           <FormGroup>
             <FormControl
               type="text"
-              value={this.state.searchText}
+              value={searchText}
               placeholder="Search For A Class"
-              onChange={(event) => {
-                this.setState({ searchText: event.target.value })
-                getCourses(event.target.value, universityID)
-              }}
+              onChange={(e) => this.handleChange(e)}
             />
           </FormGroup>
         </form>
-        <div style={{ overflow: 'scroll', height: 300}}>
+        <div style={{ overflowY: 'scroll', height: 300}}>
           <ChooseCourseList
             availableCourses={availableCourses}
             selectedCourses={selectedCourses}
-            searchText={this.state.searchText}
+            searchText={searchText}
           />
         </div>
         <Button
           bsStyle="warning"
-          onClick={() => signUpSetUpChooseUniversity(universityID, 1)}
+          onClick={() => this.props.signUpSetUpChooseUniversity(universityID, 1)}
         >Previous</Button>
         <Button
           bsStyle="success"
-          onClick={() => signUpSetUpChooseCourses(selectedCourses, 3)}
+          onClick={() => this.props.signUpSetUpChooseCourses(selectedCourses, 3)}
         >Next</Button>
       </div>
     );
@@ -86,6 +86,12 @@ class ChooseCourse extends Component {
 const mapStateToProps = (state) => ({
   availableCourses: state.courses.coursesBySchool,
   selectedCourses: state.courses.selectedCourses,
-  universityID: state.user.postInitialSignUpValues.school
+  universityID: state.user.postInitialSignUpValues.school,
+  searchText: state.courses.searchText,
+  skip: state.courses.skip
 })
-export default connect(mapStateToProps)(ChooseCourse);
+
+export default connect(
+  mapStateToProps,
+  actions
+)(ChooseCourse);

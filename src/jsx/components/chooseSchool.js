@@ -1,8 +1,8 @@
 import React, { Component, PropTypes as PT } from 'react';
 import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import { signUpSetUpChooseUniversity } from '../redux/actions/user';
 import { getUniversities } from '../redux/actions/universities';
-import { connect } from 'react-redux';
 
 class ChooseSchool extends Component {
   static propTypes = {
@@ -10,7 +10,7 @@ class ChooseSchool extends Component {
   };
 
   componentWillMount() {
-    getUniversities()
+    this.props.getUniversities()
   }
 
   render() {
@@ -29,7 +29,7 @@ class ChooseSchool extends Component {
                 className="SignupListItem"
                 bsStyle="primary"
                 type="submit"
-                onClick={() => signUpSetUpChooseUniversity(university._id, 2)}
+                onClick={() => this.props.signUpSetUpChooseUniversity(university._id, 2)}
               >{university.name}</Button>
             )
           })
@@ -45,4 +45,7 @@ const mapStateToProps = (state) => ({
   universities: state.university.universities
 })
 
-export default connect(mapStateToProps)(ChooseSchool);
+export default connect(
+  mapStateToProps,
+  { signUpSetUpChooseUniversity, getUniversities }
+)(ChooseSchool);
