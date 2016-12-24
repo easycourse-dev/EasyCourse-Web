@@ -70,14 +70,27 @@ class ChooseCourse extends Component {
             searchText={searchText}
           />
         </div>
-        <Button
-          bsStyle="warning"
-          onClick={() => this.props.signUpSetUpChooseUniversity(universityID, 1)}
-        >Previous</Button>
-        <Button
-          bsStyle="success"
-          onClick={() => this.props.signUpSetUpChooseCourses(selectedCourses, 3)}
-        >Next</Button>
+        {
+          selectedCourses.length < 1 ?
+            <div>
+              <Button
+                bsStyle="warning"
+                onClick={() => this.props.signUpSetUpChooseUniversity(universityID, 1)}
+              >Previous</Button>
+            </div>
+          :
+            <div>
+              <Button
+                bsStyle="warning"
+                onClick={() => this.props.signUpSetUpChooseUniversity(universityID, 1)}
+              >Previous</Button>
+              <Button
+                bsStyle="success"
+                onClick={() => this.props.signUpSetUpChooseCourses(selectedCourses, 3)}
+              >Next</Button>
+            </div>
+
+        }
       </div>
     );
   }
