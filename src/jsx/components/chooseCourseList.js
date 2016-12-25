@@ -31,38 +31,40 @@ class ChooseCourseList extends Component {
                 className="SignupListItem"
                 onClick={() => this.onRemoveSelectedCourse(course)}
               >
-                {course.name}
                 <i className="fa fa-times" aria-hidden="true"></i>
+                {course.name}
+              </Button>
+            </li>
+          )
+        } else {
+          return (
+            <li key={course.originCourseId}>
+              <Button
+                className="SignupListItem"
+                onClick={() => this.onAddCourse(course)}
+              >
+                <i className="fa fa-check" aria-hidden="true"></i>
+                {course.name}
               </Button>
             </li>
           )
         }
+      })
+    } else {
+      return selectedCourses.map(course => {
         return (
           <li key={course.originCourseId}>
             <Button
               className="SignupListItem"
-              onClick={() => this.onAddCourse(course)}
+              onClick={() => this.onRemoveSelectedCourse(course)}
             >
               {course.name}
-              <i className="fa fa-check" aria-hidden="true"></i>
+              <i className="fa fa-times" aria-hidden="true"></i>
             </Button>
           </li>
         )
       })
     }
-    return selectedCourses.map(course => {
-      return (
-        <li key={course.originCourseId}>
-          <Button
-            className="SignupListItem"
-            onClick={() => this.onRemoveSelectedCourse(course)}
-          >
-            {course.name}
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </Button>
-        </li>
-      )
-    })
   }
 
   render() {
