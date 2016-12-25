@@ -19,35 +19,50 @@ class ChooseCourseList extends Component {
     this.props.loadMoreCourses(searchText, universityID, newSkip)
   }
 
-  renderButton = (course, flag) => {
-    if (flag) {
-      return(
-        <li key={course.originCourseId}>
-          <Button
-            className="SignupListItem"
-            onClick={() => this.onAddCourse(course)}
-          >{course.name}</Button>
-        </li>
-      )
-    } else {
-      return(
-        <li key={course.originCourseId}>
-          <Button
-            className="SignupListItem"
-            onClick={() => this.onRemoveSelectedCourse(course)}
-          >{course.name}</Button>
-        </li>
-      )
-    }
-  }
 
   renderCourses = () => {
     const {availableCourses, selectedCourses, searchText} = this.props
     if (searchText.length >= 2) {
-      return availableCourses.map(course => this.renderButton(course, true))
-    } else {
-      return selectedCourses.map(course => this.renderButton(course, false))
+      return availableCourses.map(course => {
+        if (selectedCourses.includes(course)) {
+          return (
+            <li key={course.originCourseId}>
+              <Button
+                className="SignupListItem"
+                onClick={() => this.onRemoveSelectedCourse(course)}
+              >
+                {course.name}
+                <i className="fa fa-times" aria-hidden="true"></i>
+              </Button>
+            </li>
+          )
+        }
+        return (
+          <li key={course.originCourseId}>
+            <Button
+              className="SignupListItem"
+              onClick={() => this.onAddCourse(course)}
+            >
+              {course.name}
+              <i className="fa fa-check" aria-hidden="true"></i>
+            </Button>
+          </li>
+        )
+      })
     }
+    return selectedCourses.map(course => {
+      return (
+        <li key={course.originCourseId}>
+          <Button
+            className="SignupListItem"
+            onClick={() => this.onRemoveSelectedCourse(course)}
+          >
+            {course.name}
+            <i className="fa fa-times" aria-hidden="true"></i>
+          </Button>
+        </li>
+      )
+    })
   }
 
   render() {
