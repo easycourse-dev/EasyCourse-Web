@@ -51,37 +51,29 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
 
 class Signup extends Component {
 
-  static propTypes = {
-    handleSubmit: PT.func
-  };
-
-  submit(values) {
-    this.props.signup(values)
-  }
-
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit, signup } = this.props
 
     return (
       <ReactCSSTransitionGroup
-      transitionName={{
-        enter: 'FadeIn-enter',
-        enterActive: 'FadeIn-enterActive',
-        leave: 'FadeIn-leave',
-        leaveActive: 'FadeIn-leaveActive',
-        appear: 'FadeIn-appear',
-        appearActive: 'FadeIn-appearActive'
-      }}
-      transitionEnterTimeout={500}
-      transitionEnter
-      transitionLeaveTimeout={500}
-      transitionLeave
-      transitionAppearTimeout={500}
-      transitionAppear>
+        transitionName={{
+          enter: 'FadeIn-enter',
+          enterActive: 'FadeIn-enterActive',
+          leave: 'FadeIn-leave',
+          leaveActive: 'FadeIn-leaveActive',
+          appear: 'FadeIn-appear',
+          appearActive: 'FadeIn-appearActive'
+        }}
+        transitionEnterTimeout={500}
+        transitionEnter
+        transitionLeaveTimeout={500}
+        transitionLeave
+        transitionAppearTimeout={500}
+        transitionAppear>
         <h2 className="PageTitle" key="signupFormTitle">
           Sign Up
         </h2>
-        <form onSubmit={handleSubmit(this.submit)} key="signupForm">
+        <form onSubmit={handleSubmit(signup)} key="signupForm">
           <FormGroup className="Form">
             <Field
               name="email"
@@ -118,15 +110,10 @@ class Signup extends Component {
   }
 }
 
-Signup = reduxForm({
-  form: 'signup',
+Signup = connect(null, actions)(Signup)
+
+export default reduxForm({
+  form: 'signupForm',
   validate,
   warn
 })(Signup)
-
-Signup = connect(
-  null,
-  actions
-)(Signup)
-
-export default Signup
