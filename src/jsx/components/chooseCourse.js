@@ -32,21 +32,21 @@ class ChooseCourse extends Component {
 
 
   handleChange = e => {
-    const { universityID } = this.props
+    const { universityId } = this.props
     if (e.target.value.length === 0) {
       this.props.clearSkip()
       this.props.clearSearchText()
     }
     this.setState({ searchText: e.target.value })
     if (e.target.value.length >= 2) {
-      this.props.getCourses(e.target.value, universityID)
+      this.props.getCourses(e.target.value, universityId)
     } else {
       return;
     }
   }
 
   render() {
-    const { availableCourses, selectedCourses, universityID } = this.props
+    const { availableCourses, selectedCourses, universityId } = this.props
     const { searchText } = this.state
     return (
       <div>
@@ -75,14 +75,14 @@ class ChooseCourse extends Component {
             <div>
               <Button
                 bsStyle="warning"
-                onClick={() => this.props.signUpSetUpChooseUniversity(universityID, 1)}
+                onClick={() => this.props.signUpSetUpChooseUniversity(universityId, 1)}
               >Previous</Button>
             </div>
           :
             <div>
               <Button
                 bsStyle="warning"
-                onClick={() => this.props.signUpSetUpChooseUniversity(universityID, 1)}
+                onClick={() => this.props.signUpSetUpChooseUniversity(universityId, 1)}
               >Previous</Button>
               <Button
                 bsStyle="success"
@@ -99,7 +99,7 @@ class ChooseCourse extends Component {
 const mapStateToProps = (state) => ({
   availableCourses: state.courses.coursesBySchool,
   selectedCourses: state.courses.selectedCourses,
-  universityID: state.user.postInitialSignUpValues.school,
+  universityId: state.user.postInitialSignUpValues.universityId,
   searchText: state.courses.searchText,
   skip: state.courses.skip
 })

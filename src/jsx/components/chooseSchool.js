@@ -1,8 +1,7 @@
-import React, { Component, PropTypes as PT } from 'react';
-import { Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { signUpSetUpChooseUniversity } from '../redux/actions/user';
-import { getUniversities } from '../redux/actions/universities';
+import React, { Component, PropTypes as PT } from 'react'
+import { Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import actions from '../redux/actions/index'
 
 class ChooseSchool extends Component {
   static propTypes = {
@@ -47,5 +46,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { signUpSetUpChooseUniversity, getUniversities }
+  actions
 )(ChooseSchool);

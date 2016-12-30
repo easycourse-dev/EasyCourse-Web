@@ -10,7 +10,10 @@ import {
 	USER_INITIAL_SIGNUP_FAILURE,
 	USER_INITIAL_SIGNUP_SUCCESS,
 	SIGNUP_SETUP_CHOOSE_UNIVERSITY,
-	SIGNUP_SETUP_CHOOSE_COURSES,
+  SIGNUP_SETUP_CHOOSE_COURSES,
+  SIGNUP_SETUP_CHOOSE_LANGUAGES,
+  FINISH_SIGNUP_SUCCESS,
+  FINISH_SIGNUP_FAILURE,
 } from './types'
 
 const ROOT_URL = 'https://zengjintaotest.com/api'
@@ -66,12 +69,12 @@ const logout = () => {
   }
 }
 
-const signUpSetUpChooseUniversity = (schoolID, stage) => {
+const signUpSetUpChooseUniversity = (universityId, stage) => {
   return dispatch => {
     dispatch({
       type: SIGNUP_SETUP_CHOOSE_UNIVERSITY,
       payload: {
-        schoolID,
+        universityId,
         stage
       }
     })
@@ -90,10 +93,49 @@ const signUpSetUpChooseCourses = (selectedCourses, stage) => {
   }
 }
 
+const signUpSetUpChooseLanguages = (selectedLanguages) => {
+  return dispatch => {
+    dispatch({
+      type: SIGNUP_SETUP_CHOOSE_LANGUAGES,
+      payload: selectedLanguages
+    })
+  }
+
+}
+
+const finishSignup = (postInitialSignUpValues) => {
+  return dispatch => {
+    const authToken = localStorage.getItem('authToken')
+    const config = {
+      headers: { "auth": authToken}
+    }
+
+    axios.post(`${ROOT_URL}/user/update`, postInitialSignUpValues.universityId, config)
+    .then(res => {
+      console.log(res)
+      dispatch({
+        type: FINISH_SIGNUP_SUCCESS,
+        payload: res
+      })
+      browserHistory.push('/')
+    })
+    .catch(error => {
+      console.log(error)
+      dispatch({
+        type: FINISH_SIGNUP_FAILURE,
+        payload: error
+      })
+    })
+
+  }
+}
+
 module.exports = {
   signup,
   login,
   logout,
   signUpSetUpChooseUniversity,
-  signUpSetUpChooseCourses
+  signUpSetUpChooseCourses,
+  signUpSetUpChooseLanguages,
+  finishSignup
 }

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes as PT } from 'react'
+import React, { Component } from 'react'
 import { Button, FormGroup } from 'react-bootstrap'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
