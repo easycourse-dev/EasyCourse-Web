@@ -99,7 +99,7 @@ class ChooseCourse extends Component {
 const mapStateToProps = (state) => ({
   availableCourses: state.courses.coursesBySchool,
   selectedCourses: state.courses.selectedCourses,
-  universityId: state.user.postInitialSignUpValues.universityId,
+  universityId: state.user.universityId,
   searchText: state.courses.searchText,
   skip: state.courses.skip
 })

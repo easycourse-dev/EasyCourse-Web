@@ -1,5 +1,5 @@
 import axios from 'axios'
-import store from '../store'
+import io from 'socket.io-client'
 import { browserHistory } from 'react-router'
 import {
 	USER_SIGNUP_SUCCESS,
@@ -63,7 +63,7 @@ const login = ({email, password}) => {
 
 const logout = () => {
   return dispatch => {
-    store.dispatch({ type: USER_LOGOUT, payload: null })
+    dispatch({ type: USER_LOGOUT, payload: null })
     localStorage.removeItem('authToken')
     browserHistory.push('/')
   }
@@ -100,23 +100,59 @@ const signUpSetUpChooseLanguages = (selectedLanguages) => {
       payload: selectedLanguages
     })
   }
+}
+
+const updateUser = (courses, languages) => {
+  let authToken = localStorage.getItem('authToken')
+  let coursesArray = []
+  let languagesArray = [] 
+  for (let i = 0; i < courses.length; i++) {
+    let id = courses[i]._id
+    coursesArray.push(id)
+  }
+  console.log('coursesArray: ', coursesArray)
+  for (let i = 0; i < languages.length; i++) {
+    let code = languages[i].code
+    languagesArray.push(code)
+  }
+  console.log('languagesArray: ', languagesArray)
+  let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`}) 
+  let newData = {courses: coursesArray, lang: languagesArray}
+  
+  socket.on('connect', () => {
+    socket.emit('joinCourse', newData, (data, error) => {
+      if (data) {
+        console.log('joinCourse data: ', data)
+      } else {
+        console.log('joinCourse error: ', error)
+      }
+    })
+  })
 
 }
 
-const finishSignup = (postInitialSignUpValues) => {
+const finishSignup = (languages, courses, universityId, selectedLanguages, displayName) => {
   return dispatch => {
     const authToken = localStorage.getItem('authToken')
+    
     const config = {
       headers: { "auth": authToken}
     }
+    
+    const body = {
+      displayName: displayName,
+      university: universityId,
+      userLang: selectedLanguages
+    }
 
-    axios.post(`${ROOT_URL}/user/update`, postInitialSignUpValues.universityId, config)
+    axios.post(`${ROOT_URL}/user/update`, body, config)
     .then(res => {
       console.log(res)
       dispatch({
         type: FINISH_SIGNUP_SUCCESS,
         payload: res
       })
+      updateUser(courses, languages)
       browserHistory.push('/')
     })
     .catch(error => {

@@ -13,8 +13,8 @@ class ChooseLanguage extends Component {
   }
 
   onFinish = () => {
-    const { postInitialSignUpValues } = this.props
-    setTimeout(this.props.finishSignup(postInitialSignUpValues), 1500)
+    const { languages, courses, selectedLanguages, universityId, displayName } = this.props
+    setTimeout(this.props.finishSignup(languages, courses, universityId, selectedLanguages, displayName), 1500)
     console.log('Sign up finished')
   }
 
@@ -46,7 +46,10 @@ class ChooseLanguage extends Component {
 const mapStateToProps = (state) => ({
   selectedCourses: state.courses.selectedCourses,
   selectedLanguages: state.language.selectedLanguages,
-  postInitialSignUpValues: state.user.postInitialSignUpValues
+  languages: state.user.languages,
+  courses: state.user.courses,
+  universityId: state.user.universityId,
+  displayName: state.user.current_user.displayName
 })
 
 export default connect(

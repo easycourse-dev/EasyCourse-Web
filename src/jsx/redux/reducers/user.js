@@ -21,11 +21,9 @@ const initialState = {
   current_user: '',
   initialSignUpComplete: false,
   signUpStage: 0,
-  postInitialSignUpValues: {
-    unversityId: '',
-    courses: [],
-    languages: [],
-  }
+  unversityId: '',
+  courses: [],
+  languages: [],
 }
 
 export default function userReducer(state = initialState, action) {
@@ -84,25 +82,19 @@ export default function userReducer(state = initialState, action) {
     case SIGNUP_SETUP_CHOOSE_UNIVERSITY:
       return {
         ...state,
-        postInitialSignUpValues: {
-          universityId: action.payload.universityId
-        },
+        universityId: action.payload.universityId,
         signUpStage: action.payload.stage,
       }
     case SIGNUP_SETUP_CHOOSE_COURSES:
       return {
         ...state,
-        postInitialSignUpValues: {
-          courses: action.payload.selectedCourses
-        },
+        courses: action.payload.selectedCourses,
         signUpStage: action.payload.stage,
       }
     case SIGNUP_SETUP_CHOOSE_LANGUAGES:
       return {
         ...state,
-        postInitialSignUpValues: {
-          languages: action.payload
-        }
+        languages: action.payload      
       }
     case FINISH_SIGNUP_SUCCESS:
       return {
