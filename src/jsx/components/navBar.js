@@ -2,6 +2,10 @@ import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+{/* <LinkContainer to="/signin">
+  <NavItem className="NavbarLinks NavbarSignIn">Sign In</NavItem>
+</LinkContainer> */}
+
 export default class NavBar extends Component {
 
   render() {
@@ -21,9 +25,6 @@ export default class NavBar extends Component {
                   <NavItem className="NavbarLinks">Home</NavItem>
                 </LinkContainer>
                 <NavItem className="NavbarLinks" href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
-                <LinkContainer to="/signin">
-                  <NavItem className="NavbarLinks NavbarSignIn">Sign In</NavItem>
-                </LinkContainer>
               </Nav>
             </Navbar.Collapse>
           </Col>
