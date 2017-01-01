@@ -12,8 +12,10 @@ import {
 	SIGNUP_SETUP_CHOOSE_UNIVERSITY,
   SIGNUP_SETUP_CHOOSE_COURSES,
   SIGNUP_SETUP_CHOOSE_LANGUAGES,
-  FINISH_SIGNUP_SUCCESS,
-  FINISH_SIGNUP_FAILURE,
+  UPDATE_USER_UNIV_SUCCESS,
+  UPDATE_USER_UNIV_FAILURE,
+  JOIN_COURSE_SUCCESS,
+  JOIN_COURSE_FAILURE,
 } from './types'
 
 const ROOT_URL = 'https://zengjintaotest.com/api'
@@ -102,7 +104,8 @@ const signUpSetUpChooseLanguages = (selectedLanguages) => {
   }
 }
 
-const updateUser = (courses, languages) => {
+// update the user's joinedCourse's and languages the user speaks
+const updateUserCourseAndLang = (courses, languages, dispatch) => {
   let authToken = localStorage.getItem('authToken')
   let coursesArray = []
   let languagesArray = [] 
@@ -122,47 +125,32 @@ const updateUser = (courses, languages) => {
   socket.on('connect', () => {
     socket.emit('joinCourse', newData, (data, error) => {
       if (data) {
+        dispatch({ type: JOIN_COURSE_SUCCESS, payload: data })
         console.log('joinCourse data: ', data)
       } else {
+        dispatch({ type: JOIN_COURSE_FAILURE, payload: error })
         console.log('joinCourse error: ', error)
       }
     })
   })
-
 }
+
 
 const finishSignup = (languages, courses, universityId, selectedLanguages, displayName) => {
   return dispatch => {
     const authToken = localStorage.getItem('authToken')
     
-    const config = {
-      headers: { "auth": authToken}
-    }
-    
-    const body = {
-      displayName: displayName,
-      university: universityId,
-      userLang: selectedLanguages
-    }
-
+    const config = { headers: {"auth": authToken} }
+    const body = { university: universityId }
+    // update user's university
     axios.post(`${ROOT_URL}/user/update`, body, config)
     .then(res => {
-      console.log(res)
-      dispatch({
-        type: FINISH_SIGNUP_SUCCESS,
-        payload: res
-      })
-      updateUser(courses, languages)
-      browserHistory.push('/')
+      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
+      updateUserCourseAndLang(courses, languages, dispatch)
     })
     .catch(error => {
-      console.log(error)
-      dispatch({
-        type: FINISH_SIGNUP_FAILURE,
-        payload: error
-      })
+      dispatch({ type: UPDATE_USER_UNIV_FAILURE, payload: error })
     })
-
   }
 }
 

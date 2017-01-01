@@ -32,23 +32,21 @@ if (localStorage.getItem('authToken')) {
   let socket = io.connect('https://zengjintaotest.com/', { query: `token=${authToken}` })
   socket.on('connect', () => {
     socket.emit('syncUser', 1, (data, error) => {
-      store.dispatch({
-        type: USER_AUTHENTICATE_SUCCESS,
-        payload: data.user
-      })
       console.log('Connected User: ', data.user);
       if (data.user.joinedRoom.length === 0) {
+        store.dispatch({ type: USER_INITIAL_SIGNUP_SUCCESS })
+        browserHistory.push('/signin');
+      } else {
         store.dispatch({
-          type: USER_INITIAL_SIGNUP_SUCCESS
-        });
+          type: USER_AUTHENTICATE_SUCCESS,
+          payload: data.user
+        })
+        browserHistory.push('/');
       }
     })
   })
-  browserHistory.push('/signin');
 } else {
-  store.dispatch({
-    type: USER_AUTHENTICATE_FAILURE
-  })
+  store.dispatch({ type: USER_AUTHENTICATE_FAILURE })
   browserHistory.push('/');
 }
 

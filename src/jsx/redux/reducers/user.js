@@ -11,8 +11,10 @@ import {
   SIGNUP_SETUP_CHOOSE_UNIVERSITY,
   SIGNUP_SETUP_CHOOSE_COURSES,
   SIGNUP_SETUP_CHOOSE_LANGUAGES,
-  FINISH_SIGNUP_SUCCESS,
-  FINISH_SIGNUP_FAILURE,
+  UPDATE_USER_UNIV_SUCCESS,
+  UPDATE_USER_UNIV_FAILURE,
+  JOIN_COURSE_SUCCESS,
+  JOIN_COURSE_FAILURE,
 } from '../actions/types';
 
 const initialState = {
@@ -96,15 +98,21 @@ export default function userReducer(state = initialState, action) {
         ...state,
         languages: action.payload      
       }
-    case FINISH_SIGNUP_SUCCESS:
+    case UPDATE_USER_UNIV_SUCCESS:
       return {
-        ...state,
-        message: action.payload
+        ...state
       }
-    case FINISH_SIGNUP_FAILURE:
+    case UPDATE_USER_UNIV_FAILURE:
       return {
-        ...state,
-        message: action.payload
+        ...state
+      }
+    case JOIN_COURSE_SUCCESS:
+      return {
+        ...state
+      }
+    case JOIN_COURSE_FAILURE:
+      return {
+        ...state
       }
     default:
       return {
