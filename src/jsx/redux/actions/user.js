@@ -126,10 +126,8 @@ const updateUserCourseAndLang = (courses, languages, dispatch) => {
     socket.emit('joinCourse', newData, (data, error) => {
       if (data) {
         dispatch({ type: JOIN_COURSE_SUCCESS, payload: data })
-        console.log('joinCourse data: ', data)
       } else {
         dispatch({ type: JOIN_COURSE_FAILURE, payload: error })
-        console.log('joinCourse error: ', error)
       }
     })
   })

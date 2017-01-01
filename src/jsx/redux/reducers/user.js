@@ -100,19 +100,23 @@ export default function userReducer(state = initialState, action) {
       }
     case UPDATE_USER_UNIV_SUCCESS:
       return {
-        ...state
+        ...state,
+        message: 'Updated user university'
       }
     case UPDATE_USER_UNIV_FAILURE:
       return {
-        ...state
+        ...state,
+        message: 'Unable to update user university'
       }
     case JOIN_COURSE_SUCCESS:
       return {
-        ...state
+        ...state,
+        response: action.payload
       }
     case JOIN_COURSE_FAILURE:
       return {
-        ...state
+        ...state,
+        response: action.payload
       }
     default:
       return {
