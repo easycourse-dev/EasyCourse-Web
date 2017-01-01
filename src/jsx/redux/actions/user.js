@@ -16,6 +16,7 @@ import {
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
   JOIN_COURSE_FAILURE,
+	UPDATE_PASSWORD
 } from './types'
 
 const ROOT_URL = 'https://zengjintaotest.com/api'
@@ -108,7 +109,7 @@ const signUpSetUpChooseLanguages = (selectedLanguages) => {
 const updateUserCourseAndLang = (courses, languages, dispatch) => {
   let authToken = localStorage.getItem('authToken')
   let coursesArray = []
-  let languagesArray = [] 
+  let languagesArray = []
   for (let i = 0; i < courses.length; i++) {
     let id = courses[i]._id
     coursesArray.push(id)
@@ -119,9 +120,9 @@ const updateUserCourseAndLang = (courses, languages, dispatch) => {
     languagesArray.push(code)
   }
   console.log('languagesArray: ', languagesArray)
-  let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`}) 
+  let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`})
   let newData = {courses: coursesArray, lang: languagesArray}
-  
+
   socket.on('connect', () => {
     socket.emit('joinCourse', newData, (data, error) => {
       if (data) {
@@ -137,7 +138,7 @@ const updateUserCourseAndLang = (courses, languages, dispatch) => {
 const finishSignup = (languages, courses, universityId, selectedLanguages, displayName) => {
   return dispatch => {
     const authToken = localStorage.getItem('authToken')
-    
+
     const config = { headers: {"auth": authToken} }
     const body = { university: universityId }
     // update user's university
@@ -152,6 +153,12 @@ const finishSignup = (languages, courses, universityId, selectedLanguages, displ
   }
 }
 
+const updatePassword = ({password, passwordConfirmation}) => {
+	return dispatch => {
+		dispatch({ type: UPDATE_PASSWORD, payload: password})
+	}
+}
+
 module.exports = {
   signup,
   login,
@@ -159,5 +166,6 @@ module.exports = {
   signUpSetUpChooseUniversity,
   signUpSetUpChooseCourses,
   signUpSetUpChooseLanguages,
-  finishSignup
+  finishSignup,
+	updatePassword
 }

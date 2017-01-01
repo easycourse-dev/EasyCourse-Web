@@ -15,6 +15,7 @@ import {
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
   JOIN_COURSE_FAILURE,
+  UPDATE_PASSWORD
 } from '../actions/types';
 
 const initialState = {
@@ -96,7 +97,7 @@ export default function userReducer(state = initialState, action) {
     case SIGNUP_SETUP_CHOOSE_LANGUAGES:
       return {
         ...state,
-        languages: action.payload      
+        languages: action.payload
       }
     case UPDATE_USER_UNIV_SUCCESS:
       return {
@@ -114,6 +115,11 @@ export default function userReducer(state = initialState, action) {
         response: action.payload
       }
     case JOIN_COURSE_FAILURE:
+      return {
+        ...state,
+        response: action.payload
+      }
+    case UPDATE_PASSWORD:
       return {
         ...state,
         response: action.payload

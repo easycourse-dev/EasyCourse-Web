@@ -12,6 +12,7 @@ import App from './App';
 import Public from './jsx/public'
 import Home from './jsx/home'
 import SignIn from './jsx/signin'
+import ForgotPassword from './jsx/forgotPassword'
 // Other
 import {
 USER_AUTHENTICATE_SUCCESS,
@@ -56,7 +57,8 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App} >
         <IndexRoute component={getHomeComponent} />
-        <Route path="signin" component={SignIn} />
+        {/* <Route path="signin" component={SignIn} /> */}
+        <Route path="forgotPassword" component={ForgotPassword} />
       </Route>
     </Router>
   </Provider>
