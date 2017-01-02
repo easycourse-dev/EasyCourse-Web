@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { Component } from 'react'
+import { Row, Col } from 'react-bootstrap'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { actions } from './redux/actions/index'
 import { Button, FormGroup } from 'react-bootstrap'
+const jwt = require('jsonwebtoken')
 
 const validate = values => {
   const errors = {}
@@ -51,6 +52,12 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
 )
 
 class ForgotPassword extends Component {
+
+  componentDidMount() {
+    const { params } = this.props
+    
+
+  }
 
   render() {
 

@@ -58,7 +58,7 @@ ReactDOM.render(
       <Route path="/" component={App} >
         <IndexRoute component={getHomeComponent} />
         {/* <Route path="signin" component={SignIn} /> */}
-        <Route path="forgotPassword" component={ForgotPassword} />
+        <Route path="forgotPassword/:token" component={ForgotPassword} />
       </Route>
     </Router>
   </Provider>
