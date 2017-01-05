@@ -32,16 +32,15 @@ export default class Public extends Component {
                   <h1 className="Slogan">EasyCourse</h1>
                   <h3 className="SubSlogan">Connect students</h3>
                   <h3 className="SubSlogan">Boost learning efficiency</h3>
-                  <a className="StoreLinks">
-                  {/* <a className="StoreLinks" href="http://www.apple.com" target="_blank"> */}
+                  {/* <a className="StoreLinks" href="http://www.apple.com" target="_blank">
                     <p className="HiddenText">Download EasyCourse app in AppStore</p>
                     <div className="AppStore" />
-                  </a>
+                  </a> */}
                   {/* <a className="StoreLinks" href="http://play.google.com" target="_blank">
                     <p className="HiddenText">Download EasyCourse app in GooglePlay Store</p>
                     <div className="GooglePlay" />
                   </a> */}
-                  <p style={{color: "white"}}>Android and Web client coming soon...</p>
+                  <p style={{color: "white"}}>iOS, Android, and Web client coming soon...</p>
                 </Col>
                 <Col lg={4} md={5} sm={12}>
                   <div className="PublicPhonesWrapper">
