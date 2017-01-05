@@ -29,6 +29,7 @@
   border-radius: 2px;
   position: relative;
   padding: 10px;
+  cursor: pointer;
 }
 
 .DocsCardTitle {
