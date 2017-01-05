@@ -2,9 +2,9 @@ import React, { Component} from 'react';
 import { Navbar, Nav, NavItem, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-{/* <LinkContainer to="/signin">
+/* <LinkContainer to="/signin">
   <NavItem className="NavbarLinks NavbarSignIn">Sign In</NavItem>
-</LinkContainer> */}
+</LinkContainer> */
 
 export default class NavBar extends Component {
 

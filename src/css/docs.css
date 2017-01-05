@@ -1,0 +1,51 @@
+.Docs {
+  position: relative;
+}
+
+.DocsRow {
+  padding-top: 100px;
+}
+
+.DocsHolder {
+  background-color: #525479;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  height: 500px;
+  padding: 0 35px;
+  margin-bottom: 130px;
+}
+
+.DocsCardsHolder {
+  display: inline-flex;
+  width: 100%;
+}
+
+.DocsCard {
+  width: 50%;
+  height: 50px;
+  background-color: #2BBBAD;
+  margin: 0 5px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.20);
+  border-radius: 2px;
+  position: relative;
+  padding: 10px;
+}
+
+.DocsCardTitle {
+  color: white;
+  font-size: 18px;
+}
+
+.DocsCardTitle:focus, .DocsCardTitle:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.DocWrapper {
+  background-color: #525479;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding: 20px 35px;
+  margin-bottom: 130px;
+  color: white;
+}
