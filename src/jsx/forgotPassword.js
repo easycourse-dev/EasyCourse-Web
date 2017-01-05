@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { actions } from './redux/actions/index'
 import { Button, FormGroup } from 'react-bootstrap'
-const jwt = require('jsonwebtoken')
+const jwtDecode = require('jwt-decode')
 
 const validate = values => {
   const errors = {}
@@ -55,12 +55,17 @@ class ForgotPassword extends Component {
 
   componentDidMount() {
     const { params } = this.props
-    
+
+    try {
+      let token = jwtDecode(params.token)
+      console.log(token)
+    } catch (error) {
+      console.log(error)
+    }
 
   }
 
   render() {
-
     const { handleSubmit, updatePassword } = this.props
     return (
       <div className="SignInBackground">
