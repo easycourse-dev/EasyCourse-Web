@@ -58,9 +58,9 @@ class ForgotPassword extends Component {
 
     try {
       let token = jwtDecode(params.token)
-      console.log(token)
+      console.log('Decomposed token: ', token)
     } catch (error) {
-      console.log(error)
+      console.log('Error decomposing token: ', error)
     }
 
   }
