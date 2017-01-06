@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { actions } from './redux/actions/index'
 import { Button, FormGroup } from 'react-bootstrap'
+
 const jwtDecode = require('jwt-decode')
 
 const validate = values => {
