@@ -8,58 +8,17 @@ import { Button, FormGroup } from 'react-bootstrap'
 
 const jwtDecode = require('jwt-decode')
 
-const validate = values => {
-  const errors = {}
-
-  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
-  }
-
-  if (values.password && values.password.length < 6) {
-    errors.password = 'Password must be longer than 6 characters'
-  }
-
-  if (values.password !== values.passwordConfirmation) {
-    errors.passwordConfirmation = 'Passwords must match'
-  }
-
-  if (values.displayName && values.displayName.length < 6) {
-    errors.displayName = 'Display Name must be longer than 6 characters'
-  }
-
-  return errors;
-}
-
-const warn = values => {
-  const warnings = {}
-  if (values.password) {
-    warnings.password = ''
-  }
-
-  return warnings;
-}
-
-const validatedInput = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div>
-    <input
-      style={{borderBottomColor: (touched && error) ? '#F44336' : '#2BBBAD'}}
-      {...input}
-      className="form-control"
-      placeholder={label}
-      type={type}
-    />
-    {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-  </div>
-)
-
 class ForgotPassword extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      token: ''
+      token: '',
+      password: '',
+      passwordConfirmation: ''
     }
   }
+
   componentDidMount() {
     const { location } = this.props
     let token = jwtDecode(location.query.token)
@@ -69,14 +28,22 @@ class ForgotPassword extends Component {
     })
   }
 
-  handleFormSubmit = (values) => {
-    const { token } = this.state
-    console.log('Values: ', values)
-    console.log('Token: ', token)
+  handleFormSubmit = () => {
+    const { token, password, passwordConfirmation } = this.state
+    console.log('handleSubmit Token: ', token)
+    console.log('handleSubmit Password: ', password)
+    console.log('handleSubmit Password Confirmation: ', passwordConfirmation)
+  }
+  
+  handlePasswordChange = (password) => {
+    this.setState({ passsword })
+  }
+  
+  handlePasswordConfirmationChange = (passwordConfirmation) => {
+    this.setState({ passswordConfirmation })
   }
 
   render() {
-    const { handleSubmit, updatePassword } = this.props
     return (
       <div className="SignInBackground">
         <ReactCSSTransitionGroup
@@ -102,20 +69,18 @@ class ForgotPassword extends Component {
                 </h2>
                 <form onSubmit={() => handleSubmit(this.handleFormSubmit)} key="forgotPasswordForm">
                   <FormGroup className="Form">
-                    <Field
-                      className="form-control"
-                      name="password"
-                      component={validatedInput}
-                      type="password"
-                      label="New Password"
-                    />
-                    <Field
-                      className="form-control"
-                      name="passwordConfirmation"
-                      component={validatedInput}
-                      type="password"
-                      label="Confirm New Password"
-                    />
+                    <FormControl
+                      type="text"
+                      value={this.state.password}
+                      placeholder="New Password"
+                      onChange={(password) => this.handlePasswordChange(password)}
+                    /> 
+                    <FormControl
+                      type="text"
+                      value={this.state.passwordConfirmation}
+                      placeholder="Confirm New Password"
+                      onChange={(passwordConfirmation) => this.handlePasswordConfirmationChange(passwordConfirmation)}
+                    /> 
                     <Button className="FormSubmitButton LoginSubmitButton" bsStyle="primary" type="submit">Update Password</Button>
                   </FormGroup>
                 </form>
@@ -132,9 +97,3 @@ class ForgotPassword extends Component {
 }
 
 ForgotPassword = connect(null, actions)(ForgotPassword)
-
-export default reduxForm({
-  form: 'updatePassword',
-  validate,
-  warn
-})(ForgotPassword)
