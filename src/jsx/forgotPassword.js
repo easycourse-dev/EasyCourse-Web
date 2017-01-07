@@ -60,7 +60,7 @@ class ForgotPassword extends Component {
 
   componentDidMount() {
     const { location } = this.props
-    console.log('Token: ', this.location.query.token)
+    console.log('Token: ', location.query.token)
     let token = jwtDecode(location.query.token)
     console.log('Decomposed token: ', token)
   }
