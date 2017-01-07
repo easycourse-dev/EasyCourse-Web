@@ -62,12 +62,17 @@ class ForgotPassword extends Component {
   }
   componentDidMount() {
     const { location } = this.props
-    console.log('Token: ', location.query.token)
     let token = jwtDecode(location.query.token)
     console.log('Decomposed token: ', token)
     this.setState({
       token
     })
+  }
+
+  handleSubmit = (values) => {
+    const { token } = this.state
+    console.log('Values: ', values)
+    console.log('Token: ', token)
   }
 
   render() {
@@ -95,7 +100,7 @@ class ForgotPassword extends Component {
                 <h2 className="PageTitle" key="loginFormTitle">
                   Forgot Your Password?
                 </h2>
-                <form onSubmit={() => handleSubmit(updatePassword(this.state.token))} key="forgotPasswordForm">
+                <form onSubmit={() => handleSubmit(handleSubmit)} key="forgotPasswordForm">
                   <FormGroup className="Form">
                     <Field
                       className="form-control"
