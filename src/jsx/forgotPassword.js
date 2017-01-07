@@ -69,7 +69,7 @@ class ForgotPassword extends Component {
     })
   }
 
-  handleSubmit = (values) => {
+  handleFormSubmit = (values) => {
     const { token } = this.state
     console.log('Values: ', values)
     console.log('Token: ', token)
@@ -100,7 +100,7 @@ class ForgotPassword extends Component {
                 <h2 className="PageTitle" key="loginFormTitle">
                   Forgot Your Password?
                 </h2>
-                <form onSubmit={() => handleSubmit(handleSubmit)} key="forgotPasswordForm">
+                <form onSubmit={() => handleSubmit(this.handleFormSubmit)} key="forgotPasswordForm">
                   <FormGroup className="Form">
                     <Field
                       className="form-control"
