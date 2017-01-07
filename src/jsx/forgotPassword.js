@@ -53,16 +53,21 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
 )
 
 class ForgotPassword extends Component {
-  componentWillMount() {
-    console.log('component will be ')
-    console.log('updated message: Miranda is cool')
-  }
+  constructor(props) {
+    super(props)
 
+    this.state = {
+      token: ''
+    }
+  }
   componentDidMount() {
     const { location } = this.props
     console.log('Token: ', location.query.token)
     let token = jwtDecode(location.query.token)
     console.log('Decomposed token: ', token)
+    this.setState({
+      token
+    })
   }
 
   render() {
@@ -90,7 +95,7 @@ class ForgotPassword extends Component {
                 <h2 className="PageTitle" key="loginFormTitle">
                   Forgot Your Password?
                 </h2>
-                <form onSubmit={() => handleSubmit(updatePassword)} key="forgotPasswordForm">
+                <form onSubmit={() => handleSubmit(updatePassword(this.state.token))} key="forgotPasswordForm">
                   <FormGroup className="Form">
                     <Field
                       className="form-control"

@@ -119,8 +119,8 @@ export default function userReducer(state = initialState, action) {
         ...state,
         response: action.payload
       }
-    case UPDATE_PASSWORD:
-      return {
+    case UPDATE_PASSWORD: 
+      return { 
         ...state,
         response: action.payload
       }
