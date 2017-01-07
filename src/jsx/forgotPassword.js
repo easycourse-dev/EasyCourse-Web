@@ -55,15 +55,14 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
 class ForgotPassword extends Component {
   componentWillMount() {
     console.log('component will be ')
-    console.log('updated message: Mountain Dew')
+    console.log('updated message: Miranda is cool')
   }
 
   componentDidMount() {
-    const { params } = this.props
-    console.log('Props: ', this.props)
-    console.log('Params: ', this.params)
-    let token = jwtDecode(params.token)
-    console.log(token)
+    const { location } = this.props
+    console.log('Token: ', this.location.query.token)
+    let token = jwtDecode(location.query.token)
+    console.log('Decomposed token: ', token)
   }
 
   render() {
