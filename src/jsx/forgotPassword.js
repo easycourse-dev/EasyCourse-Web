@@ -54,7 +54,8 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
 
 class ForgotPassword extends Component {
   componentWillMount() {
-    console.log('component will be mounting soon...')
+    console.log('component will be ')
+    console.log('updated message: Mountain Dew')
   }
 
   componentDidMount() {
