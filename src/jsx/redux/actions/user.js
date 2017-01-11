@@ -153,14 +153,14 @@ const finishSignup = (languages, courses, universityId, selectedLanguages, displ
   }
 }
 
-const updatePassword = (password, passwordConfirmation, token) => {
+const resetPassword = (password, passwordConfirmation, token) => {
   return dispatch => {
 		console.log('Password: ', password, 'Token: ', token)
     const config = { headers: {"auth": token} }
     const body = {newPassword: password}
     axios.post(`${ROOT_URL}/resetPassword`, body, config)
     .then(res => {
-     dispatch({ type: UPDATE_PASSWORD, payload: res })
+     dispatch({ type: UPDATE_PASSWORD, payload: res.status })
     })
     .catch(error => {
      dispatch({ type: UPDATE_PASSWORD, payload: error })
@@ -176,5 +176,5 @@ module.exports = {
   signUpSetUpChooseCourses,
   signUpSetUpChooseLanguages,
   finishSignup,
-	updatePassword
+	resetPassword
 }
