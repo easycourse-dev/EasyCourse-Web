@@ -153,6 +153,8 @@ class ForgotPassword extends Component {
                 <h5>Password successfully reset!</h5>
               :
                 <h5>Something went wrong when trying to reset your password</h5>
+                <p>The following errors occurred:</p>
+                <p>{responseStatus.statusText}</p>
             }
           </Modal.Body>
           <Modal.Footer>
