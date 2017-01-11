@@ -57,8 +57,8 @@ class ChooseCourseList extends Component {
               className="SignupListItem"
               onClick={() => this.onRemoveSelectedCourse(course)}
             >
+              <i className="fa fa-check" aria-hidden="true"></i>
               {course.name}
-              <i className="fa fa-times" aria-hidden="true"></i>
             </Button>
           </li>
         )
@@ -90,7 +90,7 @@ class ChooseCourseList extends Component {
 const mapStateToProps = (state) => ({
   availableCourses: state.courses.coursesBySchool,
   selectedCourses: state.courses.selectedCourses,
-  universityId: state.user.universityId,
+  universityId: state.university.selectedUniversity,
   searchText: state.courses.searchText,
   skip: state.courses.skip
 })

@@ -3,8 +3,10 @@ import {
   GET_COURSES_FAILURE,
   ADD_SELECTED_COURSE,
   REMOVE_SELECTED_COURSE,
+  REMOVE_SELECTED_COURSES,
   CLEAR_SKIP,
   CLEAR_SEARCH_TEXT,
+  CLEAR_AVAILABLE_COURSES,
   LOAD_MORE_SUCCESS,
   LOAD_MORE_FAILURE
 } from '../actions/types';
@@ -40,6 +42,11 @@ export const coursesReducer = (state = initialState, action) => {
         ...state,
         selectedCourses: state.selectedCourses.filter(course => course !== payload),
       }
+    case REMOVE_SELECTED_COURSES:
+      return {
+        ...state,
+        selectedCourses: []
+      }
     case CLEAR_SKIP:
       return {
         ...state,
@@ -49,6 +56,11 @@ export const coursesReducer = (state = initialState, action) => {
       return {
         ...state,
         searchText: ''
+      }
+    case CLEAR_AVAILABLE_COURSES:
+      return {
+        ...state,
+        coursesBySchool: []
       }
     case LOAD_MORE_FAILURE:
       return { ...state }

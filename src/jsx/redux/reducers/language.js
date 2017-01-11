@@ -34,7 +34,7 @@ const languageReducer = (state = initialState, action) => {
         selectedLanguages: state.selectedLanguages.filter(language => language !== payload)
       }
     default:
-     break 
+     break
   }
   return state
 }

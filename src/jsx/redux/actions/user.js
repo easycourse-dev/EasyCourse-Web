@@ -9,9 +9,11 @@ import {
 	USER_LOGOUT,
 	USER_INITIAL_SIGNUP_FAILURE,
 	USER_INITIAL_SIGNUP_SUCCESS,
-	SIGNUP_SETUP_CHOOSE_UNIVERSITY,
-  SIGNUP_SETUP_CHOOSE_COURSES,
-  SIGNUP_SETUP_CHOOSE_LANGUAGES,
+	CHANGE_SIGNUP_STAGE,
+	REMOVE_SELECTED_UNIVERSITY,
+	REMOVE_SELECTED_COURSES,
+	CLEAR_SEARCH_TEXT,
+	CLEAR_AVAILABLE_COURSES,
   UPDATE_USER_UNIV_SUCCESS,
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
@@ -71,61 +73,56 @@ const logout = () => {
   }
 }
 
-const signUpSetUpChooseUniversity = (universityId, stage) => {
-  return dispatch => {
-    dispatch({
-      type: SIGNUP_SETUP_CHOOSE_UNIVERSITY,
-      payload: {
-        universityId,
-        stage
-      }
-    })
-  }
+const clearVaules = (dispatch) => {
+	dispatch({ type: REMOVE_SELECTED_COURSES })
+	dispatch({ type: CLEAR_SEARCH_TEXT })
+	dispatch({ type: REMOVE_SELECTED_UNIVERSITY })
+	dispatch({ type: CLEAR_AVAILABLE_COURSES })
 }
 
-const signUpSetUpChooseCourses = (selectedCourses, stage) => {
-  return dispatch => {
-    dispatch({
-      type: SIGNUP_SETUP_CHOOSE_COURSES,
-      payload: {
-        selectedCourses,
-        stage
-      }
-    })
-  }
+const clearSearchText = (dispatch) => {
+	dispatch({ type: CLEAR_SEARCH_TEXT })
 }
 
-const signUpSetUpChooseLanguages = (selectedLanguages) => {
-  return dispatch => {
-    dispatch({
-      type: SIGNUP_SETUP_CHOOSE_LANGUAGES,
-      payload: selectedLanguages
-    })
-  }
+const changeSignupStage = (stage) => {
+	return dispatch => {
+		if (stage === 1) {
+			clearVaules(dispatch)
+			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
+		} else if (stage === 2){
+			clearSearchText(dispatch)
+			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
+		} else {
+			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
+		}
+	}
 }
 
 // update the user's joinedCourse's and languages the user speaks
 const updateUserCourseAndLang = (courses, languages, dispatch) => {
   let authToken = localStorage.getItem('authToken')
-  let coursesArray = []
-  let languagesArray = [] 
+  let coursesIdArray = []
+  let languagesCodeArray = []
   for (let i = 0; i < courses.length; i++) {
     let id = courses[i]._id
-    coursesArray.push(id)
+    coursesIdArray.push(id)
   }
-  console.log('coursesArray: ', coursesArray)
+  console.log('coursesArray: ', coursesIdArray)
+
   for (let i = 0; i < languages.length; i++) {
     let code = languages[i].code
-    languagesArray.push(code)
+    languagesCodeArray.push(code)
   }
-  console.log('languagesArray: ', languagesArray)
-  let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`}) 
-  let newData = {courses: coursesArray, lang: languagesArray}
-  
+  console.log('languagesArray: ', languagesCodeArray)
+
+  let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`})
+  let newData = {courses: coursesIdArray, lang: languagesCodeArray}
+
   socket.on('connect', () => {
     socket.emit('joinCourse', newData, (data, error) => {
       if (data) {
         dispatch({ type: JOIN_COURSE_SUCCESS, payload: data })
+				browserHistory.push('/')
       } else {
         dispatch({ type: JOIN_COURSE_FAILURE, payload: error })
       }
@@ -134,21 +131,21 @@ const updateUserCourseAndLang = (courses, languages, dispatch) => {
 }
 
 
-const finishSignup = (languages, courses, universityId, selectedLanguages, displayName) => {
+const finishSignup = (universityId, selectedLanguages, selectedCourses, displayName) => {
   return dispatch => {
     const authToken = localStorage.getItem('authToken')
-    
+
     const config = { headers: {"auth": authToken} }
     const body = { university: universityId }
-    // update user's university
+
     axios.post(`${ROOT_URL}/user/update`, body, config)
-    .then(res => {
-      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
-      updateUserCourseAndLang(courses, languages, dispatch)
-    })
-    .catch(error => {
-      dispatch({ type: UPDATE_USER_UNIV_FAILURE, payload: error })
-    })
+	    .then(res => {
+	      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
+	      updateUserCourseAndLang(selectedCourses, selectedLanguages, dispatch)
+	    })
+	    .catch(error => {
+	      dispatch({ type: UPDATE_USER_UNIV_FAILURE, payload: error })
+	    })
   }
 }
 
@@ -156,8 +153,6 @@ module.exports = {
   signup,
   login,
   logout,
-  signUpSetUpChooseUniversity,
-  signUpSetUpChooseCourses,
-  signUpSetUpChooseLanguages,
+  changeSignupStage,
   finishSignup
 }

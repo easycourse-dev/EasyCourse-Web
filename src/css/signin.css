@@ -158,6 +158,18 @@ input:-webkit-autofill:focus, textarea:-webkit-autofill:focus, select:-webkit-au
   border-radius: 6px;
 }
 
+
+.NextPreviousButton, .NextPreviousButton:active, .NextPreviousButton:focus,
+.NextPreviousButton:active, .NextPreviousButton:hover {
+  margin: 3px;
+  background-color: #2BBBAD;
+  border-color: #2BBBAD;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 6px;
+  color: white
+}
+
 /*Smaller than smartphone*/
 @media (max-width: 425px) {
   .LoginSubmitButton {

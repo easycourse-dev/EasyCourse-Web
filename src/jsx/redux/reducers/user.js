@@ -8,9 +8,7 @@ import {
   USER_LOGOUT,
   USER_AUTHENTICATE_SUCCESS,
   USER_AUTHENTICATE_FAILURE,
-  SIGNUP_SETUP_CHOOSE_UNIVERSITY,
-  SIGNUP_SETUP_CHOOSE_COURSES,
-  SIGNUP_SETUP_CHOOSE_LANGUAGES,
+  CHANGE_SIGNUP_STAGE,
   UPDATE_USER_UNIV_SUCCESS,
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
@@ -23,18 +21,16 @@ const initialState = {
   current_user: '',
   initialSignUpComplete: false,
   signUpStage: 0,
-  universityId: '',
-  courses: [],
-  languages: [],
 }
 
 export default function userReducer(state = initialState, action) {
-  switch (action.type) {
+  const { type, payload } = action
+  switch (type) {
     case USER_AUTHENTICATE_SUCCESS:
       return {
         ...state,
         authenticated: true,
-        current_user: action.payload
+        current_user: payload
       };
     case USER_AUTHENTICATE_FAILURE:
       return {
@@ -45,7 +41,7 @@ export default function userReducer(state = initialState, action) {
     case USER_SIGNUP_SUCCESS:
       return {
         ...state,
-        current_user: action.payload
+        current_user: payload
       };
     case USER_SIGNUP_FAILURE:
       return {
@@ -67,7 +63,7 @@ export default function userReducer(state = initialState, action) {
     case USER_LOGIN_SUCCESS:
       return {
         ...state,
-        current_user: action.payload
+        current_user: payload
       };
     case USER_LOGIN_FAILURE:
       return {
@@ -81,22 +77,10 @@ export default function userReducer(state = initialState, action) {
         current_user: '',
         signUpStage: 0
       };
-    case SIGNUP_SETUP_CHOOSE_UNIVERSITY:
+    case CHANGE_SIGNUP_STAGE:
       return {
         ...state,
-        universityId: action.payload.universityId,
-        signUpStage: action.payload.stage,
-      }
-    case SIGNUP_SETUP_CHOOSE_COURSES:
-      return {
-        ...state,
-        courses: action.payload.selectedCourses,
-        signUpStage: action.payload.stage,
-      }
-    case SIGNUP_SETUP_CHOOSE_LANGUAGES:
-      return {
-        ...state,
-        languages: action.payload
+        signUpStage: payload
       }
     case UPDATE_USER_UNIV_SUCCESS:
       return {
@@ -111,12 +95,12 @@ export default function userReducer(state = initialState, action) {
     case JOIN_COURSE_SUCCESS:
       return {
         ...state,
-        response: action.payload
+        response: payload
       }
     case JOIN_COURSE_FAILURE:
       return {
         ...state,
-        response: action.payload
+        response: payload
       }
     default:
       return {

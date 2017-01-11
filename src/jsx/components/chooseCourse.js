@@ -46,50 +46,47 @@ class ChooseCourse extends Component {
   }
 
   render() {
-    const { availableCourses, selectedCourses, universityId } = this.props
+    const { selectedCourses } = this.props
     const { searchText } = this.state
     return (
       <div>
-        <h2 className="PageTitle" key="loginFormTitle">
+        <h2 className="PageTitle">
           What Classes Are You In?
         </h2>
-        <form>
-          <FormGroup>
-            <FormControl
-              type="text"
-              value={searchText}
-              placeholder="Search For A Class"
-              onChange={(e) => this.handleChange(e)}
-            />
-          </FormGroup>
-        </form>
-        <div style={{ overflowY: 'scroll', height: 300}}>
-          <ChooseCourseList
-            availableCourses={availableCourses}
-            selectedCourses={selectedCourses}
-            searchText={searchText}
-          />
+        <div>
+          <form>
+            <FormGroup>
+              <FormControl
+                type="text"
+                value={searchText}
+                placeholder="Search For A Class"
+                onChange={(e) => this.handleChange(e)}
+              />
+            </FormGroup>
+          </form>
+        </div>
+        <div style={{ overflowY: 'scroll', height: 270}}>
+          <ChooseCourseList />
         </div>
         {
           selectedCourses.length < 1 ?
-            <div>
+            <div style={{ height: 100}}>
               <Button
-                bsStyle="warning"
-                onClick={() => this.props.signUpSetUpChooseUniversity(universityId, 1)}
+                className="NextPreviousButton"
+                onClick={() => this.props.changeSignupStage(1)}
               >Previous</Button>
             </div>
           :
             <div>
-              <Button
-                bsStyle="warning"
-                onClick={() => this.props.signUpSetUpChooseUniversity(universityId, 1)}
-              >Previous</Button>
-              <Button
-                bsStyle="success"
-                onClick={() => this.props.signUpSetUpChooseCourses(selectedCourses, 3)}
-              >Next</Button>
+                <Button
+                  className="NextPreviousButton"
+                  onClick={() => this.props.changeSignupStage(1)}
+                >Previous</Button>
+                <Button
+                  className="NextPreviousButton"
+                  onClick={() => this.props.changeSignupStage(3)}
+                >Next</Button>
             </div>
-
         }
       </div>
     );
@@ -99,7 +96,7 @@ class ChooseCourse extends Component {
 const mapStateToProps = (state) => ({
   availableCourses: state.courses.coursesBySchool,
   selectedCourses: state.courses.selectedCourses,
-  universityId: state.user.universityId,
+  universityId: state.university.selectedUniversity,
   searchText: state.courses.searchText,
   skip: state.courses.skip
 })
