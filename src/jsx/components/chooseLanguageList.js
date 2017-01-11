@@ -8,7 +8,7 @@ class ChooseLanguageList extends Component {
   componentWillMount() {
     this.props.getLanguages()
   }
-  
+
   onAddSelectedLanguage = language => {
     this.props.addSelectedLanguage(language)
   }
@@ -27,7 +27,7 @@ class ChooseLanguageList extends Component {
               className="SignupListItem"
               onClick={() => this.onRemoveSelectedLanguage(language)}
             >
-              <i className="fa fa-times" aria-hidden="true"></i>
+              <i className="fa fa-check" aria-hidden="true"></i>
               {language.name}
             </Button>
           </li>
@@ -39,7 +39,6 @@ class ChooseLanguageList extends Component {
               className="SignupListItem"
               onClick={() => this.onAddSelectedLanguage(language)}
             >
-              <i className="fa fa-check" aria-hidden="true"></i>
               {language.name}
             </Button>
           </li>
@@ -63,6 +62,6 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   actions
 )(ChooseLanguageList)

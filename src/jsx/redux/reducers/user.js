@@ -23,7 +23,7 @@ const initialState = {
   current_user: '',
   initialSignUpComplete: false,
   signUpStage: 0,
-  unversityId: '',
+  universityId: '',
   courses: [],
   languages: [],
 }
@@ -96,7 +96,7 @@ export default function userReducer(state = initialState, action) {
     case SIGNUP_SETUP_CHOOSE_LANGUAGES:
       return {
         ...state,
-        languages: action.payload      
+        languages: action.payload
       }
     case UPDATE_USER_UNIV_SUCCESS:
       return {

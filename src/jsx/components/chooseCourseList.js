@@ -12,11 +12,11 @@ class ChooseCourseList extends Component {
   onRemoveSelectedCourse = (course) => {
     this.props.removeSelectedCourse(course)
   }
-  
+
   loadMore = () => {
-    const { searchText, skip, universityID } = this.props
+    const { searchText, skip, universityId } = this.props
     let newSkip = skip + 10
-    this.props.loadMoreCourses(searchText, universityID, newSkip)
+    this.props.loadMoreCourses(searchText, universityId, newSkip)
   }
 
 
@@ -31,7 +31,7 @@ class ChooseCourseList extends Component {
                 className="SignupListItem"
                 onClick={() => this.onRemoveSelectedCourse(course)}
               >
-                <i className="fa fa-times" aria-hidden="true"></i>
+                <i className="fa fa-check" aria-hidden="true"></i>
                 {course.name}
               </Button>
             </li>
@@ -43,7 +43,6 @@ class ChooseCourseList extends Component {
                 className="SignupListItem"
                 onClick={() => this.onAddCourse(course)}
               >
-                <i className="fa fa-check" aria-hidden="true"></i>
                 {course.name}
               </Button>
             </li>
@@ -76,12 +75,12 @@ class ChooseCourseList extends Component {
           searchText ?
           <li>
             <Button
-              className="SignupListItem"
+              className="SignupLoadMore"
               onClick={() => this.loadMore()}
             >Load More</Button>
           </li>
           :
-          <li></li> 
+          <li></li>
         }
       </ul>
     )
@@ -91,7 +90,7 @@ class ChooseCourseList extends Component {
 const mapStateToProps = (state) => ({
   availableCourses: state.courses.coursesBySchool,
   selectedCourses: state.courses.selectedCourses,
-  universityID: state.user.universityID,
+  universityId: state.user.universityId,
   searchText: state.courses.searchText,
   skip: state.courses.skip
 })

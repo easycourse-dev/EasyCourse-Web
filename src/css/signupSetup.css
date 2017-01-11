@@ -9,6 +9,34 @@
   padding: 30px 0;
 }
 
+.SignupLoadMore {
+  width: 90%;
+  color: white;
+  background-color: #2BBBAD;
+  border-color: #2BBBAD;
+  outline-color: #2BBBAD;
+  font-size: initial;
+  height: 50px;
+  margin: 2px 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 2px;
+  text-align: center;
+}
+
+.SignupLoadMore.active, .SignupLoadMore:active, .open>.dropdown-toggle.SignupLoadMore,
+.SignupLoadMore.focus, .SignupLoadMore:focus, .SignupLoadMore:hover,
+.SignupLoadMore.hover, .SignupLoadMore:hover .SignupLoadMore.active.focus,
+.SignupLoadMore.active:focus, .SignupLoadMore.active:hover,
+.SignupLoadMore:active.focus, .SignupLoadMore:active:focus, .SignupLoadMore:active:hover,
+.open>.dropdown-toggle.SignupLoadMore.focus, .open>.dropdown-toggle.SignupLoadMore:focus,
+.open>.dropdown-toggle.SignupLoadMore:hover {
+  color: #333333;
+  background-color: #2BBBAD;
+  border-color: #2BBBAD;
+  outline-color: #2BBBAD;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.32), 0 3px 6px rgba(0,0,0,0.46);
+}
+
 .SignupListItem {
   width: 90%;
   color: #333333;

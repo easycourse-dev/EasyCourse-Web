@@ -31,7 +31,7 @@ class ChooseLanguage extends Component {
         <div>
           <Button
             bsStyle="warning"
-            onClick={() => this.props.signUpSetUpChooseCourses(selectedCourses, 3)}
+            onClick={() => this.props.signUpSetUpChooseCourses(selectedCourses, 2)}
           >Previous</Button>
           <Button
             bsStyle="success"
