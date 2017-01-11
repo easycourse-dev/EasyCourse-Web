@@ -153,18 +153,18 @@ const finishSignup = (languages, courses, universityId, selectedLanguages, displ
   }
 }
 
-const updatePassword = ({password, passwordConfirmation}, forgotPasswordToken) => {
+const updatePassword = (password, passwordConfirmation, token) => {
   return dispatch => {
-    const config = { headers: {"auth": forgotPasswordToken} }
+		console.log('Password: ', password, 'Token: ', token)
+    const config = { headers: {"auth": token} }
     const body = {newPassword: password}
-    console.log('Password: ', password, 'Password Confirmation: ', passwordConfirmation, 'Token: ', forgotPasswordToken)
-    //axios.post(`${ROOT_URL}/resetPassword`, body, config)
-    //.then(res => {
-    //  dispatch({ type: UPDATE_PASSWORD, payload: res})
-    //})
-    //.catch(error => {
-    //  dispatch({ type: UPDATE_PASSWORD, payload: error})
-    //})
+    axios.post(`${ROOT_URL}/resetPassword`, body, config)
+    .then(res => {
+     dispatch({ type: UPDATE_PASSWORD, payload: res })
+    })
+    .catch(error => {
+     dispatch({ type: UPDATE_PASSWORD, payload: error })
+    })
 	}
 }
 

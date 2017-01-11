@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { actions } from './redux/actions/index'
-import { Button, FormGroup } from 'react-bootstrap'
+import actions from './redux/actions/index'
+import { Button, FormGroup, FormControl } from 'react-bootstrap'
 
 const jwtDecode = require('jwt-decode')
 
@@ -21,26 +20,34 @@ class ForgotPassword extends Component {
 
   componentDidMount() {
     const { location } = this.props
-    let token = jwtDecode(location.query.token)
-    console.log('Decomposed token: ', token)
+    let token = location.query.token
+    console.log('componentDidMount Token: ', token)
     this.setState({
       token
     })
   }
 
-  handleFormSubmit = () => {
+  handleFormSubmit = (e) => {
+    e.preventDefault()
     const { token, password, passwordConfirmation } = this.state
-    console.log('handleSubmit Token: ', token)
-    console.log('handleSubmit Password: ', password)
-    console.log('handleSubmit Password Confirmation: ', passwordConfirmation)
+    console.log('Token: ', token)
+    if (password.length < 6 || passwordConfirmation.length < 6) {
+      alert('Password must be greater than 6 characters long')
+      return
+    } else if (password !== passwordConfirmation) {
+      alert('Passwords must match')
+      return
+    }
+
+    this.props.updatePassword(password, passwordConfirmation, token)
   }
-  
-  handlePasswordChange = (password) => {
-    this.setState({ passsword })
+
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value })
   }
-  
-  handlePasswordConfirmationChange = (passwordConfirmation) => {
-    this.setState({ passswordConfirmation })
+
+  handlePasswordConfirmationChange = (e) => {
+    this.setState({ passwordConfirmation: e.target.value })
   }
 
   render() {
@@ -67,22 +74,29 @@ class ForgotPassword extends Component {
                 <h2 className="PageTitle" key="loginFormTitle">
                   Forgot Your Password?
                 </h2>
-                <form onSubmit={() => handleSubmit(this.handleFormSubmit)} key="forgotPasswordForm">
+                <form onSubmit={this.handleFormSubmit} key="forgotPasswordForm">
                   <FormGroup className="Form">
                     <FormControl
-                      type="text"
+                      type="password"
                       value={this.state.password}
                       placeholder="New Password"
-                      onChange={(password) => this.handlePasswordChange(password)}
-                    /> 
+                      onChange={(e) => this.handlePasswordChange(e)}
+                    />
+                  </FormGroup>
+                  <FormGroup className="Form">
                     <FormControl
-                      type="text"
+                      type="password"
                       value={this.state.passwordConfirmation}
                       placeholder="Confirm New Password"
-                      onChange={(passwordConfirmation) => this.handlePasswordConfirmationChange(passwordConfirmation)}
-                    /> 
-                    <Button className="FormSubmitButton LoginSubmitButton" bsStyle="primary" type="submit">Update Password</Button>
+                      onChange={(e) => this.handlePasswordConfirmationChange(e)}
+                    />
                   </FormGroup>
+                  <Button
+                    className="FormSubmitButton LoginSubmitButton"
+                    bsStyle="primary"
+                    type="submit"
+                  >Update Password</Button>
+                  {/*Your password has been updated or false*/}
                 </form>
                 <p className="SignInFooterText">
                   @2016 Colevate Inc.
@@ -96,4 +110,4 @@ class ForgotPassword extends Component {
   }
 }
 
-ForgotPassword = connect(null, actions)(ForgotPassword)
+export default connect(null, actions)(ForgotPassword)

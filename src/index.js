@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import store, { history } from './jsx/redux/store'
 import { Router, Route, IndexRoute } from 'react-router';
 import { browserHistory } from 'react-router'
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 // Components
 import './index.css';
 import App from './App';
