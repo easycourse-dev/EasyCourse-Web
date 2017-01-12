@@ -16,7 +16,9 @@ import {
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
   JOIN_COURSE_FAILURE,
-	UPDATE_PASSWORD
+	UPDATE_PASSWORD,
+	VALIDATE_TOKEN_SUCCESS,
+	VALIDATE_TOKEN_FAILURE
 } from './types'
 
 const ROOT_URL = 'https://zengjintaotest.com/api'
@@ -168,6 +170,20 @@ const resetPassword = (password, passwordConfirmation, token) => {
 	}
 }
 
+const validateToken = (token) => {
+	return dispatch => {
+		const config = { headers: {"auth": token} }
+		const body = {}
+		axios.post(`${ROOT_URL}/validateToken`, body, config)
+			.then(res => {
+				dispatch({ type: VALIDATE_TOKEN_SUCCESS, payload: res })
+			})
+			.catch(error => {
+				dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error })
+			})
+	}
+}
+
 module.exports = {
   signup,
   login,
@@ -176,5 +192,6 @@ module.exports = {
   signUpSetUpChooseCourses,
   signUpSetUpChooseLanguages,
   finishSignup,
-	resetPassword
+	resetPassword,
+	validateToken
 }

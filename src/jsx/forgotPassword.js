@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import actions from './redux/actions/index'
 import { Field, reduxForm } from 'redux-form'
 import { Button, FormGroup, Modal } from 'react-bootstrap'
@@ -64,16 +65,27 @@ class ForgotPassword extends Component {
 
     this.state = {
       token: '',
-      showModal: false
+      showPasswordModal: false,
+      showTokenModal: false
     }
   }
 
-  componentDidMount() {
-    const { location } = this.props
+  componentWillMount() {
+    const { location, validateTokenResponseError } = this.props
     let token = location.query.token
     this.setState({
       token
     })
+    this.props.validateToken(token)
+
+    setTimeout(() => {
+      if (validateTokenResponseError) {
+          this.setState({ showTokenModal: true })
+      }
+    }, 1000)
+
+
+
   }
 
   handleFormSubmit = (values) => {
@@ -81,16 +93,30 @@ class ForgotPassword extends Component {
     const { password, passwordConfirmation } = values
     this.props.resetPassword(password, passwordConfirmation, token)
     setTimeout(() => {
-      this.setState({ showModal: true })
+      this.setState({ showPasswordModal: true })
     }, 1500)
   }
 
-  hideModal = () => {
-    this.setState({ showModal: false })
+  hidePasswordModal = () => {
+    this.setState({ showPasswordModal: false })
+  }
+
+  hideTokenModal = () => {
+    this.setState({ showTokenModal: false })
+  }
+
+  goToHomePage = () => {
+    this.setState({ showPasswordModal: false })
+    browserHistory.push('/')
   }
 
   render() {
-    const { handleSubmit, responseStatus } = this.props
+    const {
+      handleSubmit,
+      response,
+      validateTokenResponseSuccess,
+      validateTokenResponseError
+    } = this.props
     return (
       <div className="SignInBackground">
         <ReactCSSTransitionGroup
@@ -146,17 +172,40 @@ class ForgotPassword extends Component {
             </Row>
           </div>
         </ReactCSSTransitionGroup>
-        <Modal show={this.state.showModal} onHide={() => this.hideModal()}>
+        <Modal show={this.state.showPasswordModal} onHide={() => this.hidePasswordModal()}>
           <Modal.Body>
             {
-              responseStatus === 200 ?
-                <h5>Password successfully reset!</h5>
+              response === 200 ?
+                <h4>Password successfully reset!</h4>
               :
-                <h5>Something went wrong when trying to reset your password</h5>
+                <h4>Something went wrong when trying to reset your password</h4>
             }
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.hideModal()}>Close</Button>
+            {
+              response === 200 ?
+                <Button onClick={() => this.goToHomePage()}>Go Home</Button>
+              :
+                <Button onClick={() => this.hidePasswordModal()}>Close</Button>
+            }
+          </Modal.Footer>
+        </Modal>
+        <Modal show={this.state.showTokenModal} onHide={() => this.hideTokenModal()}>
+          <Modal.Body>
+            {
+              validateTokenResponseSuccess.length > 1 ?
+                <div>
+                  <h4>Token is valid</h4>
+                </div>
+              :
+                <div>
+                  <h4>Sorry your reset password token has expired</h4>
+                  <h5>Please click the 'Send Verification Email' button for a new link</h5>
+                </div>
+            }
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => this.hideTokenModal()}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>
@@ -165,7 +214,9 @@ class ForgotPassword extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  responseStatus: state.user.response
+  response: state.user.response,
+  validateTokenResponseSuccess: state.user.validateTokenResponseSuccess,
+  validateTokenResponseError: state.user.validateTokenResponseError
 })
 
 ForgotPassword = reduxForm({
