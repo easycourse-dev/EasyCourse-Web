@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store, { history } from './jsx/redux/store'
 import { Router, Route, IndexRoute } from 'react-router';
-// import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 // import io from 'socket.io-client'
 // Components
 import './index.css';
@@ -61,12 +61,12 @@ ReactDOM.render(
       <Route path="/" component={App} >
         <IndexRoute component={getHomeComponent} />
         {/* <Route path="signin" component={SignIn} /> */}
-        <Route path="forgotPassword/:token" component={ForgotPassword} />
         <Route path="docs" >
           <IndexRoute component={Docs} />
           <Route path="privacy" component={Privacy} />
           <Route path="terms" component={Terms} />
         </Route>
+        <Route path="forgotPassword" component={ForgotPassword} />
       </Route>
     </Router>
   </Provider>

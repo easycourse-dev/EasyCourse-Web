@@ -89,7 +89,11 @@ class Login extends Component {
               type="password"
               label="Password"
             />
-            <Button className="FormSubmitButton LoginSubmitButton" bsStyle="primary" type="submit">Login</Button>
+            <Button
+              className="FormSubmitButton LoginSubmitButton"
+              bsStyle="primary"
+              type="submit"
+            >Login</Button>
           </FormGroup>
         </form>
       </ReactCSSTransitionGroup>

@@ -1,41 +1,49 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { actions } from './redux/actions/index'
-import { Button, FormGroup } from 'react-bootstrap'
-const jwtDecode = require('jwt-decode')
+import { browserHistory } from 'react-router'
+import actions from './redux/actions/index'
+import { Field, reduxForm } from 'redux-form'
+import { Button, FormGroup, Modal } from 'react-bootstrap'
 
 const validate = values => {
   const errors = {}
-
-  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
+  const { password, passwordConfirmation } = values
+  if (!password) {
+    errors.password = 'Password Required'
   }
 
-  if (values.password && values.password.length < 6) {
-    errors.password = 'Password must be longer than 6 characters'
+  if (!passwordConfirmation) {
+    errors.passwordConfirmation = 'Confirm Password Required'
   }
 
-  if (values.password !== values.passwordConfirmation) {
+  if (password !== passwordConfirmation) {
     errors.passwordConfirmation = 'Passwords must match'
+    errors.password = 'Passwords must match'
   }
 
-  if (values.displayName && values.displayName.length < 6) {
-    errors.displayName = 'Display Name must be longer than 6 characters'
+  if (password && (password.length > 1 && password.length < 8)) {
+    errors.password = 'Password must be 8-32 characters long'
   }
 
-  return errors;
+  if (passwordConfirmation && (passwordConfirmation.length > 1 && passwordConfirmation.length < 8)) {
+    errors.passwordConfirmation = 'Password must be 8-32 characters long'
+  }
+
+  if (password && password.length > 32) {
+    errors.password = 'Password must be 8-32 characters long'
+  }
+
+  if (passwordConfirmation && passwordConfirmation.length > 32) {
+    errors.passwordConfirmation = 'Password must be 8-32 characters long'
+  }
+  return errors
 }
 
 const warn = values => {
   const warnings = {}
-  if (values.password) {
-    warnings.password = ''
-  }
-
-  return warnings;
+  return warnings
 }
 
 const validatedInput = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -52,21 +60,63 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
 )
 
 class ForgotPassword extends Component {
+  constructor(props) {
+    super(props)
 
-  componentDidMount() {
-    const { params } = this.props
-
-    try {
-      let token = jwtDecode(params.token)
-      console.log(token)
-    } catch (error) {
-      console.log(error)
+    this.state = {
+      token: '',
+      showPasswordModal: false,
+      showTokenModal: false
     }
+  }
+
+  componentWillMount() {
+    const { location, validateTokenResponseError } = this.props
+    let token = location.query.token
+    this.setState({
+      token
+    })
+    this.props.validateToken(token)
+
+    setTimeout(() => {
+      if (validateTokenResponseError) {
+          this.setState({ showTokenModal: true })
+      }
+    }, 1000)
+
+
 
   }
 
+  handleFormSubmit = (values) => {
+    const { token } = this.state
+    const { password, passwordConfirmation } = values
+    this.props.resetPassword(password, passwordConfirmation, token)
+    setTimeout(() => {
+      this.setState({ showPasswordModal: true })
+    }, 1500)
+  }
+
+  hidePasswordModal = () => {
+    this.setState({ showPasswordModal: false })
+  }
+
+  hideTokenModal = () => {
+    this.setState({ showTokenModal: false })
+  }
+
+  goToHomePage = () => {
+    this.setState({ showPasswordModal: false })
+    browserHistory.push('/')
+  }
+
   render() {
-    const { handleSubmit, updatePassword } = this.props
+    const {
+      handleSubmit,
+      response,
+      validateTokenResponseSuccess,
+      validateTokenResponseError
+    } = this.props
     return (
       <div className="SignInBackground">
         <ReactCSSTransitionGroup
@@ -87,44 +137,94 @@ class ForgotPassword extends Component {
           <div className="container SignInFormWrapper" key="signinForm">
             <Row className="SignInFormRow">
               <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
-                <h2 className="PageTitle" key="loginFormTitle">
-                  Forgot Your Password?
-                </h2>
-                <form onSubmit={() => handleSubmit(updatePassword)} key="forgotPasswordForm">
-                  <FormGroup className="Form">
-                    <Field
-                      className="form-control"
-                      name="password"
-                      component={validatedInput}
-                      type="password"
-                      label="New Password"
-                    />
-                    <Field
-                      className="form-control"
-                      name="passwordConfirmation"
-                      component={validatedInput}
-                      type="password"
-                      label="Confirm New Password"
-                    />
-                    <Button className="FormSubmitButton LoginSubmitButton" bsStyle="primary" type="submit">Update Password</Button>
-                  </FormGroup>
-                </form>
-                <p className="SignInFooterText">
-                  @2016 Colevate Inc.
-                </p>
+                <div className="SignInForm">
+                  <h2 className="PageTitle" key="loginFormTitle">
+                    Forgot Your Password?
+                  </h2>
+                  <form onSubmit={handleSubmit(this.handleFormSubmit)} key="forgotPasswordForm">
+                    <FormGroup className="Form">
+                      <Field
+                        className="form-control"
+                        name="password"
+                        type="password"
+                        component={validatedInput}
+                        label="Password"
+                      />
+                      <Field
+                        className="form-control"
+                        name="passwordConfirmation"
+                        component={validatedInput}
+                        type="password"
+                        label="Confirm Password"
+                      />
+                      <Button
+                        className="FormSubmitButton LoginSubmitButton"
+                        bsStyle="primary"
+                        type="submit"
+                      >Reset Password</Button>
+                    </FormGroup>
+                  </form>
+                  <p className="SignInFooterText">
+                    @2016 Colevate Inc.
+                  </p>
+                </div>
               </Col>
             </Row>
           </div>
         </ReactCSSTransitionGroup>
+        <Modal show={this.state.showPasswordModal} onHide={() => this.hidePasswordModal()}>
+          <Modal.Body>
+            {
+              response === 200 ?
+                <h4>Password successfully reset!</h4>
+              :
+                <h4>Something went wrong when trying to reset your password</h4>
+            }
+          </Modal.Body>
+          <Modal.Footer>
+            {
+              response === 200 ?
+                <Button onClick={() => this.goToHomePage()}>Go Home</Button>
+              :
+                <Button onClick={() => this.hidePasswordModal()}>Close</Button>
+            }
+          </Modal.Footer>
+        </Modal>
+        <Modal show={this.state.showTokenModal} onHide={() => this.hideTokenModal()}>
+          <Modal.Body>
+            {
+              validateTokenResponseSuccess.length > 1 ?
+                <div>
+                  <h4>Token is valid</h4>
+                </div>
+              :
+                <div>
+                  <h4>Sorry your reset password token has expired</h4>
+                  <h5>Please click the 'Send Verification Email' button for a new link</h5>
+                </div>
+            }
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => this.hideTokenModal()}>Close</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
 }
 
-ForgotPassword = connect(null, actions)(ForgotPassword)
+const mapStateToProps = (state) => ({
+  response: state.user.response,
+  validateTokenResponseSuccess: state.user.validateTokenResponseSuccess,
+  validateTokenResponseError: state.user.validateTokenResponseError
+})
 
-export default reduxForm({
-  form: 'updatePassword',
+ForgotPassword = reduxForm({
+  form: 'forgotPassword',
   validate,
   warn
 })(ForgotPassword)
+
+ForgotPassword = connect(mapStateToProps, actions)(ForgotPassword)
+
+export default ForgotPassword
