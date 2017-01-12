@@ -6,6 +6,8 @@ import { browserHistory } from 'react-router'
 import actions from './redux/actions/index'
 import { Field, reduxForm } from 'redux-form'
 import { Button, FormGroup, Modal } from 'react-bootstrap'
+import Footer from './components/footer'
+
 
 const validate = values => {
   const errors = {}
@@ -83,9 +85,6 @@ class ForgotPassword extends Component {
           this.setState({ showTokenModal: true })
       }
     }, 1000)
-
-
-
   }
 
   handleFormSubmit = (values) => {
@@ -164,14 +163,12 @@ class ForgotPassword extends Component {
                       >Reset Password</Button>
                     </FormGroup>
                   </form>
-                  <p className="SignInFooterText">
-                    @2016 Colevate Inc.
-                  </p>
                 </div>
               </Col>
             </Row>
           </div>
         </ReactCSSTransitionGroup>
+        <Footer />
         <Modal show={this.state.showPasswordModal} onHide={() => this.hidePasswordModal()}>
           <Modal.Body>
             {
