@@ -107,7 +107,7 @@ const signUpSetUpChooseLanguages = (selectedLanguages) => {
   }
 }
 
-// update the user's joinedCourse's and languages the user speaks
+
 const updateUserCourseAndLang = (courses, languages, dispatch) => {
   let authToken = localStorage.getItem('authToken')
   let coursesArray = []
@@ -116,12 +116,12 @@ const updateUserCourseAndLang = (courses, languages, dispatch) => {
     let id = courses[i]._id
     coursesArray.push(id)
   }
-  console.log('coursesArray: ', coursesArray)
+
   for (let i = 0; i < languages.length; i++) {
     let code = languages[i].code
     languagesArray.push(code)
   }
-  console.log('languagesArray: ', languagesArray)
+
   let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`})
   let newData = {courses: coursesArray, lang: languagesArray}
 
@@ -143,7 +143,7 @@ const finishSignup = (languages, courses, universityId, selectedLanguages, displ
 
     const config = { headers: {"auth": authToken} }
     const body = { university: universityId }
-    // update user's university
+
     axios.post(`${ROOT_URL}/user/update`, body, config)
     .then(res => {
       dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
@@ -157,16 +157,15 @@ const finishSignup = (languages, courses, universityId, selectedLanguages, displ
 
 const resetPassword = (password, passwordConfirmation, token) => {
   return dispatch => {
-		console.log('Password: ', password, 'Token: ', token)
     const config = { headers: {"auth": token} }
     const body = {newPassword: password}
     axios.post(`${ROOT_URL}/resetPassword`, body, config)
-    .then(res => {
-     dispatch({ type: UPDATE_PASSWORD, payload: res.status })
-    })
-    .catch(error => {
-     dispatch({ type: UPDATE_PASSWORD, payload: error })
-    })
+	    .then(res => {
+	     dispatch({ type: UPDATE_PASSWORD, payload: res.status })
+	    })
+	    .catch(error => {
+	     dispatch({ type: UPDATE_PASSWORD, payload: error })
+	    })
 	}
 }
 
@@ -179,7 +178,11 @@ const validateToken = (token) => {
 				dispatch({ type: VALIDATE_TOKEN_SUCCESS, payload: res })
 			})
 			.catch(error => {
-				dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error })
+				if (error.response.data.error === "Invalid token") {
+					dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error.response.data.error })
+				} else {
+					dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error.response.data.error.name })
+				}
 			})
 	}
 }

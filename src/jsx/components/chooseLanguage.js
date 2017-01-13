@@ -14,8 +14,9 @@ class ChooseLanguage extends Component {
 
   onFinish = () => {
     const { languages, courses, selectedLanguages, universityId, displayName } = this.props
-    setTimeout(this.props.finishSignup(languages, courses, universityId, selectedLanguages, displayName), 1500)
-    console.log('Sign up finished')
+    setTimeout(() => {
+      this.props.finishSignup(languages, courses, universityId, selectedLanguages, displayName)
+    },1500)
   }
 
   render() {
