@@ -87,7 +87,7 @@ class ForgotPassword extends Component {
           showTokenModal: true
         })
       }
-    }, 2000)
+    }, 1000)
   }
 
   handleFormSubmit = (values) => {
