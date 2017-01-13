@@ -21,7 +21,7 @@ import {
 	VALIDATE_TOKEN_FAILURE
 } from './types'
 
-const ROOT_URL = 'https://zengjintaotest.com/api'
+const ROOT_URL = 'https://www.easycourseserver.com/api'
 
 const signup = ({email, password, displayName}) => {
   return dispatch => {
