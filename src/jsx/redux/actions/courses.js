@@ -9,7 +9,7 @@ import {
   LOAD_MORE_SUCCESS,
   LOAD_MORE_FAILURE
 } from './types';
-const ROOT_URL = 'https://zengjintaotest.com/api';
+const ROOT_URL = 'https://www.easycourseserver.com/api';
 
 const getCourses = (searchText, universityID) => {
   return dispatch => {

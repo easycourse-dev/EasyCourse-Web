@@ -3,7 +3,7 @@ import {
 	GET_UNIVERSITIES_SUCCESS,
   GET_UNIVERSITIES_FAILURE
 } from './types';
-const ROOT_URL = 'https://zengjintaotest.com/api';
+const ROOT_URL = 'https://www.easycourseserver.com/api';
 
 const getUniversities = () => {
   return dispatch => {

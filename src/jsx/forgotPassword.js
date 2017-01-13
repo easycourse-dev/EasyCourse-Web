@@ -73,16 +73,21 @@ class ForgotPassword extends Component {
   }
 
   componentWillMount() {
-    const { location, validateTokenResponseError } = this.props
+    const { location } = this.props
     let token = location.query.token
     this.setState({
       token
     })
     this.props.validateToken(token)
+  }
 
+  componentDidMount() {
     setTimeout(() => {
+      const { validateTokenResponseError } = this.props
       if (validateTokenResponseError) {
-          this.setState({ showTokenModal: true })
+        this.setState({
+          showTokenModal: true
+        })
       }
     }, 1000)
   }
@@ -113,7 +118,6 @@ class ForgotPassword extends Component {
     const {
       handleSubmit,
       response,
-      validateTokenResponseSuccess,
       validateTokenResponseError
     } = this.props
     return (
@@ -156,11 +160,21 @@ class ForgotPassword extends Component {
                         type="password"
                         label="Confirm Password"
                       />
-                      <Button
-                        className="FormSubmitButton LoginSubmitButton"
-                        bsStyle="primary"
-                        type="submit"
-                      >Reset Password</Button>
+                      {
+                        validateTokenResponseError ?
+                          <Button
+                            className="FormSubmitButton LoginSubmitButton"
+                            bsStyle="primary"
+                            type="submit"
+                            disabled
+                          >Reset Password</Button>
+                        :
+                          <Button
+                            className="FormSubmitButton LoginSubmitButton"
+                            bsStyle="primary"
+                            type="submit"
+                          >Reset Password</Button>
+                      }
                     </FormGroup>
                   </form>
                 </div>
@@ -170,12 +184,24 @@ class ForgotPassword extends Component {
         </ReactCSSTransitionGroup>
         <Footer />
         <Modal show={this.state.showPasswordModal} onHide={() => this.hidePasswordModal()}>
+          <Modal.Header closeButton>
+            {
+              response === 200 ?
+                <Modal.Title>Password successfully reset!</Modal.Title>
+              :
+                <Modal.Title>Password Error</Modal.Title>
+            }
+
+          </Modal.Header>
           <Modal.Body>
             {
               response === 200 ?
-                <h4>Password successfully reset!</h4>
+                <h5>Go ahead and give your new password a go</h5>
               :
-                <h4>Something went wrong when trying to reset your password</h4>
+                <h4>
+                  Something went wrong when trying to reset your password.
+                  Try again or request another reset password email.
+                </h4>
             }
           </Modal.Body>
           <Modal.Footer>
@@ -183,27 +209,22 @@ class ForgotPassword extends Component {
               response === 200 ?
                 <Button onClick={() => this.goToHomePage()}>Go Home</Button>
               :
-                <Button onClick={() => this.hidePasswordModal()}>Close</Button>
+                ''
             }
           </Modal.Footer>
         </Modal>
         <Modal show={this.state.showTokenModal} onHide={() => this.hideTokenModal()}>
+          <Modal.Header closeButton>
+            <Modal.Title>Password Reset Token Error</Modal.Title>
+          </Modal.Header>
           <Modal.Body>
-            {
-              validateTokenResponseSuccess.length > 1 ?
-                <div>
-                  <h4>Token is valid</h4>
-                </div>
-              :
-                <div>
-                  <h4>Sorry your reset password token has expired</h4>
-                  <h5>Please click the 'Send Verification Email' button for a new link</h5>
-                </div>
-            }
+              <div>
+                <h5>
+                  Sorry we won't be able to reset your password at this time.
+                  Please request another email and reset your password.
+                </h5>
+              </div>
           </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => this.hideTokenModal()}>Close</Button>
-          </Modal.Footer>
         </Modal>
       </div>
     );
