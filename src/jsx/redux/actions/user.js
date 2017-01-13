@@ -20,7 +20,7 @@ import {
   JOIN_COURSE_FAILURE,
 } from './types'
 
-const ROOT_URL = 'https://zengjintaotest.com/api'
+const ROOT_URL = 'https://www.easycourseserver.com/api'
 
 const signup = ({email, password, displayName}) => {
   return dispatch => {
@@ -115,7 +115,7 @@ const updateUserCourseAndLang = (courses, languages, dispatch) => {
   }
   console.log('languagesArray: ', languagesCodeArray)
 
-  let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`})
+  let socket = io.connect('https://www.easycourseserver.com/', {query: `token=${authToken}`})
   let newData = {courses: coursesIdArray, lang: languagesCodeArray}
 
   socket.on('connect', () => {

@@ -6,22 +6,27 @@ import actions from '../redux/actions/index'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const validate = values => {
+  const { password, passwordConfirmation, displayName } = values
   const errors = {}
 
-  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address'
+  if (password && password.length < 8) {
+    errors.password = 'Password must be 8 to 32 characters long'
   }
 
-  if (values.password && values.password.length < 6) {
-    errors.password = 'Password must be longer than 6 characters'
+  if (passwordConfirmation && passwordConfirmation.length < 8) {
+    errors.password = 'Password must be 8 to 32 characters long'
   }
 
-  if (values.password !== values.passwordConfirmation) {
+  if (password !== passwordConfirmation) {
     errors.passwordConfirmation = 'Passwords must match'
   }
 
-  if (values.displayName && values.displayName.length < 6) {
+  if (displayName && displayName.length < 6) {
     errors.displayName = 'Display Name must be longer than 6 characters'
+  }
+
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Please enter a valid email address'
   }
 
   return errors;

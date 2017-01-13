@@ -6,7 +6,7 @@ import {
   REMOVE_SELECTED_LANGUAGE,
 } from './types'
 
-const ROOT_URL = 'https://zengjintaotest.com/api';
+const ROOT_URL = 'https://www.easycourseserver.com/api';
 
 const getLanguages = () => {
   return dispatch => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import actions from '../redux/actions/index'
 import ChooseSchoolList from './chooseSchoolList'
@@ -10,21 +10,24 @@ class ChooseSchool extends Component {
     return (
       <div>
         <h2 className="SignUpSetupPageTitle" key="loginFormTitle">
-          Where Do You Go To School?
+          Choose University
         </h2>
         <div>
           <ChooseSchoolList />
         </div>
-        <div>
-          {selectedUniversity.length > 1 ?
-            <Button
-              className="NextPreviousButton"
-              onClick={() => this.props.changeSignupStage(2)}
-            >Next</Button>
+        <Col lg={12} md={12} sm={12} style={{ display: 'table'}}>
+          {
+            selectedUniversity.length > 1 ?
+              <div style={{ display: 'table', margin: '0 auto', paddingTop: 15 }}>
+                <Button
+                  className="NextPreviousButton"
+                  onClick={() => this.props.changeSignupStage(2)}
+                >Next</Button>
+              </div>
             :
-            ''
+              ''
           }
-        </div>
+        </Col>
       </div>
     );
   }

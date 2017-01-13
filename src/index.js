@@ -29,7 +29,7 @@ function getHomeComponent() {
 
 if (localStorage.getItem('authToken')) {
   let authToken = localStorage.getItem('authToken')
-  let socket = io.connect('https://zengjintaotest.com/', { query: `token=${authToken}` })
+  let socket = io.connect('https://www.easycourseserver.com/', { query: `token=${authToken}` })
   socket.on('connect', () => {
     socket.emit('syncUser', 1, (data, error) => {
       console.log('Connected User: ', data.user);

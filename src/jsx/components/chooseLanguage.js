@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import actions from '../redux/actions/index'
 import ChooseLanguageList from './chooseLanguageList'
@@ -21,22 +21,24 @@ class ChooseLanguage extends Component {
       <div>
         <div>
           <h2 className="PageTitle" key="loginFormTitle">
-            Speak Any Other Languages?
+            Choose Language / Region
           </h2>
         </div>
         <div style={{ overflowY: 'scroll', height: 270 }}>
           <ChooseLanguageList />
         </div>
-        <div>
-          <Button
-            className="NextPreviousButton"
-            onClick={() => this.props.changeSignupStage(2)}
-          >Previous</Button>
-          <Button
-            className="NextPreviousButton"
-            onClick={() => this.onFinish()}
-          >Finish</Button>
-        </div>
+        <Col lg={12} md={12} sm={12} style={{ display: 'table'}}>
+          <div style={{ display: 'table', margin: '0 auto', paddingTop: 15}}>
+            <Button
+              className="NextPreviousButton"
+              onClick={() => this.props.changeSignupStage(2)}
+            >Back</Button>
+            <Button
+              className="NextPreviousButton"
+              onClick={() => this.onFinish()}
+            >Finish</Button>
+          </div>
+        </Col>
       </div>
     );
   }

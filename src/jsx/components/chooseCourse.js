@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, FormGroup, FormControl } from 'react-bootstrap'
+import { Button, FormGroup, FormControl, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import actions from '../redux/actions/index'
 import ChooseCourseList from './chooseCourseList'
@@ -51,7 +51,7 @@ class ChooseCourse extends Component {
     return (
       <div>
         <h2 className="PageTitle">
-          What Classes Are You In?
+          Choose courses
         </h2>
         <div>
           <form>
@@ -59,7 +59,7 @@ class ChooseCourse extends Component {
               <FormControl
                 type="text"
                 value={searchText}
-                placeholder="Search For A Class"
+                placeholder="e.g. CS 240"
                 onChange={(e) => this.handleChange(e)}
               />
             </FormGroup>
@@ -68,26 +68,30 @@ class ChooseCourse extends Component {
         <div style={{ overflowY: 'scroll', height: 270}}>
           <ChooseCourseList />
         </div>
-        {
-          selectedCourses.length < 1 ?
-            <div style={{ height: 100}}>
-              <Button
-                className="NextPreviousButton"
-                onClick={() => this.props.changeSignupStage(1)}
-              >Previous</Button>
-            </div>
-          :
-            <div>
-                <Button
-                  className="NextPreviousButton"
-                  onClick={() => this.props.changeSignupStage(1)}
-                >Previous</Button>
-                <Button
-                  className="NextPreviousButton"
-                  onClick={() => this.props.changeSignupStage(3)}
-                >Next</Button>
-            </div>
-        }
+        <div>
+          <Col lg={12} md={12} sm={12} style={{ display: 'table'}}>
+            {
+              selectedCourses.length < 1 ?
+                <div style={{ display: 'table', margin: '0 auto', paddingTop: 10 }}>
+                  <Button
+                    className="NextPreviousButton"
+                    onClick={() => this.props.changeSignupStage(1)}
+                  >Back</Button>
+                </div>
+              :
+                <div style={{ display: 'table', margin: '0 auto', paddingTop: 10 }}>
+                  <Button
+                    className="NextPreviousButton"
+                    onClick={() => this.props.changeSignupStage(1)}
+                  >Back</Button>
+                  <Button
+                    className="NextPreviousButton"
+                    onClick={() => this.props.changeSignupStage(3)}
+                  >Next</Button>
+                </div>
+            }
+          </Col>
+        </div>
       </div>
     );
   }
