@@ -5,31 +5,8 @@ import actions from '../redux/actions/index'
 import ChooseCourseList from './chooseCourseList'
 
 class ChooseCourse extends Component {
+
   state = { searchText: '' }
-
-  renderCourses = (availableCourses, selectedCourses) => {
-    const { searchText } = this.props
-    if (searchText.length > 0) {
-      return availableCourses.map(course => {
-        return(
-          <Button
-            className="SignupListItem"
-            onClick={() => this.props.addCourse(course)}
-          >{course.name}</Button>
-        )
-      })
-    } else {
-      return selectedCourses.map(course => {
-        return(
-          <Button
-            className="SignupListItem"
-            onClick={() => this.props.removeSelectedCourse(course)}
-          >{course.name}</Button>
-        )
-      })
-    }
-  }
-
 
   handleChange = e => {
     const { universityId } = this.props
@@ -43,6 +20,15 @@ class ChooseCourse extends Component {
     } else {
       return;
     }
+  }
+
+  onFinish = () => {
+    const {
+      selectedCourses,
+      universityId,
+      displayName
+    } = this.props
+    this.props.finishSignup(universityId, selectedCourses, displayName)
   }
 
   render() {
@@ -86,8 +72,8 @@ class ChooseCourse extends Component {
                   >Back</Button>
                   <Button
                     className="NextPreviousButton"
-                    onClick={() => this.props.changeSignupStage(3)}
-                  >Next</Button>
+                    onClick={() => this.onFinish()}
+                  >Finish</Button>
                 </div>
             }
           </Col>
@@ -102,7 +88,8 @@ const mapStateToProps = (state) => ({
   selectedCourses: state.courses.selectedCourses,
   universityId: state.university.selectedUniversity,
   searchText: state.courses.searchText,
-  skip: state.courses.skip
+  skip: state.courses.skip,
+  displayName: state.user.current_user.displayName
 })
 
 export default connect(

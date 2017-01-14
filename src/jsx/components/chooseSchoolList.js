@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../redux/actions/index'
-import { Button } from 'react-bootstrap'
 
 class ChooseSchoolList extends Component {
 
@@ -23,29 +22,27 @@ class ChooseSchoolList extends Component {
       if (university._id === selectedUniversity) {
         // return button with removedSelectedUniversity func
         return (
-          <Button
+          <div
             key={'University' + key}
             className="SignupListItem"
-            bsStyle="primary"
-            type="submit"
             onClick={() => this.props.removeSelectedUniversity()}
+            style={{ paddingTop: 19, paddingLeft: 10}}
           >
-            <i className="fa fa-check" aria-hidden="true"></i>
-            {university.name}
-          </Button>
+            <p>{university.name}</p>
+            <i className="fa fa-check" aria-hidden="true" style={{ float: 'right', paddingBottom: 10}}></i>
+          </div>
         )
       } else {
         // return button with addSelectedUniversity func
         return (
-          <Button
+          <div
             key={'University' + key}
             className="SignupListItem"
-            bsStyle="primary"
-            type="submit"
             onClick={() => this.props.addSelectedUniversity(university._id)}
+            style={{ paddingTop: 19, paddingLeft: 10}}
           >
-            {university.name}
-          </Button>
+            <p>{university.name}</p>
+          </div>
         )
       }
     })

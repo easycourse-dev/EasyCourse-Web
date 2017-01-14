@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import actions from '../redux/actions/index'
+const truncate = require('truncate')
 
 class ChooseCourseList extends Component {
 
@@ -27,24 +28,26 @@ class ChooseCourseList extends Component {
         if (selectedCourses.includes(course)) {
           return (
             <li key={course.originCourseId}>
-              <Button
+              <div
                 className="SignupListItem"
                 onClick={() => this.onRemoveSelectedCourse(course)}
               >
-                <i className="fa fa-check" aria-hidden="true"></i>
-                {course.name}
-              </Button>
+                <p>{course.name}</p>
+                <small>{truncate(course.title, 40)}</small>
+                <i className="fa fa-check" aria-hidden="true" style={{ float: 'right'}}></i>
+              </div>
             </li>
           )
         } else {
           return (
             <li key={course.originCourseId}>
-              <Button
+              <div
                 className="SignupListItem"
                 onClick={() => this.onAddCourse(course)}
               >
-                {course.name}
-              </Button>
+                <p>{course.name}</p>
+                <small>{truncate(course.title, 40)}</small>
+              </div>
             </li>
           )
         }
@@ -53,13 +56,14 @@ class ChooseCourseList extends Component {
       return selectedCourses.map(course => {
         return (
           <li key={course.originCourseId}>
-            <Button
+            <div
               className="SignupListItem"
               onClick={() => this.onRemoveSelectedCourse(course)}
             >
-              <i className="fa fa-check" aria-hidden="true"></i>
-              {course.name}
-            </Button>
+              <i className="fa fa-check" aria-hidden="true" style={{ float: 'right'}}></i>
+              <p>{course.name}</p>
+              <small>{truncate(course.title, 40)}</small>
+            </div>
           </li>
         )
       })

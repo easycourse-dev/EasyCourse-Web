@@ -2,7 +2,7 @@ import React, { Component, PropTypes as PT } from 'react'
 import { Button, FormGroup } from 'react-bootstrap'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { login } from '../redux/actions/user'
+import actions from '../redux/actions/index'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const validate = values => {
@@ -103,6 +103,6 @@ Login = reduxForm({
   warn
 })(Login)
 
-Login = connect(null, {login})(Login)
+Login = connect(null, actions)(Login)
 
 export default Login

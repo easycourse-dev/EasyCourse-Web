@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChooseCourse from './chooseCourse';
-import ChooseLanguage from './chooseLanguage';
 import ChooseSchool from './chooseSchool';
 
 class SignUpSetUp extends Component {
 
   componentDidMount() {
-    // Hide SignInSwitch when SignUpSetUp loads
     document.getElementById("SignInSwitch").className += " hideElement"
   }
 
@@ -17,8 +15,6 @@ class SignUpSetUp extends Component {
         return <ChooseSchool />
       case 2:
         return <ChooseCourse />
-      case 3:
-        return <ChooseLanguage />
       default:
         return <ChooseSchool />
     }

@@ -9,6 +9,7 @@ import {
 	USER_LOGOUT,
 	USER_INITIAL_SIGNUP_FAILURE,
 	USER_INITIAL_SIGNUP_SUCCESS,
+	USER_AUTHENTICATE_FAILURE,
 	CHANGE_SIGNUP_STAGE,
 	REMOVE_SELECTED_UNIVERSITY,
 	REMOVE_SELECTED_COURSES,
@@ -52,7 +53,7 @@ const login = ({email, password}) => {
           dispatch({ type: USER_INITIAL_SIGNUP_SUCCESS })
           browserHistory.push('/signin')
         } else {
-          browserHistory.push('/')
+          browserHistory.push('/main')
         }
         localStorage.setItem('authToken', res.headers.auth)
       })
@@ -65,11 +66,16 @@ const login = ({email, password}) => {
   }
 }
 
+const dispatchLogout = (dispatch) => {
+	dispatch({ type: USER_LOGOUT, payload: null })
+	dispatch({ type: USER_AUTHENTICATE_FAILURE })
+}
+
 const logout = () => {
   return dispatch => {
-    dispatch({ type: USER_LOGOUT, payload: null })
+		dispatchLogout(dispatch)
     localStorage.removeItem('authToken')
-    browserHistory.push('/')
+    browserHistory.push('/home')
   }
 }
 
@@ -78,6 +84,10 @@ const clearVaules = (dispatch) => {
 	dispatch({ type: CLEAR_SEARCH_TEXT })
 	dispatch({ type: REMOVE_SELECTED_UNIVERSITY })
 	dispatch({ type: CLEAR_AVAILABLE_COURSES })
+}
+
+const clearSelectedCourses = (dispatch) => {
+	dispatch({ type: REMOVE_SELECTED_COURSES })
 }
 
 const clearSearchText = (dispatch) => {
@@ -91,6 +101,7 @@ const changeSignupStage = (stage) => {
 			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
 		} else if (stage === 2){
 			clearSearchText(dispatch)
+			clearSelectedCourses(dispatch)
 			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
 		} else {
 			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
@@ -99,30 +110,23 @@ const changeSignupStage = (stage) => {
 }
 
 // update the user's joinedCourse's and languages the user speaks
-const updateUserCourseAndLang = (courses, languages, dispatch) => {
+const updateUserCourses = (courses, dispatch) => {
   let authToken = localStorage.getItem('authToken')
   let coursesIdArray = []
-  let languagesCodeArray = []
-  for (let i = 0; i < courses.length; i++) {
+
+	for (let i = 0; i < courses.length; i++) {
     let id = courses[i]._id
     coursesIdArray.push(id)
   }
-  console.log('coursesArray: ', coursesIdArray)
-
-  for (let i = 0; i < languages.length; i++) {
-    let code = languages[i].code
-    languagesCodeArray.push(code)
-  }
-  console.log('languagesArray: ', languagesCodeArray)
 
   let socket = io.connect('https://www.easycourseserver.com/', {query: `token=${authToken}`})
-  let newData = {courses: coursesIdArray, lang: languagesCodeArray}
+  let newData = {courses: coursesIdArray}
 
   socket.on('connect', () => {
     socket.emit('joinCourse', newData, (data, error) => {
       if (data) {
         dispatch({ type: JOIN_COURSE_SUCCESS, payload: data })
-				browserHistory.push('/')
+				browserHistory.push('/main')
       } else {
         dispatch({ type: JOIN_COURSE_FAILURE, payload: error })
       }
@@ -131,7 +135,7 @@ const updateUserCourseAndLang = (courses, languages, dispatch) => {
 }
 
 
-const finishSignup = (universityId, selectedLanguages, selectedCourses, displayName) => {
+const finishSignup = (universityId, selectedCourses, displayName) => {
   return dispatch => {
     const authToken = localStorage.getItem('authToken')
 
@@ -141,7 +145,7 @@ const finishSignup = (universityId, selectedLanguages, selectedCourses, displayN
     axios.post(`${ROOT_URL}/user/update`, body, config)
 	    .then(res => {
 	      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
-	      updateUserCourseAndLang(selectedCourses, selectedLanguages, dispatch)
+	      updateUserCourses(selectedCourses, dispatch)
 	    })
 	    .catch(error => {
 	      dispatch({ type: UPDATE_USER_UNIV_FAILURE, payload: error })

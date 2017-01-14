@@ -63,7 +63,8 @@ export default function userReducer(state = initialState, action) {
     case USER_LOGIN_SUCCESS:
       return {
         ...state,
-        current_user: payload
+        current_user: payload,
+        authenticated: true
       };
     case USER_LOGIN_FAILURE:
       return {
