@@ -79,7 +79,7 @@ const logout = () => {
   }
 }
 
-const clearVaules = (dispatch) => {
+const clearValues = (dispatch) => {
 	dispatch({ type: REMOVE_SELECTED_COURSES })
 	dispatch({ type: CLEAR_SEARCH_TEXT })
 	dispatch({ type: REMOVE_SELECTED_UNIVERSITY })
@@ -97,7 +97,7 @@ const clearSearchText = (dispatch) => {
 const changeSignupStage = (stage) => {
 	return dispatch => {
 		if (stage === 1) {
-			clearVaules(dispatch)
+			clearValues(dispatch)
 			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
 		} else if (stage === 2){
 			clearSearchText(dispatch)
@@ -146,6 +146,7 @@ const finishSignup = (universityId, selectedCourses, displayName) => {
 	    .then(res => {
 	      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
 	      updateUserCourses(selectedCourses, dispatch)
+				clearValues(dispatch)
 	    })
 	    .catch(error => {
 	      dispatch({ type: UPDATE_USER_UNIV_FAILURE, payload: error })
