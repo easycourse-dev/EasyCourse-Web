@@ -80,6 +80,7 @@ class ChooseCourseList extends Component {
     console.log('onLeave')
   }
 
+
   render() {
     const { searchText } = this.props
     return(
