@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import actions from '../redux/actions/index'
 import Waypoint from 'react-waypoint'

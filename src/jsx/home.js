@@ -11,13 +11,23 @@ import { connect } from 'react-redux'
 class Home extends Component {
 
   renderRooms = (courseName, rooms) => {
-
+    return rooms.map((room, i) => {
+      if (room.name.includes(courseName)) {
+        return (
+          <Button
+            block
+            key={i}
+          >{room.name}</Button>
+        )
+      }
+    })
   }
 
   renderCourses = (courses, rooms) => {
     return courses.map((course, i) => {
       return (
         <Panel header={course.name} eventKey={i} key={i}>
+          <h5 style={{textAlign: 'center'}}>Rooms</h5>
           {this.renderRooms(course.name, rooms)}
         </Panel>
       )
