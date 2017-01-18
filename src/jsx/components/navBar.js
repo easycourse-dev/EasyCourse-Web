@@ -27,6 +27,10 @@ class NavBar extends Component {
                     className="NavbarLinks NavbarSignIn"
                   >Sign In</NavItem>
                 </LinkContainer>
+                <NavItem
+                  className="NavbarLinks NavbarSignIn"
+                  onClick={() => this.props.logout()}
+                >Logout</NavItem>
               </Nav>
             </Navbar.Collapse>
           </Col>
@@ -36,8 +40,4 @@ class NavBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.user.authenticated
-})
-
-export default connect(mapStateToProps, actions)(NavBar)
+export default connect(null, actions)(NavBar)
