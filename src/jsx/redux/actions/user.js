@@ -19,6 +19,9 @@ import {
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
   JOIN_COURSE_FAILURE,
+	UPDATE_PASSWORD,
+	VALIDATE_TOKEN_SUCCESS,
+	VALIDATE_TOKEN_FAILURE
 } from './types'
 
 const ROOT_URL = 'https://www.easycourseserver.com/api'
@@ -152,6 +155,35 @@ const finishSignup = (universityId, selectedCourses, displayName) => {
 	      dispatch({ type: UPDATE_USER_UNIV_FAILURE, payload: error })
 	    })
   }
+}
+
+const resetPassword = (password, passwordConfirmation, token) => {
+  return dispatch => {
+		console.log('Password: ', password, 'Token: ', token)
+    const config = { headers: {"auth": token} }
+    const body = {newPassword: password}
+    axios.post(`${ROOT_URL}/resetPassword`, body, config)
+    .then(res => {
+     dispatch({ type: UPDATE_PASSWORD, payload: res.status })
+    })
+    .catch(error => {
+     dispatch({ type: UPDATE_PASSWORD, payload: error })
+    })
+	}
+}
+
+const validateToken = (token) => {
+	return dispatch => {
+		const config = { headers: {"auth": token} }
+		const body = {}
+		axios.post(`${ROOT_URL}/validateToken`, body, config)
+			.then(res => {
+				dispatch({ type: VALIDATE_TOKEN_SUCCESS, payload: res })
+			})
+			.catch(error => {
+				dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error })
+			})
+	}
 }
 
 module.exports = {

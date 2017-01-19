@@ -30,14 +30,17 @@ export default class Public extends Component {
               <div className="container">
                 <Col className="SloganWrapper" lg={4} lgOffset={2} md={5} mdOffset={1} sm={12}>
                   <h1 className="Slogan">EasyCourse</h1>
-                  <h3 className="SubSlogan">Connect students</h3>
+                  <h3 className="SubSlogan">Connect with students</h3>
                   <h3 className="SubSlogan">Boost learning efficiency</h3>
-                  <a className="StoreLinks" href="http://www.apple.com" target="_blank">
+                  <a className="StoreLinks" href="https://itunes.apple.com/us/app/easycourse-chatroom-designed/id1157252902?ls=1&mt=8" target="_blank">
+                    <p className="HiddenText">Download EasyCourse app in AppStore</p>
                     <div className="AppStore" />
                   </a>
-                  <a className="StoreLinks" href="http://play.google.com" target="_blank">
+                  {/* <a className="StoreLinks" href="http://play.google.com" target="_blank">
+                    <p className="HiddenText">Download EasyCourse app in GooglePlay Store</p>
                     <div className="GooglePlay" />
-                  </a>
+                  </a> */}
+                  <p style={{ color: 'white', marginTop: 10}}>Android coming soon!</p>
                 </Col>
                 <Col lg={4} md={5} sm={12}>
                   <div className="PublicPhonesWrapper">
@@ -52,19 +55,19 @@ export default class Public extends Component {
           <PublicSection
             PicOnLeft
             title="CLASSES"
-            subtitle="Joining all the course group"
-            desc="Search all the courses in your university and join the chat rooms for the courses you enrolled instantly."
+            subtitle="Join course groups"
+            desc="Search for courses at your university and instantly start engaging with classmates."
             img="ClassesImage" />
           <PublicSection
-            title="TEXTS"
-            subtitle="Messaging with your classmates"
-            desc="Chat with all of your classmates for homework problems, group formings, and even funny jokes."
+            title="CHAT"
+            subtitle="Collaborate with classmates"
+            desc="Chat with your classmates for homework problems, group projects, and laughter."
             img="TextsImage" />
           <PublicSection
             PicOnLeft
             title="LANGUAGES"
-            subtitle="Chat in your language"
-            desc="Feel more comforatble expressing your ideas with students speaking your language."
+            subtitle="Language specific course rooms"
+            desc="Feel more comfortable expressing your ideas with students who speak your language."
             img="LanguageImage" />
           {/* extra space for footer */}
           <div style={{marginTop: '50px'}} />

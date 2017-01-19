@@ -13,6 +13,9 @@ import {
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
   JOIN_COURSE_FAILURE,
+  UPDATE_PASSWORD,
+  VALIDATE_TOKEN_SUCCESS,
+	VALIDATE_TOKEN_FAILURE
 } from '../actions/types';
 
 const initialState = {
@@ -102,6 +105,21 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         response: payload
+      }
+    case UPDATE_PASSWORD:
+      return {
+        ...state,
+        response: payload
+      }
+    case VALIDATE_TOKEN_SUCCESS:
+      return {
+        ...state,
+        validateTokenResponseSuccess: payload
+      }
+    case VALIDATE_TOKEN_FAILURE:
+      return {
+        ...state,
+        validateTokenResponseError: payload
       }
     default:
       return {

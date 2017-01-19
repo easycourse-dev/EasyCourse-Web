@@ -35,6 +35,10 @@
   font-weight: 300;
 }
 
+.HiddenText {
+  display: none;
+}
+
 .AppStore {
   background-image: url(../img/Public/AppStore.svg);
   background-size: contain;
