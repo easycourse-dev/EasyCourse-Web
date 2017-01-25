@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Accordion, Panel } from 'react-bootstrap'
+import { Accordion, Panel, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import actions from '../../redux/actions/index'
 import RoomButton from './roomButton'
 
 class SideBarContent extends Component {
@@ -38,6 +39,11 @@ class SideBarContent extends Component {
         </Accordion>
         <h5 style={{ textAlign: 'center'}}>Groups</h5>
         <h5 style={{ textAlign: 'center'}}>Direct Messages</h5>
+        <Button
+          style={{ bottom: '5px', position: 'fixed'}}
+          block
+          onClick={() => this.props.logout()}
+          >Log Out</Button>
       </div>
     )
   }
@@ -48,5 +54,6 @@ export default connect(
     displayName: state.user.current_user.displayName,
     courses: state.user.current_user.joinedCourse,
     rooms: state.user.current_user.joinedRoom
-  })
+  }),
+  actions
 )(SideBarContent)
