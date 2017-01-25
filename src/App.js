@@ -44,7 +44,7 @@ export default class App extends Component {
           ]}
         />
 
-        <NavBar />
+        
         {this.props.children}
       </div>
     );

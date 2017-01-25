@@ -3,12 +3,12 @@ import { Accordion, Panel } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import RoomButton from './roomButton'
 
-class SideNav extends Component {
+class SideBarContent extends Component {
 
   renderRooms = (courseName, rooms) => {
     return rooms.map((room, i) => {
       if (room.name.includes(courseName)) {
-        return <RoomButton key={i} name={room.name}></RoomButton>
+        return <RoomButton key={i} name={room.name} course={courseName}></RoomButton>
       }
     })
   }
@@ -25,12 +25,13 @@ class SideNav extends Component {
   }
 
   render() {
-    const { courses, rooms } = this.props
+    const { courses, rooms, displayName } = this.props
     if (!courses && !rooms) {
       return <div>Loading...</div>
     }
     return (
       <div>
+        <h5 style={{ textAlign: 'center'}}>Hi, {displayName}!</h5>
         <h5 style={{ textAlign: 'center'}}>Courses</h5>
         <Accordion>
           {this.renderCourses(courses, rooms)}
@@ -44,7 +45,8 @@ class SideNav extends Component {
 
 export default connect(
   (state) => ({
+    displayName: state.user.current_user.displayName,
     courses: state.user.current_user.joinedCourse,
     rooms: state.user.current_user.joinedRoom
   })
-)(SideNav)
+)(SideBarContent)

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router'
+import { withRouter } from 'react-router'
 
-export default class Footer extends Component {
+class Footer extends Component {
   render() {
     return (
       <div className="Footer">
@@ -12,8 +12,10 @@ export default class Footer extends Component {
               <p className="FooterText">
                 @2016 Colevate Inc.
               </p>
-              <Link to='/docs'>Terms and Privacy</Link>
-              <a className="TermsPricacyLink" href="/docs">Terms and privacy</a>
+              <a
+                className="TermsPricacyLink"
+                onClick={() => this.props.router.push('/docs')}
+              >Terms and privacy</a>
             </Col>
           </Row>
         </div>
@@ -21,3 +23,5 @@ export default class Footer extends Component {
     );
   }
 }
+
+export default withRouter(Footer)

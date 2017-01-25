@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './jsx/redux/store'
-import { Router, Route, IndexRoute } from 'react-router';
+import { Router, Route } from 'react-router';
 import { browserHistory } from 'react-router'
 import io from 'socket.io-client'
 
@@ -17,6 +17,7 @@ import Docs from './jsx/docs'
 import Privacy from './jsx/components/privacy'
 import Terms from './jsx/components/terms'
 import ForgotPassword from './jsx/forgotPassword'
+import Chat from './jsx/components/home/chat'
 
 import {
   USER_AUTHENTICATE_SUCCESS,
@@ -27,7 +28,7 @@ import {
 
 if (localStorage.getItem('authToken')) {
   let authToken = localStorage.getItem('authToken')
-  let socket = io.connect('https://www.easycourseserver.com/', { query: `token=${authToken}` })
+  let socket = io.connect('https://zengjintaotest.com/', { query: `token=${authToken}` })
   socket.on('connect', () => {
     socket.emit('syncUser', 1, (data, error) => {
       if (data.user.joinedRoom.length === 0) {
@@ -57,10 +58,11 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App} >
         <Route path="home" component={Public} />
-        <Route path="main" component={Home} />
+        <Route path="main" component={Home}>
+          <Route path="chat/:courseName/:roomName" component={Chat}/>
+        </Route>
         <Route path="signin" component={SignIn} />
         <Route path="docs" component={Docs} >
-          {/* <IndexRoute /> */}
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
         </Route>

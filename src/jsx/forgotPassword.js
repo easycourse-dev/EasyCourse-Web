@@ -7,6 +7,7 @@ import actions from './redux/actions/index'
 import { Field, reduxForm } from 'redux-form'
 import { Button, FormGroup, Modal } from 'react-bootstrap'
 import Footer from './components/footer'
+import NavBar from './components/navBar'
 
 
 const validate = values => {
@@ -117,94 +118,97 @@ class ForgotPassword extends Component {
       validateTokenResponseError
     } = this.props
     return (
-      <div className="SignInBackground">
-        <ReactCSSTransitionGroup
-          transitionName={ {
-            enter: 'FadeIn-enter',
-            enterActive: 'FadeIn-enterActive',
-            leave: 'FadeIn-leave',
-            leaveActive: 'FadeIn-leaveActive',
-            appear: 'FadeIn-appear',
-            appearActive: 'FadeIn-appearActive'
-          } }
-          transitionEnterTimeout={500}
-          transitionEnter
-          transitionLeaveTimeout={500}
-          transitionLeave
-          transitionAppearTimeout={500}
-          transitionAppear>
-          <div className="container SignInFormWrapper" key="signinForm">
-            <Row className="SignInFormRow">
-              <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
-                <div className="SignInForm">
-                  <h2 className="PageTitle" key="loginFormTitle">
-                    Forgot Your Password?
-                  </h2>
-                  <form onSubmit={handleSubmit(this.handleFormSubmit)} key="forgotPasswordForm">
-                    <FormGroup className="Form">
-                      <Field
-                        className="form-control"
-                        name="password"
-                        type="password"
-                        component={validatedInput}
-                        label="Password"
-                      />
-                      <Field
-                        className="form-control"
-                        name="passwordConfirmation"
-                        component={validatedInput}
-                        type="password"
-                        label="Confirm Password"
-                      />
-                      <Button
-                        className="FormSubmitButton LoginSubmitButton"
-                        bsStyle="primary"
-                        type="submit"
-                      >Reset Password</Button>
-                    </FormGroup>
-                  </form>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        </ReactCSSTransitionGroup>
-        <Footer />
-        <Modal show={this.state.showPasswordModal} onHide={() => this.hidePasswordModal()}>
-          <Modal.Body>
-            {
-              response === 200 ?
-                <h4>Password successfully reset!</h4>
-              :
-                <h4>Something went wrong when trying to reset your password</h4>
-            }
-          </Modal.Body>
-          <Modal.Footer>
-            {
-              response === 200 ?
-                <Button onClick={() => this.goToHomePage()}>Go Home</Button>
-              :
-                <Button onClick={() => this.hidePasswordModal()}>Close</Button>
-            }
-          </Modal.Footer>
-        </Modal>
-        <Modal show={this.state.showTokenModal} onHide={() => this.hideTokenModal()}>
-          <Modal.Body>
-            {
-              validateTokenResponseSuccess.length > 1 ?
-                <div>
-                  <h4>Token is valid</h4>
-                </div>
-              :
-                <div>
-                  <h4>Sorry your reset password token has expired</h4>
-                  <h5>Please click the 'Send Verification Email' button for a new link</h5>
-                </div>
-            }
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => this.hideTokenModal()}>Close</Button>
-          </Modal.Footer>
-        </Modal>
+      <div>
+        <NavBar />
+        <div className="SignInBackground">
+          <ReactCSSTransitionGroup
+            transitionName={ {
+              enter: 'FadeIn-enter',
+              enterActive: 'FadeIn-enterActive',
+              leave: 'FadeIn-leave',
+              leaveActive: 'FadeIn-leaveActive',
+              appear: 'FadeIn-appear',
+              appearActive: 'FadeIn-appearActive'
+            } }
+            transitionEnterTimeout={500}
+            transitionEnter
+            transitionLeaveTimeout={500}
+            transitionLeave
+            transitionAppearTimeout={500}
+            transitionAppear>
+            <div className="container SignInFormWrapper" key="signinForm">
+              <Row className="SignInFormRow">
+                <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
+                  <div className="SignInForm">
+                    <h2 className="PageTitle" key="loginFormTitle">
+                      Forgot Your Password?
+                    </h2>
+                    <form onSubmit={handleSubmit(this.handleFormSubmit)} key="forgotPasswordForm">
+                      <FormGroup className="Form">
+                        <Field
+                          className="form-control"
+                          name="password"
+                          type="password"
+                          component={validatedInput}
+                          label="Password"
+                        />
+                        <Field
+                          className="form-control"
+                          name="passwordConfirmation"
+                          component={validatedInput}
+                          type="password"
+                          label="Confirm Password"
+                        />
+                        <Button
+                          className="FormSubmitButton LoginSubmitButton"
+                          bsStyle="primary"
+                          type="submit"
+                        >Reset Password</Button>
+                      </FormGroup>
+                    </form>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+          </ReactCSSTransitionGroup>
+          <Footer />
+          <Modal show={this.state.showPasswordModal} onHide={() => this.hidePasswordModal()}>
+            <Modal.Body>
+              {
+                response === 200 ?
+                  <h4>Password successfully reset!</h4>
+                :
+                  <h4>Something went wrong when trying to reset your password</h4>
+              }
+            </Modal.Body>
+            <Modal.Footer>
+              {
+                response === 200 ?
+                  <Button onClick={() => this.goToHomePage()}>Go Home</Button>
+                :
+                  <Button onClick={() => this.hidePasswordModal()}>Close</Button>
+              }
+            </Modal.Footer>
+          </Modal>
+          <Modal show={this.state.showTokenModal} onHide={() => this.hideTokenModal()}>
+            <Modal.Body>
+              {
+                validateTokenResponseSuccess.length > 1 ?
+                  <div>
+                    <h4>Token is valid</h4>
+                  </div>
+                :
+                  <div>
+                    <h4>Sorry your reset password token has expired</h4>
+                    <h5>Please click the 'Send Verification Email' button for a new link</h5>
+                  </div>
+              }
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() => this.hideTokenModal()}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
       </div>
     );
   }
