@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import actions from '../redux/actions/index'
+import actions from '../../redux/actions/index'
 import Waypoint from 'react-waypoint'
 const truncate = require('truncate')
 
@@ -71,14 +71,12 @@ class ChooseCourseList extends Component {
   }
 
   handleOnEnter = () => {
-    console.log('onEnter')
     this.loadMore()
   }
 
   handleOnLeave = () => {
     console.log('onLeave')
   }
-
 
   render() {
     const { searchText } = this.props
@@ -103,15 +101,13 @@ class ChooseCourseList extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  availableCourses: state.courses.coursesBySchool,
-  selectedCourses: state.courses.selectedCourses,
-  universityId: state.university.selectedUniversity,
-  searchText: state.courses.searchText,
-  skip: state.courses.skip
-})
-
 export default connect(
-  mapStateToProps,
+  (state) => ({
+    availableCourses: state.courses.coursesBySchool,
+    selectedCourses: state.courses.selectedCourses,
+    universityId: state.university.selectedUniversity,
+    searchText: state.courses.searchText,
+    skip: state.courses.skip
+  }),
   actions
 )(ChooseCourseList)

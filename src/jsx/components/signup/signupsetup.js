@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import ChooseCourse from './chooseCourse';
-import ChooseSchool from './chooseSchool';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import ChooseCourse from './chooseCourse'
+import ChooseSchool from './chooseSchool'
 
 class SignUpSetUp extends Component {
 
@@ -20,7 +20,7 @@ class SignUpSetUp extends Component {
     }
   }
   render() {
-    const { signUpStage } = this.props;
+    const { signUpStage } = this.props
     return (
       <div>
         {this.renderSignUpStage(signUpStage)}
@@ -29,10 +29,8 @@ class SignUpSetUp extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
+export default connect(
+  (state) => ({
     signUpStage: state.user.signUpStage
-  }
-}
-
-export default connect(mapStateToProps, null)(SignUpSetUp);
+  })
+)(SignUpSetUp)

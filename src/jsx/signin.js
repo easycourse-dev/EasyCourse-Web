@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import Login from './components/login'
-import Signup from './components/signup'
-import SignUpSetup from './components/signupsetup'
+import Login from './components/signup/login'
+import Signup from './components/signup/signup'
+import SignUpSetup from './components/signup/signupsetup'
 import { Row, Col } from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import NavBar from './components/navBar'
 
 class SignIn extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      showSignup: false
-    }
+  state = {
+    showSignup: false
   }
 
   render() {
@@ -71,10 +67,8 @@ class SignIn extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
+export default connect(
+  (state) =>({
     initialSignUpComplete: state.user.initialSignUpComplete
-  };
-}
-
-export default connect(mapStateToProps, null)(SignIn);
+  })
+)(SignIn);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import PublicSection from './components/publicSection'
+import PublicSection from './components/public/publicSection'
 import Footer from './components/footer'
 import NavBar from './components/navBar'
 
@@ -39,11 +39,10 @@ export default class Public extends Component {
                       <p className="HiddenText">Download EasyCourse app in AppStore</p>
                       <div className="AppStore" />
                     </a>
-                    {/* <a className="StoreLinks" href="http://play.google.com" target="_blank">
+                    <a className="StoreLinks" href="https://play.google.com/store/apps/details?id=io.easycourse.www.easycourse" target="_blank">
                       <p className="HiddenText">Download EasyCourse app in GooglePlay Store</p>
                       <div className="GooglePlay" />
-                    </a> */}
-                    <p style={{ color: 'white', marginTop: 10}}>Android coming soon!</p>
+                    </a>
                   </Col>
                   <Col lg={4} md={5} sm={12}>
                     <div className="PublicPhonesWrapper">
