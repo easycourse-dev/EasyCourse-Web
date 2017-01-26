@@ -1,26 +1,32 @@
-import React, { Component, PropTypes as PT } from 'react';
-import { Button, FormGroup } from 'react-bootstrap';
-import { Field, reduxForm } from 'redux-form';
-import { signup } from '../redux/actions/user';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { Component } from 'react'
+import { Button, FormGroup } from 'react-bootstrap'
+import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import actions from '../redux/actions/index'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const validate = values => {
-  const errors = {};
+  const { password, passwordConfirmation, displayName } = values
+  const errors = {}
 
-  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+  if (password && password.length < 8) {
+    errors.password = 'Password must be 8 to 32 characters long'
   }
 
-  if (values.password && values.password.length < 6) {
-    errors.password = 'Password must be longer than 6 characters';
+  if (passwordConfirmation && passwordConfirmation.length < 8) {
+    errors.password = 'Password must be 8 to 32 characters long'
   }
 
-  if (values.password !== values.passwordConfirmation) {
+  if (password !== passwordConfirmation) {
     errors.passwordConfirmation = 'Passwords must match'
   }
 
-  if (values.displayName && values.displayName.length < 6) {
+  if (displayName && displayName.length < 6) {
     errors.displayName = 'Display Name must be longer than 6 characters'
+  }
+
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Please enter a valid email address'
   }
 
   return errors;
@@ -29,7 +35,7 @@ const validate = values => {
 const warn = values => {
   const warnings = {}
   if (values.password) {
-    warnings.password = '';
+    warnings.password = ''
   }
 
   return warnings;
@@ -50,37 +56,29 @@ const validatedInput = ({ input, label, type, meta: { touched, error, warning } 
 
 class Signup extends Component {
 
-  static propTypes = {
-    handleSubmit: PT.func
-  };
-
-  submit(values) {
-    signup(values);
-  }
-
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, signup } = this.props
 
     return (
       <ReactCSSTransitionGroup
-      transitionName={ {
-        enter: 'FadeIn-enter',
-        enterActive: 'FadeIn-enterActive',
-        leave: 'FadeIn-leave',
-        leaveActive: 'FadeIn-leaveActive',
-        appear: 'FadeIn-appear',
-        appearActive: 'FadeIn-appearActive'
-      } }
-      transitionEnterTimeout={500}
-      transitionEnter
-      transitionLeaveTimeout={500}
-      transitionLeave
-      transitionAppearTimeout={500}
-      transitionAppear>
+        transitionName={{
+          enter: 'FadeIn-enter',
+          enterActive: 'FadeIn-enterActive',
+          leave: 'FadeIn-leave',
+          leaveActive: 'FadeIn-leaveActive',
+          appear: 'FadeIn-appear',
+          appearActive: 'FadeIn-appearActive'
+        }}
+        transitionEnterTimeout={500}
+        transitionEnter
+        transitionLeaveTimeout={500}
+        transitionLeave
+        transitionAppearTimeout={500}
+        transitionAppear>
         <h2 className="PageTitle" key="signupFormTitle">
           Sign Up
         </h2>
-        <form onSubmit={handleSubmit(this.submit)} key="signupForm">
+        <form onSubmit={handleSubmit(signup)} key="signupForm">
           <FormGroup className="Form">
             <Field
               name="email"
@@ -117,8 +115,10 @@ class Signup extends Component {
   }
 }
 
+Signup = connect(null, actions)(Signup)
+
 export default reduxForm({
-  form: 'signup',
+  form: 'signupForm',
   validate,
   warn
-})(Signup);
+})(Signup)

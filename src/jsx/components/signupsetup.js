@@ -1,14 +1,11 @@
-import React, { Component, PropTypes as PT } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ChooseCourse from './chooseCourse';
-import ChooseLanguage from './chooseLanguage';
 import ChooseSchool from './chooseSchool';
 
 class SignUpSetUp extends Component {
 
   componentDidMount() {
-    // Hide SignInSwitch when SignUpSetUp loads
     document.getElementById("SignInSwitch").className += " hideElement"
   }
 
@@ -18,8 +15,6 @@ class SignUpSetUp extends Component {
         return <ChooseSchool />
       case 2:
         return <ChooseCourse />
-      case 3:
-        return <ChooseLanguage />
       default:
         return <ChooseSchool />
     }
@@ -28,9 +23,7 @@ class SignUpSetUp extends Component {
     const { signUpStage } = this.props;
     return (
       <div>
-        {
-          this.renderSignUpStage(signUpStage)
-        }
+        {this.renderSignUpStage(signUpStage)}
       </div>
     );
   }

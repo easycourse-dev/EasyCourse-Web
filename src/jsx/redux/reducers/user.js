@@ -1,16 +1,18 @@
 import {
-USER_SIGNUP_SUCCESS,
-USER_SIGNUP_FAILURE,
-USER_INITIAL_SIGNUP_SUCCESS,
-USER_INITIAL_SIGNUP_FAILURE,
-USER_LOGIN_SUCCESS,
-USER_LOGIN_FAILURE,
-USER_LOGOUT,
-USER_AUTHENTICATE_SUCCESS,
-USER_AUTHENTICATE_FAILURE,
-SIGNUP_SETUP_CHOOSE_UNIVERSITY,
-SIGNUP_SETUP_CHOOSE_COURSES,
-SIGNUP_SETUP_CHOOSE_LANGUAGES
+  USER_SIGNUP_SUCCESS,
+  USER_SIGNUP_FAILURE,
+  USER_INITIAL_SIGNUP_SUCCESS,
+  USER_INITIAL_SIGNUP_FAILURE,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAILURE,
+  USER_LOGOUT,
+  USER_AUTHENTICATE_SUCCESS,
+  USER_AUTHENTICATE_FAILURE,
+  CHANGE_SIGNUP_STAGE,
+  UPDATE_USER_UNIV_SUCCESS,
+  UPDATE_USER_UNIV_FAILURE,
+  JOIN_COURSE_SUCCESS,
+  JOIN_COURSE_FAILURE,
 } from '../actions/types';
 
 const initialState = {
@@ -19,19 +21,27 @@ const initialState = {
   current_user: '',
   initialSignUpComplete: false,
   signUpStage: 0,
-  postInitialSignUpValues: {
-    school: '',
-    courses: [],
-    languages: [],
-  }
 }
 
 export default function userReducer(state = initialState, action) {
-  switch (action.type) {
+  const { type, payload } = action
+  switch (type) {
+    case USER_AUTHENTICATE_SUCCESS:
+      return {
+        ...state,
+        authenticated: true,
+        current_user: payload
+      };
+    case USER_AUTHENTICATE_FAILURE:
+      return {
+        ...state,
+        authenticated: false,
+        current_user: ''
+      };
     case USER_SIGNUP_SUCCESS:
       return {
         ...state,
-        current_user: action.payload
+        current_user: payload
       };
     case USER_SIGNUP_FAILURE:
       return {
@@ -50,34 +60,11 @@ export default function userReducer(state = initialState, action) {
         ...state,
         initialSignUpComplete: false
       }
-    case SIGNUP_SETUP_CHOOSE_UNIVERSITY:
-      return {
-        ...state,
-        postInitialSignUpValues: {
-          school: action.payload
-        },
-        signUpStage: 2,
-      }
-    case SIGNUP_SETUP_CHOOSE_COURSES:
-      return {
-        ...state,
-        postInitialSignUpValues: {
-          courses: action.payload
-        },
-        signUpStage: 3,
-      }
-    case SIGNUP_SETUP_CHOOSE_LANGUAGES:
-      return {
-        ...state,
-        postInitialSignUpValues: {
-          languages: action.payload
-        },
-        signUpStage: 3
-      }
     case USER_LOGIN_SUCCESS:
       return {
         ...state,
-        current_user: action.payload
+        current_user: payload,
+        authenticated: true
       };
     case USER_LOGIN_FAILURE:
       return {
@@ -91,18 +78,31 @@ export default function userReducer(state = initialState, action) {
         current_user: '',
         signUpStage: 0
       };
-    case USER_AUTHENTICATE_SUCCESS:
+    case CHANGE_SIGNUP_STAGE:
       return {
         ...state,
-        authenticated: true,
-        current_user: action.payload
-      };
-    case USER_AUTHENTICATE_FAILURE:
+        signUpStage: payload
+      }
+    case UPDATE_USER_UNIV_SUCCESS:
       return {
         ...state,
-        authenticated: false,
-        current_user: ''
-      };
+        message: 'Updated user university'
+      }
+    case UPDATE_USER_UNIV_FAILURE:
+      return {
+        ...state,
+        message: 'Unable to update user university'
+      }
+    case JOIN_COURSE_SUCCESS:
+      return {
+        ...state,
+        response: payload
+      }
+    case JOIN_COURSE_FAILURE:
+      return {
+        ...state,
+        response: payload
+      }
     default:
       return {
         ...state,

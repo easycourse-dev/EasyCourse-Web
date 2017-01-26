@@ -1,50 +1,44 @@
-import React, { Component, PropTypes as PT } from 'react';
-import { Button } from 'react-bootstrap';
-import { signUpSetUpChooseUniversity } from '../redux/actions/user';
-import { getUniversities } from '../redux/actions/universities';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { Button, Col } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import actions from '../redux/actions/index'
+import ChooseSchoolList from './chooseSchoolList'
 
 class ChooseSchool extends Component {
-  static propTypes = {
-    handleSubmit: PT.func
-  };
-
-  componentWillMount() {
-    getUniversities()
-  }
-
   render() {
-    const { universities } = this.props;
+    const { selectedUniversity } = this.props;
     return (
       <div>
         <h2 className="SignUpSetupPageTitle" key="loginFormTitle">
-          Where Do You Go To School?
+          Choose University
         </h2>
-        {
-          universities ?
-          universities.map((university, key) => {
-            return (
-              <Button
-                key={'University' + key}
-                className="SignupListItem"
-                bsStyle="primary"
-                type="submit"
-                onClick={() => signUpSetUpChooseUniversity(university._id)}
-              >{university.name}</Button>
-            )
-          })
-          :
-          <h5>Loading...</h5>
-        }
+        <div>
+          <ChooseSchoolList />
+        </div>
+        <Col lg={12} md={12} sm={12} style={{ display: 'table'}}>
+          {
+            selectedUniversity.length > 1 ?
+              <div style={{ display: 'table', margin: '0 auto', paddingTop: 15 }}>
+                <Button
+                  className="NextPreviousButton"
+                  onClick={() => this.props.changeSignupStage(2)}
+                >Next</Button>
+              </div>
+            :
+              ''
+          }
+        </Col>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    universities: state.university.universities
-  };
-}
+const mapStateToProps = (state) => ({
+  universities: state.university.universities,
+  selectedUniversity: state.university.selectedUniversity
+})
 
-export default connect(mapStateToProps, null)(ChooseSchool);
+export default connect(
+  mapStateToProps,
+  actions
+)(ChooseSchool);

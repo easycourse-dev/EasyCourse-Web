@@ -1,23 +1,43 @@
 import axios from 'axios';
-import store from '../store';
 import {
 	GET_UNIVERSITIES_SUCCESS,
-  GET_UNIVERSITIES_FAILURE
+  GET_UNIVERSITIES_FAILURE,
+	ADD_SELECTED_UNIVERSITY,
+	REMOVE_SELECTED_UNIVERSITY
 } from './types';
-const ROOT_URL = 'https://zengjintaotest.com/api';
+const ROOT_URL = 'https://www.easycourseserver.com/api';
 
-export function getUniversities() {
-	axios.get(`${ROOT_URL}/univ`)
-		.then(res => {
-			store.dispatch({
-				type: GET_UNIVERSITIES_SUCCESS,
-				payload: res.data
-			})
-		})
-		.catch(error => {
-			console.log('Get Universities Failed: ', error);
-			store.dispatch({
-				type: GET_UNIVERSITIES_FAILURE
-			})
-		});
+const getUniversities = () => {
+  return dispatch => {
+    axios.get(`${ROOT_URL}/univ`)
+      .then(res => {
+        dispatch({
+          type: GET_UNIVERSITIES_SUCCESS,
+          payload: res.data
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: GET_UNIVERSITIES_FAILURE
+        })
+      })
+  }
+}
+
+const addSelectedUniversity = (universityId) => {
+	return dispatch => {
+		dispatch({ type: ADD_SELECTED_UNIVERSITY, payload: universityId })
+	}
+}
+
+const removeSelectedUniversity = () => {
+	return dispatch => {
+		dispatch({ type: REMOVE_SELECTED_UNIVERSITY })
+	}
+}
+
+module.exports = {
+  getUniversities,
+	addSelectedUniversity,
+	removeSelectedUniversity
 }

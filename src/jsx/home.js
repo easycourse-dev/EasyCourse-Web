@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Jumbotron, Row, Col, Button } from 'react-bootstrap';
-import { logout } from './redux/actions/user';
+import { connect } from 'react-redux'
+import actions from './redux/actions/index';
 
-export default class Home extends Component {
+class Home extends Component {
   render() {
     return (
       <div className="Home">
@@ -12,7 +13,7 @@ export default class Home extends Component {
               <h1>
                 Under Construction...
               </h1>
-              <Button bsStyle="danger" onClick={() => logout()}>Log Out</Button>
+              <Button bsStyle="danger" onClick={() => this.props.logout()}>Log Out</Button>
             </Jumbotron>
           </Col>
         </Row>
@@ -20,3 +21,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default connect(null, actions)(Home)
