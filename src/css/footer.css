@@ -22,15 +22,8 @@
   margin: 0 auto;
   text-align: center;
   display: block;
-  margin-top: -8px;
-}
-
-.TermsPricacyLink > a {
   color: #fbfbfb;
-}
-
-.TermsPricacyLink > a:focus {
-  outline: none;
+  margin-top: -8px;
 }
 
 .TermsPricacyLink:focus, .TermsPricacyLink:hover {
