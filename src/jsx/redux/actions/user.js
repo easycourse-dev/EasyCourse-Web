@@ -24,7 +24,7 @@ import {
 	VALIDATE_TOKEN_FAILURE
 } from './types'
 
-const ROOT_URL = 'https://www.easycourseserver.com/api'
+const ROOT_URL = 'https://zengjintaotest.com/api'
 
 const signup = ({email, password, displayName}) => {
   return dispatch => {
@@ -82,7 +82,7 @@ const logout = () => {
   }
 }
 
-const clearVaules = (dispatch) => {
+const clearValues = (dispatch) => {
 	dispatch({ type: REMOVE_SELECTED_COURSES })
 	dispatch({ type: CLEAR_SEARCH_TEXT })
 	dispatch({ type: REMOVE_SELECTED_UNIVERSITY })
@@ -100,7 +100,7 @@ const clearSearchText = (dispatch) => {
 const changeSignupStage = (stage) => {
 	return dispatch => {
 		if (stage === 1) {
-			clearVaules(dispatch)
+			clearValues(dispatch)
 			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
 		} else if (stage === 2){
 			clearSearchText(dispatch)
@@ -113,7 +113,7 @@ const changeSignupStage = (stage) => {
 }
 
 // update the user's joinedCourse's and languages the user speaks
-const updateUserCourses = (courses, dispatch) => {
+function updateUserCourses(courses, dispatch) {
   let authToken = localStorage.getItem('authToken')
   let coursesIdArray = []
 
@@ -122,7 +122,7 @@ const updateUserCourses = (courses, dispatch) => {
     coursesIdArray.push(id)
   }
 
-  let socket = io.connect('https://www.easycourseserver.com/', {query: `token=${authToken}`})
+  let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`})
   let newData = {courses: coursesIdArray}
 
   socket.on('connect', () => {
@@ -135,8 +135,8 @@ const updateUserCourses = (courses, dispatch) => {
       }
     })
   })
-}
 
+}
 
 const finishSignup = (universityId, selectedCourses, displayName) => {
   return dispatch => {
@@ -147,8 +147,8 @@ const finishSignup = (universityId, selectedCourses, displayName) => {
 
     axios.post(`${ROOT_URL}/user/update`, body, config)
 	    .then(res => {
-	      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
 	      updateUserCourses(selectedCourses, dispatch)
+	      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
 	    })
 	    .catch(error => {
 	      dispatch({ type: UPDATE_USER_UNIV_FAILURE, payload: error })
@@ -193,5 +193,7 @@ module.exports = {
   login,
   logout,
   changeSignupStage,
-  finishSignup
+  finishSignup,
+  resetPassword,
+  validateToken
 }

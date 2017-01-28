@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Footer from './footer';
+import Footer from '../footer';
 
 export default class Terms extends Component {
 

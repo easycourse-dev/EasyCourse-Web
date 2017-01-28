@@ -5,7 +5,7 @@ import {
 	ADD_SELECTED_UNIVERSITY,
 	REMOVE_SELECTED_UNIVERSITY
 } from './types';
-const ROOT_URL = 'https://www.easycourseserver.com/api';
+const ROOT_URL = 'https://zengjintaotest.com/api';
 
 const getUniversities = () => {
   return dispatch => {
