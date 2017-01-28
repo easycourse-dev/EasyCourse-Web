@@ -21,21 +21,23 @@ class ChatInputBar extends Component {
 
   render() {
     return (
-      <form onSubmit={this.sendMessage}>
-        <FormGroup bsSize="large">
-          <InputGroup>
-            <InputGroup.Button>
-              <Button bsSize="large">+</Button>
-            </InputGroup.Button>
-            <FormControl
-              type="text"
-              placeholder="Something"
-              value={this.state.message}
-              onChange={e => this.handleMessageChange(e.target.value)}
-            />
-          </InputGroup>
-        </FormGroup>
-      </form>
+      <div style={{ bottom: '0px', position: 'fixed', paddingRight: '10px', paddingLeft: '10px'}}>
+        <form onSubmit={this.sendMessage}>
+          <FormGroup bsSize="large">
+            <InputGroup>
+              <InputGroup.Button>
+                <Button bsSize="large">+</Button>
+              </InputGroup.Button>
+              <FormControl
+                type="text"
+                placeholder="Something"
+                value={this.state.message}
+                onChange={e => this.handleMessageChange(e.target.value)}
+              />
+            </InputGroup>
+          </FormGroup>
+        </form>
+      </div>
     )
   }
 }

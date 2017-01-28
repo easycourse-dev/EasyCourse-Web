@@ -10,6 +10,7 @@ import io from 'socket.io-client'
 // Components
 import './index.css';
 import App from './App';
+
 import Public from './jsx/public'
 import Home from './jsx/home'
 import SignIn from './jsx/signin'
@@ -17,7 +18,11 @@ import Docs from './jsx/docs'
 import Privacy from './jsx/components/public/privacy'
 import Terms from './jsx/components/public/terms'
 import ForgotPassword from './jsx/forgotPassword'
-import Chat from './jsx/components/home/chat'
+
+import Course from './jsx/components/home/course'
+import Room from './jsx/components/home/room'
+
+
 
 import {
   USER_AUTHENTICATE_SUCCESS,
@@ -43,13 +48,13 @@ if (localStorage.getItem('authToken')) {
           type: USER_AUTHENTICATE_SUCCESS,
           payload: data.user
         })
-        browserHistory.push('/main');
+        browserHistory.push('/home');
       }
     })
   })
 } else {
   store.dispatch({ type: USER_AUTHENTICATE_FAILURE })
-  browserHistory.push('/home');
+  browserHistory.push('/public');
 }
 
 
@@ -57,9 +62,11 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App} >
-        <Route path="home" component={Public} />
-        <Route path="main" component={Home}>
-          <Route path="chat/:courseName/:roomName" component={Chat}/>
+        <Route path="public" component={Public} />
+        <Route path="home" component={Home}>
+          <Route path="course/:courseName" component={Course}>
+            <Route path="room/:roomName" component={Room} />
+          </Route>
         </Route>
         <Route path="signin" component={SignIn} />
         <Route path="docs" component={Docs} >

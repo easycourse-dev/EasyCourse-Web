@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
-import { Link } from 'react-router'
+import { LinkContainer } from 'react-router-bootstrap'
+import { withRouter } from 'react-router'
 
 class RoomButton extends Component {
   render() {
     const { name, key, course } = this.props
     return (
-      <Link to={`/main/chat/${course}/${name}`}>{name}</Link>
+      <Button
+        onClick={() => this.props.router.replace(`/home/course/${course}/room/${name}`)}
+      >{name}</Button>
     )
   }
 }
 
-export default RoomButton
+export default withRouter(RoomButton)

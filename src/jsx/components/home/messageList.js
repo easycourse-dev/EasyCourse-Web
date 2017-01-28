@@ -6,13 +6,7 @@ export default class MessageList extends Component {
     const { messages } = this.props
     return (
       <ul style={{ listStyle: 'none'}}>
-        {
-          messages.map(message => {
-            return (
-              <Message message={message} />
-            )
-          })
-        }
+        <li>Message 1</li>
       </ul>
     )
   }
