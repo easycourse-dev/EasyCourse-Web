@@ -3,8 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './jsx/redux/store'
-import { Router, Route } from 'react-router';
-import { browserHistory } from 'react-router'
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import io from 'socket.io-client'
 
 // Components
@@ -15,16 +14,15 @@ import Home from './jsx/home'
 import Docs from './jsx/docs'
 import Privacy from './jsx/components/privacy'
 import Terms from './jsx/components/terms'
-// import SignIn from './jsx/signin'
 import ForgotPassword from './jsx/forgotPassword'
 import SignIn from './jsx/signin'
 
 // Other
-// import {
-// USER_AUTHENTICATE_SUCCESS,
-// USER_AUTHENTICATE_FAILURE,
-// USER_INITIAL_SIGNUP_SUCCESS,
-// } from './jsx/redux/actions/types'
+import {
+USER_AUTHENTICATE_SUCCESS,
+USER_AUTHENTICATE_FAILURE,
+USER_INITIAL_SIGNUP_SUCCESS,
+} from './jsx/redux/actions/types'
 
 
 if (localStorage.getItem('authToken')) {
@@ -61,8 +59,7 @@ ReactDOM.render(
         <Route path="home" component={Public} />
         <Route path="main" component={Home} />
         <Route path="signin" component={SignIn} />
-        <IndexRoute component={getHomeComponent} />
-        {/* <Route path="signin" component={SignIn} /> */}
+        {/* <IndexRoute component={getHomeComponent} /> */}
         <Route path="docs" >
           <IndexRoute component={Docs} />
           <Route path="privacy" component={Privacy} />

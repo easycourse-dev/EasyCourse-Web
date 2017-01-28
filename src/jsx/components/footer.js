@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
 
 export default class Footer extends Component {
   render() {
@@ -11,7 +13,9 @@ export default class Footer extends Component {
               <p className="FooterText">
                 @2016 Colevate Inc.
               </p>
-              <a className="TermsPricacyLink" href="/docs">Terms and privacy</a>
+              <LinkContainer to="/docs">
+                <NavItem className="TermsPricacyLink">Terms and privacy</NavItem>
+              </LinkContainer>
             </Col>
           </Row>
         </div>

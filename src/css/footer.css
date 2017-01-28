@@ -22,8 +22,15 @@
   margin: 0 auto;
   text-align: center;
   display: block;
-  color: #fbfbfb;
   margin-top: -8px;
+}
+
+.TermsPricacyLink > a {
+  color: #fbfbfb;
+}
+
+.TermsPricacyLink > a:focus {
+  outline: none;
 }
 
 .TermsPricacyLink:focus, .TermsPricacyLink:hover {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Login from './components/login';
+import Footer from './components/footer';
 import Signup from './components/signup';
 import SignUpSetup from './components/signupsetup';
 import { Row, Col } from 'react-bootstrap';
@@ -55,13 +56,14 @@ class SignIn extends Component {
                     </a>
                   </div>
                 </div>
-                <p className="SignInFooterText">
+                {/* <p className="SignInFooterText">
                   @2016 Colevate Inc.
-                </p>
+                </p> */}
               </Col>
             </Row>
           </div>
         </ReactCSSTransitionGroup>
+        <Footer />
       </div>
     );
   }
