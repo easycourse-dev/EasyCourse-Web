@@ -11,6 +11,7 @@ export default class Footer extends Component {
               <p className="FooterText">
                 @2016 Colevate Inc.
               </p>
+              <a className="TermsPricacyLink" href="/docs">Terms and privacy</a>
             </Col>
           </Row>
         </div>
