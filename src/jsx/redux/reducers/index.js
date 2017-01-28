@@ -5,7 +5,8 @@ import { routerReducer } from 'react-router-redux'
 import userReducer from './user'
 import navbarLinksReducer from './navbarLinks'
 import universityReducer from './universities'
-import {coursesReducer} from './courses'
+import coursesReducer from './courses'
+import socketReducer from './socket'
 import { reducer as form } from 'redux-form'
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   navbarLinks: navbarLinksReducer,
   university: universityReducer,
   courses: coursesReducer,
+  socket: socketReducer,
   form: form,
 });
 

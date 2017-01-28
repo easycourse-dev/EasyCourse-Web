@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-// connect to socket
 import RoomHeader from './roomHeader'
 import MessageList from './messageList'
 import ChatInputBar from './chatInputBar'
 
 export default class Room extends Component {
-
   componentDidMount = () => {
-    // fetch room messages
   }
 
   render() {
@@ -15,8 +12,8 @@ export default class Room extends Component {
     return (
       <div>
         <RoomHeader roomName={params.roomName}/>
-        <MessageList />
-        <ChatInputBar />
+        <MessageList roomName={params.roomName} socket={this.state.socket} />
+        <ChatInputBar roomName={params.roomName} socket={this.state.socket} />
       </div>
     )
   }

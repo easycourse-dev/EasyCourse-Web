@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Sidebar from 'react-sidebar'
 import SideBarContent from './components/home/sidebarContent'
-import io from 'socket.io-client'
 
 class Home extends Component {
   render() {

@@ -11,6 +11,14 @@ class ChatInputBar extends Component {
     message: ''
   }
 
+  componentDidMount = () => {
+    console.log('Socket: ', this.props.socket)
+  }
+
+  componentWillRecieveProps = (nextProps) => {
+    console.log('Socket: ', nextProps.socket)
+  }
+
   handleMessageChange = (message) => this.setState({ message })
 
   sendMessage = (e) => {

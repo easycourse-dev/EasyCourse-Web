@@ -28,6 +28,8 @@ import {
   USER_AUTHENTICATE_SUCCESS,
   USER_AUTHENTICATE_FAILURE,
   USER_INITIAL_SIGNUP_SUCCESS,
+  SOCKET_CONNECTED,
+  SOCKET_DISCONNECTED
 } from './jsx/redux/actions/types'
 
 
@@ -41,6 +43,10 @@ if (localStorage.getItem('authToken')) {
         store.dispatch({
           type: USER_AUTHENTICATE_SUCCESS,
           payload: data.user
+        })
+        store.dispatch({
+          type: SOCKET_CONNECTED,
+          payload: socket
         })
         browserHistory.push('/signin');
       } else {
