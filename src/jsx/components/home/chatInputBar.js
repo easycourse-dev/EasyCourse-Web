@@ -13,7 +13,7 @@ class ChatInputBar extends Component {
 
   handleMessageChange = (message) => this.setState({ message })
 
-  handleSubmit = (e) => {
+  sendMessage = (e) => {
     e.preventDefault()
     console.log('Message sent: ', this.state.message)
     this.setState({ message: '' })
@@ -21,7 +21,7 @@ class ChatInputBar extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.sendMessage}>
         <FormGroup bsSize="large">
           <InputGroup>
             <InputGroup.Button>
