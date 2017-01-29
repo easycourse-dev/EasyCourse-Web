@@ -4,7 +4,7 @@ import {
 } from '../actions/types'
 
 const initialState = {
-  socket: null
+  socket: ''
 }
 
 const socketReducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const socketReducer = (state = initialState, action) => {
     case SOCKET_CONNECTED:
       return {
         ...state,
-        socket: payload.socket
+        socket: payload
       }
     case SOCKET_DISCONNECTED:
       return {

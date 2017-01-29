@@ -7,6 +7,7 @@ import navbarLinksReducer from './navbarLinks'
 import universityReducer from './universities'
 import coursesReducer from './courses'
 import socketReducer from './socket'
+import messagesReducer from './messages'
 import { reducer as form } from 'redux-form'
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   university: universityReducer,
   courses: coursesReducer,
   socket: socketReducer,
+  messages: messagesReducer,
   form: form,
 });
 

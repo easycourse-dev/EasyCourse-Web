@@ -44,15 +44,16 @@ if (localStorage.getItem('authToken')) {
           type: USER_AUTHENTICATE_SUCCESS,
           payload: data.user
         })
-        store.dispatch({
-          type: SOCKET_CONNECTED,
-          payload: socket
-        })
+
         browserHistory.push('/signin');
       } else {
         store.dispatch({
           type: USER_AUTHENTICATE_SUCCESS,
           payload: data.user
+        })
+        store.dispatch({
+          type: SOCKET_CONNECTED,
+          payload: socket
         })
         browserHistory.push('/home');
       }

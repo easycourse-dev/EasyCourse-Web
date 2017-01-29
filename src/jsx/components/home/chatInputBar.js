@@ -5,25 +5,24 @@ import {
   Button,
   FormControl,
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import actions from '../../redux/actions/index'
 
 class ChatInputBar extends Component {
+
   state = {
-    message: ''
-  }
-
-  componentDidMount = () => {
-    console.log('Socket: ', this.props.socket)
-  }
-
-  componentWillRecieveProps = (nextProps) => {
-    console.log('Socket: ', nextProps.socket)
+    message: '',
   }
 
   handleMessageChange = (message) => this.setState({ message })
 
   sendMessage = (e) => {
     e.preventDefault()
-    console.log('Message sent: ', this.state.message)
+    const { socket, roomId } = this.props
+    socket.emit('message', { toRoom: roomId, text: this.state.message}, (message, error) => {
+      if (error) { console.log('Error in sendMessage: ', error) }
+      this.props.addMessage(message)
+    })
     this.setState({ message: '' })
   }
 
@@ -50,4 +49,7 @@ class ChatInputBar extends Component {
   }
 }
 
-export default ChatInputBar
+export default connect(
+  null,
+  actions
+)(ChatInputBar)
