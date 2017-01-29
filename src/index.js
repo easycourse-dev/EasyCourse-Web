@@ -76,8 +76,11 @@ if (localStorage.getItem('authToken')) {
           payload: socket
         })
 
-        const refreshRoute = store.getState().routing
-        const savedRoute = refreshRoute.locationBeforeTransitions.pathname
+        const routing = store.getState().routing
+        let savedRoute = routing.locationBeforeTransitions.pathname
+        if (savedRoute === '/') {
+          savedRoute = '/home'
+        }
         browserHistory.push(`${savedRoute}`);
       }
     })

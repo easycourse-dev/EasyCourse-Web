@@ -3,6 +3,7 @@ import {
   // LOAD_MESSAGES_FAILURE,
   ADD_MESSAGE,
   RECEIVE_MESSAGE,
+  SAVE_MESSAGES
 } from '../actions/types'
 
 let initialState = {
@@ -22,6 +23,12 @@ const messagesReducer = (state = initialState, action) => {
       return {
         ...state,
         data: [...state.data, payload]
+      }
+    }
+    case SAVE_MESSAGES: {
+      return {
+        ...state,
+        data: payload
       }
     }
   }

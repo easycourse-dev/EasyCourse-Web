@@ -3,6 +3,7 @@ import {
   // LOAD_MESSAGES_FAILURE,
   ADD_MESSAGE,
   RECEIVE_MESSAGE,
+  SAVE_MESSAGES,
 } from '../actions/types'
 
 const addMessage = (message) => {
@@ -23,7 +24,17 @@ const receiveMessage = (message) => {
   }
 }
 
+const saveMessages = (messages) => {
+  return dispatch => {
+    dispatch({
+      type: SAVE_MESSAGES,
+      payload: messages
+    })
+  }
+}
+
 module.exports = {
   addMessage,
   receiveMessage,
+  saveMessages
 }

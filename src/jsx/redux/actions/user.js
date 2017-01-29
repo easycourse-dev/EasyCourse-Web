@@ -56,7 +56,7 @@ const login = ({email, password}) => {
           dispatch({ type: USER_INITIAL_SIGNUP_SUCCESS })
           browserHistory.push('/signin')
         } else {
-          browserHistory.push('/main')
+          browserHistory.push('/home')
         }
         localStorage.setItem('authToken', res.headers.auth)
       })
@@ -78,7 +78,7 @@ const logout = () => {
   return dispatch => {
 		dispatchLogout(dispatch)
     localStorage.removeItem('authToken')
-    browserHistory.push('/home')
+    browserHistory.push('/public')
   }
 }
 
@@ -158,7 +158,6 @@ const finishSignup = (universityId, selectedCourses, displayName) => {
 
 const resetPassword = (password, passwordConfirmation, token) => {
   return dispatch => {
-		console.log('Password: ', password, 'Token: ', token)
     const config = { headers: {"auth": token} }
     const body = {newPassword: password}
     axios.post(`${ROOT_URL}/resetPassword`, body, config)
