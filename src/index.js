@@ -1,11 +1,32 @@
 // Dependencies
+import {
+  USER_AUTHENTICATE_SUCCESS,
+  USER_AUTHENTICATE_FAILURE,
+  USER_INITIAL_SIGNUP_SUCCESS,
+  SOCKET_CONNECTED,
+  SOCKET_DISCONNECTED
+} from './jsx/redux/actions/types'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './jsx/redux/store'
-import { Router, Route } from 'react-router';
+// import store from './jsx/redux/store'
+import { syncHistoryWithStore } from 'react-router-redux'
 import { browserHistory } from 'react-router'
+import { applyMiddleware, createStore, compose } from 'redux';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise-middleware'
+import rootReducer from './jsx/redux/reducers/index';
+const middleware = applyMiddleware(promise(), thunk);
+const persistedRoutes = loadRouteState()
+const enhancers = compose(
+  middleware,
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+)
+const store = createStore(rootReducer, persistedRoutes, enhancers);
+const history = syncHistoryWithStore(browserHistory, store)
+import { Router, Route } from 'react-router';
 import io from 'socket.io-client'
+import { loadRouteState, saveRouteState } from './localStorage'
 
 // Components
 import './index.css';
@@ -24,13 +45,12 @@ import Room from './jsx/components/home/room'
 
 
 
-import {
-  USER_AUTHENTICATE_SUCCESS,
-  USER_AUTHENTICATE_FAILURE,
-  USER_INITIAL_SIGNUP_SUCCESS,
-  SOCKET_CONNECTED,
-  SOCKET_DISCONNECTED
-} from './jsx/redux/actions/types'
+store.subscribe(() => {
+  saveRouteState({
+    routing: store.getState().routing
+  })
+})
+
 
 
 if (localStorage.getItem('authToken')) {
@@ -55,7 +75,10 @@ if (localStorage.getItem('authToken')) {
           type: SOCKET_CONNECTED,
           payload: socket
         })
-        browserHistory.push('/home');
+
+        const refreshRoute = store.getState().routing
+        const savedRoute = refreshRoute.locationBeforeTransitions.pathname
+        browserHistory.push(`${savedRoute}`);
       }
     })
   })
@@ -65,9 +88,10 @@ if (localStorage.getItem('authToken')) {
 }
 
 
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Route path="/" component={App} >
         <Route path="public" component={Public} />
         <Route path="home" component={Home}>
