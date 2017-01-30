@@ -1,9 +1,8 @@
 import {
-  // LOAD_MESSAGES_SUCCESS,
-  // LOAD_MESSAGES_FAILURE,
   ADD_MESSAGE,
   RECEIVE_MESSAGE,
-  SAVE_MESSAGES,
+  LOAD_MESSAGES_SUCCESS,
+  LOAD_MESSAGES_FAILURE
 } from '../actions/types'
 
 const addMessage = (message) => {
@@ -24,11 +23,21 @@ const receiveMessage = (message) => {
   }
 }
 
-const saveMessages = (messages) => {
+const loadMessages = (roomId, socket) => {
   return dispatch => {
-    dispatch({
-      type: SAVE_MESSAGES,
-      payload: messages
+    const seconds = new Date() / 1000
+    socket.emit('getRoomMessage', {roomId: roomId, time: seconds, limit: 100}, (data, error) => {
+      if (error) {
+        dispatch({ type: LOAD_MESSAGES_FAILURE })
+      } else {
+        dispatch({
+          type: LOAD_MESSAGES_SUCCESS,
+          payload: {
+            messages: data.msg,
+            roomId: roomId
+          }
+        })
+      }
     })
   }
 }
@@ -36,5 +45,5 @@ const saveMessages = (messages) => {
 module.exports = {
   addMessage,
   receiveMessage,
-  saveMessages
+  loadMessages
 }

@@ -12,16 +12,12 @@ class SideBarContent extends Component {
       if (room.name.includes(courseName)) {
         return (
           <li>
-            <RoomButton key={room.name} name={room.name} course={courseName} />
             <small onClick={() => this.props.router.replace(`/home/course/${courseName}`)}>{courseName}</small>
+            <RoomButton key={room.name} room={room} courseName={courseName} />
           </li>
         )
       }
     })
-  }
-
-  onPress = () => {
-    console.log('Panel pressed')
   }
 
   renderRooms = (courses, rooms) => {

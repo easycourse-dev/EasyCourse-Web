@@ -4,29 +4,28 @@ import {
   USER_AUTHENTICATE_FAILURE,
   USER_INITIAL_SIGNUP_SUCCESS,
   SOCKET_CONNECTED,
-  SOCKET_DISCONNECTED
+  UPDATE_ACTIVE_ROOM
 } from './jsx/redux/actions/types'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-// import store from './jsx/redux/store'
+
 import { syncHistoryWithStore } from 'react-router-redux'
 import { browserHistory } from 'react-router'
 import { applyMiddleware, createStore, compose } from 'redux';
+import { loadRouteState, saveRouteState } from './localStorage'
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware'
 import rootReducer from './jsx/redux/reducers/index';
 const middleware = applyMiddleware(promise(), thunk);
 const persistedRoutes = loadRouteState()
-const enhancers = compose(
-  middleware,
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-)
+const enhancers = compose(middleware, window.devToolsExtension ? window.devToolsExtension() : f => f)
 const store = createStore(rootReducer, persistedRoutes, enhancers);
 const history = syncHistoryWithStore(browserHistory, store)
+
 import { Router, Route } from 'react-router';
 import io from 'socket.io-client'
-import { loadRouteState, saveRouteState } from './localStorage'
+
 
 // Components
 import './index.css';
@@ -43,23 +42,37 @@ import ForgotPassword from './jsx/forgotPassword'
 import Course from './jsx/components/home/course'
 import Room from './jsx/components/home/room'
 
-
-
 store.subscribe(() => {
   saveRouteState({
     routing: store.getState().routing
   })
 })
 
-
+function getRoom(rooms, urlRoomName) {
+  return rooms.filter(room => room.name === urlRoomName)
+}
 
 if (localStorage.getItem('authToken')) {
+
+  // get the current url and parse for course and room (bookmarked urls)
+  const urlPathArray = window.location.pathname.split('/')
+  let savedCourse = ''
+  let savedRoom = ''
+  let initialPath = ''
+  let room = ''
+  if (urlPathArray.length === 6) {
+    savedCourse = urlPathArray[3]
+    savedRoom = urlPathArray[5]
+    initialPath = `/home/course/${savedCourse}/room/${savedRoom}`
+  }
+
   let authToken = localStorage.getItem('authToken')
   let socket = io.connect('https://zengjintaotest.com/', { query: `token=${authToken}` })
   socket.on('connect', () => {
     socket.emit('syncUser', 1, (data, error) => {
       if (data.user.joinedRoom.length === 0) {
         store.dispatch({ type: USER_INITIAL_SIGNUP_SUCCESS })
+
         store.dispatch({
           type: USER_AUTHENTICATE_SUCCESS,
           payload: data.user
@@ -67,21 +80,38 @@ if (localStorage.getItem('authToken')) {
 
         browserHistory.push('/signin');
       } else {
+
         store.dispatch({
           type: USER_AUTHENTICATE_SUCCESS,
           payload: data.user
         })
+
         store.dispatch({
           type: SOCKET_CONNECTED,
           payload: socket
         })
 
+        store.dispatch({
+          type: UPDATE_ACTIVE_ROOM,
+          payload: data.user.joinedRoom[0]._id
+        })
+
         const routing = store.getState().routing
-        let savedRoute = routing.locationBeforeTransitions.pathname
-        if (savedRoute === '/') {
-          savedRoute = '/home'
+
+        if (initialPath.length < 1) {
+          initialPath = routing.locationBeforeTransitions.pathname
+          if (initialPath === '/') {
+            initialPath = '/home'
+          }
+          console.log('Inital path from routing: ', initialPath)
+          browserHistory.push(`${initialPath}`);
+        } else {
+          room = getRoom(data.user.joinedRoom, savedRoom)
+          let seconds = new Date / 1000
+          socket.emit('getRoomMessage', {roomId: room._id, time: seconds, limit: 100})
+          console.log('Inital path from url: ', initialPath)
+          browserHistory.push(`${initialPath}`)
         }
-        browserHistory.push(`${savedRoute}`);
       }
     })
   })

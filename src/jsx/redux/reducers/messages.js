@@ -1,9 +1,8 @@
 import {
-  // LOAD_MESSAGES_SUCCESS,
-  // LOAD_MESSAGES_FAILURE,
   ADD_MESSAGE,
   RECEIVE_MESSAGE,
-  SAVE_MESSAGES
+  LOAD_MESSAGES_SUCCESS,
+  LOAD_MESSAGES_FAILURE
 } from '../actions/types'
 
 let initialState = {
@@ -13,24 +12,26 @@ let initialState = {
 const messagesReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch(type) {
-    case ADD_MESSAGE: {
+    case ADD_MESSAGE:
       return {
         ...state,
         data: [...state.data, payload]
       }
-    }
-    case RECEIVE_MESSAGE: {
+    case RECEIVE_MESSAGE:
       return {
         ...state,
         data: [...state.data, payload]
       }
-    }
-    case SAVE_MESSAGES: {
+    case LOAD_MESSAGES_SUCCESS:
       return {
         ...state,
-        data: payload
+        data: [...state.data.filter(message => message.toRoom === payload.roomId), ...payload.messages]
       }
-    }
+    case LOAD_MESSAGES_FAILURE:
+      return {
+        ...state,
+        error: 'Unable to fetch messages'
+      }
   }
   return state
 }

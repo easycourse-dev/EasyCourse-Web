@@ -7,7 +7,7 @@ export default class MessageList extends Component {
     return (
       <ul style={{ listStyle: 'none'}}>
         {
-          this.props.messages.map(message => <li key={message._id}>{message.text}</li>)
+          this.props.messages.map(message => <Message message={message} />)
         }
       </ul>
     )

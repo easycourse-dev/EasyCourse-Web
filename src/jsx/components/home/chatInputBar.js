@@ -21,7 +21,8 @@ class ChatInputBar extends Component {
     const { socket, roomId } = this.props
     socket.emit('message', { toRoom: roomId, text: this.state.message}, (message, error) => {
       if (error) { console.log('Error in sendMessage: ', error) }
-      this.props.addMessage(message)
+
+      this.props.addMessage(message.msg)
     })
     this.setState({ message: '' })
   }

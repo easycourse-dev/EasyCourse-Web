@@ -21,7 +21,8 @@ import {
   JOIN_COURSE_FAILURE,
 	UPDATE_PASSWORD,
 	VALIDATE_TOKEN_SUCCESS,
-	VALIDATE_TOKEN_FAILURE
+	VALIDATE_TOKEN_FAILURE,
+	UPDATE_ACTIVE_ROOM
 } from './types'
 
 const ROOT_URL = 'https://zengjintaotest.com/api'
@@ -112,6 +113,7 @@ const changeSignupStage = (stage) => {
 	}
 }
 
+// TODO: update this function by passing the already connected socket to the function
 // update the user's joinedCourse's and languages the user speaks
 function updateUserCourses(courses, dispatch) {
   let authToken = localStorage.getItem('authToken')
@@ -129,7 +131,7 @@ function updateUserCourses(courses, dispatch) {
     socket.emit('joinCourse', newData, (data, error) => {
       if (data) {
         dispatch({ type: JOIN_COURSE_SUCCESS, payload: data })
-				browserHistory.push('/main')
+				browserHistory.push('/home')
       } else {
         dispatch({ type: JOIN_COURSE_FAILURE, payload: error })
       }
@@ -184,6 +186,15 @@ const validateToken = (token) => {
 	}
 }
 
+const updateActiveRoom = (roomId) => {
+	return dispatch => {
+		dispatch({
+			type: UPDATE_ACTIVE_ROOM,
+			payload: roomId
+		})
+	}
+}
+
 module.exports = {
   signup,
   login,
@@ -191,5 +202,6 @@ module.exports = {
   changeSignupStage,
   finishSignup,
   resetPassword,
-  validateToken
+  validateToken,
+	updateActiveRoom
 }

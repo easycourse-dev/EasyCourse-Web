@@ -7,32 +7,8 @@ import actions from '../../redux/actions/index'
 
 class Chat extends Component {
 
-  state = {
-    roomId: ''
-  }
-
-  getRoomId = (rooms, roomName) => {
-    for (let room of rooms) {
-      if (room.name === roomName) {
-        this.setState({
-          roomId: room._id
-        })
-        return room._id
-      }
-    }
-  }
-
   componentDidMount = () => {
-    const { rooms, roomName, socket } = this.props
-    let roomId = this.getRoomId(rooms, roomName)
-    socket.emit('getRoomMessage', {roomId: roomId, time: '', limit: 20}, (data, error) => {
-      if (error) {
-        console.log('getRoomMessage Error: ', error)
-        return
-      }
-      this.props.saveMessages(data.msg)
-    })
-
+    const { socket } = this.props
     socket.on('message', (data, error) => {
       if (error) {
         console.log('message Error: ', error)
@@ -43,21 +19,26 @@ class Chat extends Component {
   }
 
   render() {
-    const { roomName, socket, messages } = this.props
-    if (this.state.roomId && messages) {
+    const { roomName, socket, messages, activeRoom} = this.props
+    if (roomName && messages && activeRoom) {
       return (
         <div>
           <RoomHeader roomName={roomName}/>
           <MessageList roomName={roomName} socket={socket} messages={messages}/>
-          <ChatInputBar roomName={roomName} socket={socket} roomId={this.state.roomId}/>
+          <ChatInputBar roomName={roomName} socket={socket} roomId={activeRoom}/>
         </div>
       )
     } else {
       return (
-        <h5>Loading...</h5>
+        <h5>Chat Loading...</h5>
       )
     }
   }
 }
 
-export default connect(null, actions)(Chat)
+export default connect(
+  (state) => ({
+    messages: state.messages.data
+  }),
+  actions
+)(Chat)

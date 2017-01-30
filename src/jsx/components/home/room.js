@@ -4,16 +4,15 @@ import actions from '../../redux/actions/index'
 import { connect } from 'react-redux'
 
 class Room extends Component {
-
   render() {
-    const { params, socket, messages, rooms } = this.props
+    const { params, socket, activeRoom } = this.props
 
-    if (socket && rooms) {
+    if (socket && activeRoom) {
       return (
-        <Chat roomName={params.roomName} socket={socket} messages={messages} rooms={rooms}/>
+        <Chat roomName={params.roomName} socket={socket} activeRoom={activeRoom}/>
       )
     } else {
-      return (<h5>Loading....</h5>)
+      return (<h5>Room Loading....</h5>)
     }
   }
 }
@@ -21,9 +20,9 @@ class Room extends Component {
 export default connect(
   (state) => ({
     socket: state.socket.socket,
-    messages: state.messages.data,
     rooms: state.user.current_user.joinedRoom,
-    current_user: state.user.current_user
+    current_user: state.user.current_user,
+    activeRoom: state.user.activeRoom
   }),
   actions
 )(Room)

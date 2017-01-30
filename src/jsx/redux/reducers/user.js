@@ -15,7 +15,8 @@ import {
   JOIN_COURSE_FAILURE,
   UPDATE_PASSWORD,
   VALIDATE_TOKEN_SUCCESS,
-	VALIDATE_TOKEN_FAILURE
+	VALIDATE_TOKEN_FAILURE,
+  UPDATE_ACTIVE_ROOM
 } from '../actions/types';
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   current_user: '',
   initialSignUpComplete: false,
   signUpStage: 0,
+  activeRoom: ''
 }
 
 export default function userReducer(state = initialState, action) {
@@ -121,6 +123,11 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         validateTokenResponseError: payload
+      }
+    case UPDATE_ACTIVE_ROOM:
+      return {
+        ...state,
+        activeRoom: payload
       }
     default:
       return {
