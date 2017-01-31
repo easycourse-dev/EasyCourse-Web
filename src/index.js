@@ -25,7 +25,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 import { Router, Route } from 'react-router';
 import io from 'socket.io-client'
-
+import messageActions from './jsx/redux/actions/messages'
 
 // Components
 import './index.css';
@@ -103,13 +103,12 @@ if (localStorage.getItem('authToken')) {
           if (initialPath === '/') {
             initialPath = '/home'
           }
-          console.log('Inital path from routing: ', initialPath)
           browserHistory.push(`${initialPath}`);
+          console.log('pushed to initialPath 1')
         } else {
           room = getRoom(data.user.joinedRoom, savedRoom)
           let seconds = new Date / 1000
-          socket.emit('getRoomMessage', {roomId: room._id, time: seconds, limit: 100})
-          console.log('Inital path from url: ', initialPath)
+          store.dispatch(messageActions.loadMessages(room[0]._id, socket))
           browserHistory.push(`${initialPath}`)
         }
       }
