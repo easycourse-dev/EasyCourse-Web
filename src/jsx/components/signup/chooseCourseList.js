@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import actions from '../redux/actions/index'
+import actions from '../../redux/actions/index'
+import Waypoint from 'react-waypoint'
 const truncate = require('truncate')
 
 class ChooseCourseList extends Component {
@@ -70,6 +70,14 @@ class ChooseCourseList extends Component {
     }
   }
 
+  handleOnEnter = () => {
+    this.loadMore()
+  }
+
+  handleOnLeave = () => {
+    console.log('onLeave')
+  }
+
   render() {
     const { searchText } = this.props
     return(
@@ -77,12 +85,14 @@ class ChooseCourseList extends Component {
         {this.renderCourses()}
         {
           searchText ?
-          <li>
-            <Button
-              className="SignupLoadMore"
-              onClick={() => this.loadMore()}
-            >Load More</Button>
-          </li>
+          <div>
+            <Waypoint
+              topOffset="200px"
+              onEnter={() => this.handleOnEnter()}
+              onLeave={() => this.handleOnLeave()}
+            />
+            <p style={{color: 'white', textAlign: 'center'}}>Loading More...</p>
+          </div>
           :
           <li></li>
         }
@@ -91,15 +101,13 @@ class ChooseCourseList extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  availableCourses: state.courses.coursesBySchool,
-  selectedCourses: state.courses.selectedCourses,
-  universityId: state.university.selectedUniversity,
-  searchText: state.courses.searchText,
-  skip: state.courses.skip
-})
-
 export default connect(
-  mapStateToProps,
+  (state) => ({
+    availableCourses: state.courses.coursesBySchool,
+    selectedCourses: state.courses.selectedCourses,
+    universityId: state.university.selectedUniversity,
+    searchText: state.courses.searchText,
+    skip: state.courses.skip
+  }),
   actions
 )(ChooseCourseList)

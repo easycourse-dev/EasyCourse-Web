@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Button, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import actions from '../redux/actions/index'
+import actions from '../../redux/actions/index'
 import ChooseSchoolList from './chooseSchoolList'
 
 class ChooseSchool extends Component {
   render() {
-    const { selectedUniversity } = this.props;
+    const { selectedUniversity } = this.props
     return (
       <div>
         <h2 className="SignUpSetupPageTitle" key="loginFormTitle">
@@ -33,12 +33,10 @@ class ChooseSchool extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  universities: state.university.universities,
-  selectedUniversity: state.university.selectedUniversity
-})
-
 export default connect(
-  mapStateToProps,
+  (state) => ({
+    universities: state.university.universities,
+    selectedUniversity: state.university.selectedUniversity
+  }),
   actions
 )(ChooseSchool);

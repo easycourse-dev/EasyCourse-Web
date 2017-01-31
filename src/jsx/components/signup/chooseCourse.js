@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, FormGroup, FormControl, Col } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import actions from '../redux/actions/index'
+import actions from '../../redux/actions/index'
 import ChooseCourseList from './chooseCourseList'
 
 class ChooseCourse extends Component {
@@ -83,16 +83,14 @@ class ChooseCourse extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  availableCourses: state.courses.coursesBySchool,
-  selectedCourses: state.courses.selectedCourses,
-  universityId: state.university.selectedUniversity,
-  searchText: state.courses.searchText,
-  skip: state.courses.skip,
-  displayName: state.user.current_user.displayName
-})
-
 export default connect(
-  mapStateToProps,
+  (state) => ({
+    availableCourses: state.courses.coursesBySchool,
+    selectedCourses: state.courses.selectedCourses,
+    universityId: state.university.selectedUniversity,
+    searchText: state.courses.searchText,
+    skip: state.courses.skip,
+    displayName: state.user.current_user.displayName
+  }),
   actions
 )(ChooseCourse);

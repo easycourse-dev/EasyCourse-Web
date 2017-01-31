@@ -2,7 +2,7 @@ import React, { Component, PropTypes as PT } from 'react'
 import { Button, FormGroup } from 'react-bootstrap'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import actions from '../redux/actions/index'
+import actions from '../../redux/actions/index'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const validate = values => {
@@ -89,7 +89,11 @@ class Login extends Component {
               type="password"
               label="Password"
             />
-            <Button className="FormSubmitButton LoginSubmitButton" bsStyle="primary" type="submit">Login</Button>
+            <Button
+              className="FormSubmitButton LoginSubmitButton"
+              bsStyle="primary"
+              type="submit"
+            >Login</Button>
           </FormGroup>
         </form>
       </ReactCSSTransitionGroup>

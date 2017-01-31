@@ -13,6 +13,10 @@ import {
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
   JOIN_COURSE_FAILURE,
+  UPDATE_PASSWORD,
+  VALIDATE_TOKEN_SUCCESS,
+	VALIDATE_TOKEN_FAILURE,
+  UPDATE_ACTIVE_ROOM
 } from '../actions/types';
 
 const initialState = {
@@ -21,12 +25,14 @@ const initialState = {
   current_user: '',
   initialSignUpComplete: false,
   signUpStage: 0,
+  activeRoom: ''
 }
 
 export default function userReducer(state = initialState, action) {
   const { type, payload } = action
   switch (type) {
     case USER_AUTHENTICATE_SUCCESS:
+      console.log('Current User joinedRoom length: ', payload.joinedRoom.length)
       return {
         ...state,
         authenticated: true,
@@ -102,6 +108,26 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         response: payload
+      }
+    case UPDATE_PASSWORD:
+      return {
+        ...state,
+        response: payload
+      }
+    case VALIDATE_TOKEN_SUCCESS:
+      return {
+        ...state,
+        validateTokenResponseSuccess: payload
+      }
+    case VALIDATE_TOKEN_FAILURE:
+      return {
+        ...state,
+        validateTokenResponseError: payload
+      }
+    case UPDATE_ACTIVE_ROOM:
+      return {
+        ...state,
+        activeRoom: payload
       }
     default:
       return {

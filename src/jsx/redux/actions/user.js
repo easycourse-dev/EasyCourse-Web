@@ -19,9 +19,13 @@ import {
   UPDATE_USER_UNIV_FAILURE,
   JOIN_COURSE_SUCCESS,
   JOIN_COURSE_FAILURE,
+	UPDATE_PASSWORD,
+	VALIDATE_TOKEN_SUCCESS,
+	VALIDATE_TOKEN_FAILURE,
+	UPDATE_ACTIVE_ROOM
 } from './types'
 
-const ROOT_URL = 'https://www.easycourseserver.com/api'
+const ROOT_URL = 'https://zengjintaotest.com/api'
 
 const signup = ({email, password, displayName}) => {
   return dispatch => {
@@ -53,7 +57,7 @@ const login = ({email, password}) => {
           dispatch({ type: USER_INITIAL_SIGNUP_SUCCESS })
           browserHistory.push('/signin')
         } else {
-          browserHistory.push('/main')
+          browserHistory.push('/home')
         }
         localStorage.setItem('authToken', res.headers.auth)
       })
@@ -75,11 +79,11 @@ const logout = () => {
   return dispatch => {
 		dispatchLogout(dispatch)
     localStorage.removeItem('authToken')
-    browserHistory.push('/home')
+    browserHistory.push('/public')
   }
 }
 
-const clearVaules = (dispatch) => {
+const clearValues = (dispatch) => {
 	dispatch({ type: REMOVE_SELECTED_COURSES })
 	dispatch({ type: CLEAR_SEARCH_TEXT })
 	dispatch({ type: REMOVE_SELECTED_UNIVERSITY })
@@ -97,7 +101,7 @@ const clearSearchText = (dispatch) => {
 const changeSignupStage = (stage) => {
 	return dispatch => {
 		if (stage === 1) {
-			clearVaules(dispatch)
+			clearValues(dispatch)
 			dispatch({ type: CHANGE_SIGNUP_STAGE, payload: stage })
 		} else if (stage === 2){
 			clearSearchText(dispatch)
@@ -109,8 +113,9 @@ const changeSignupStage = (stage) => {
 	}
 }
 
+// TODO: update this function by passing the already connected socket to the function
 // update the user's joinedCourse's and languages the user speaks
-const updateUserCourses = (courses, dispatch) => {
+function updateUserCourses(courses, dispatch) {
   let authToken = localStorage.getItem('authToken')
   let coursesIdArray = []
 
@@ -119,21 +124,21 @@ const updateUserCourses = (courses, dispatch) => {
     coursesIdArray.push(id)
   }
 
-  let socket = io.connect('https://www.easycourseserver.com/', {query: `token=${authToken}`})
+  let socket = io.connect('https://zengjintaotest.com/', {query: `token=${authToken}`})
   let newData = {courses: coursesIdArray}
 
   socket.on('connect', () => {
     socket.emit('joinCourse', newData, (data, error) => {
       if (data) {
         dispatch({ type: JOIN_COURSE_SUCCESS, payload: data })
-				browserHistory.push('/main')
+				browserHistory.push('/home')
       } else {
         dispatch({ type: JOIN_COURSE_FAILURE, payload: error })
       }
     })
   })
-}
 
+}
 
 const finishSignup = (universityId, selectedCourses, displayName) => {
   return dispatch => {
@@ -144,8 +149,8 @@ const finishSignup = (universityId, selectedCourses, displayName) => {
 
     axios.post(`${ROOT_URL}/user/update`, body, config)
 	    .then(res => {
-	      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
 	      updateUserCourses(selectedCourses, dispatch)
+	      dispatch({ type: UPDATE_USER_UNIV_SUCCESS, payload: res })
 	    })
 	    .catch(error => {
 	      dispatch({ type: UPDATE_USER_UNIV_FAILURE, payload: error })
@@ -153,10 +158,50 @@ const finishSignup = (universityId, selectedCourses, displayName) => {
   }
 }
 
+const resetPassword = (password, passwordConfirmation, token) => {
+  return dispatch => {
+    const config = { headers: {"auth": token} }
+    const body = {newPassword: password}
+    axios.post(`${ROOT_URL}/resetPassword`, body, config)
+    .then(res => {
+     dispatch({ type: UPDATE_PASSWORD, payload: res.status })
+    })
+    .catch(error => {
+     dispatch({ type: UPDATE_PASSWORD, payload: error })
+    })
+	}
+}
+
+const validateToken = (token) => {
+	return dispatch => {
+		const config = { headers: {"auth": token} }
+		const body = {}
+		axios.post(`${ROOT_URL}/validateToken`, body, config)
+			.then(res => {
+				dispatch({ type: VALIDATE_TOKEN_SUCCESS, payload: res })
+			})
+			.catch(error => {
+				dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error })
+			})
+	}
+}
+
+const updateActiveRoom = (roomId) => {
+	return dispatch => {
+		dispatch({
+			type: UPDATE_ACTIVE_ROOM,
+			payload: roomId
+		})
+	}
+}
+
 module.exports = {
   signup,
   login,
   logout,
   changeSignupStage,
-  finishSignup
+  finishSignup,
+  resetPassword,
+  validateToken,
+	updateActiveRoom
 }

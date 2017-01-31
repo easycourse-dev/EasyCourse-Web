@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import actions from '../redux/actions/index'
+import actions from '../../redux/actions/index'
 
 class ChooseSchoolList extends Component {
 
@@ -57,10 +57,10 @@ class ChooseSchoolList extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  universities: state.university.universities,
-  selectedUniversity: state.university.selectedUniversity
-})
-
-
-export default connect(mapStateToProps, actions)(ChooseSchoolList)
+export default connect(
+  (state) => ({
+    universities: state.university.universities,
+    selectedUniversity: state.university.selectedUniversity
+  }),
+  actions
+)(ChooseSchoolList)
