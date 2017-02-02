@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
 import Sidebar from 'react-sidebar'
-import SideBarContent from './components/home/sidebarContent'
+import SideBarContent from './components/home/sidebar/sidebarContent'
 
 class Home extends Component {
   render() {

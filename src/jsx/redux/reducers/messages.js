@@ -32,6 +32,8 @@ const messagesReducer = (state = initialState, action) => {
         ...state,
         error: 'Unable to fetch messages'
       }
+    default:
+      break
   }
   return state
 }

@@ -32,7 +32,6 @@ export default function userReducer(state = initialState, action) {
   const { type, payload } = action
   switch (type) {
     case USER_AUTHENTICATE_SUCCESS:
-      console.log('Current User joinedRoom length: ', payload.joinedRoom.length)
       return {
         ...state,
         authenticated: true,

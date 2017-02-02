@@ -107,7 +107,6 @@ if (localStorage.getItem('authToken')) {
           console.log('pushed to initialPath 1')
         } else {
           room = getRoom(data.user.joinedRoom, savedRoom)
-          let seconds = new Date / 1000
           store.dispatch(messageActions.loadMessages(room[0]._id, socket))
           browserHistory.push(`${initialPath}`)
         }

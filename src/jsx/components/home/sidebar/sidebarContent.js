@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Panel, Accordion } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import actions from '../../redux/actions/index'
+import actions from '../../../redux/actions/index'
 import RoomButton from './roomButton'
 import { withRouter } from 'react-router'
 
@@ -12,11 +12,17 @@ class SideBarContent extends Component {
       if (room.name.includes(courseName)) {
         return (
           <li>
-            <small onClick={() => this.props.router.replace(`/home/course/${courseName}`)}>{courseName}</small>
+            <div className="text-center">
+              <small
+                onClick={() => this.props.router.replace(`/home/course/${courseName}`)}
+                style={{ textAlign: 'center' }}
+              >{courseName}</small>
+            </div>
             <RoomButton key={room.name} room={room} courseName={courseName} />
           </li>
         )
       }
+      return <li></li>
     })
   }
 

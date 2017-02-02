@@ -24,16 +24,12 @@ const receiveMessage = (message) => {
 }
 
 const loadMessages = (roomId, socket) => {
-  console.log("inside loadMessages but outside")
   return dispatch => {
-    console.log("inside loadMessages but inside")
     const seconds = new Date() / 1000
     socket.emit('getRoomMessage', {roomId: roomId, time: seconds, limit: 100}, (data, error) => {
       if (error) {
-        console.log('getRoomMessage error: ', error)
         dispatch({ type: LOAD_MESSAGES_FAILURE })
       } else {
-        console.log('getRoomMessage data: ', data)
         dispatch({
           type: LOAD_MESSAGES_SUCCESS,
           payload: {
