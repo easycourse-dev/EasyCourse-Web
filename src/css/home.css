@@ -3,3 +3,11 @@
   margin-right: 0;
   padding-top: 64px;
 }
+
+.UserButton:hover {
+  background-color: #efefef;
+}
+
+.UserPropertiesPopoverListItem:hover {
+  background-color: #efefef;
+}
