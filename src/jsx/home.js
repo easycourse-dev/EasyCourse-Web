@@ -5,7 +5,7 @@ import SideBarContent from './components/home/sidebar/sidebarContent'
 class Home extends Component {
   render() {
     const sidebarContent = (
-      <div style={{ width: '225px', paddingTop: 10}}>
+      <div style={{ width: '225px' }}>
         <SideBarContent />
       </div>
     )
