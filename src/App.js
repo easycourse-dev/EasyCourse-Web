@@ -1,9 +1,5 @@
 import React, { Component, PropTypes as PT } from 'react';
-import NavBar from './jsx/components/navBar';
 import Helmet from 'react-helmet';
-
-// Function to determine the index route based on if there is a user authToken
-
 
 export default class App extends Component {
   static propTypes = {
@@ -43,8 +39,6 @@ export default class App extends Component {
             {rel: 'icon', href: require('./img/Logo/favicon/favicon-96x96.png'), sizes: '96x96', type: 'image/png'}
           ]}
         />
-
-        
         {this.props.children}
       </div>
     );

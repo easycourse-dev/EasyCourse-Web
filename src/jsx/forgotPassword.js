@@ -119,8 +119,7 @@ class ForgotPassword extends Component {
     const {
       handleSubmit,
       response,
-      validateTokenResponseError,
-      validateTokenResponseSuccess
+      validateTokenResponseSuccess,
     } = this.props
     return (
       <div>

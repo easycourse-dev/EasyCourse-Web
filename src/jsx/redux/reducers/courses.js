@@ -18,7 +18,7 @@ const initialState = {
   searchText: ''
 }
 
-export const coursesReducer = (state = initialState, action) => {
+const coursesReducer = (state = initialState, action) => {
   const { type, payload } = action
   switch(type) {
     case GET_COURSES_SUCCESS:
@@ -75,3 +75,5 @@ export const coursesReducer = (state = initialState, action) => {
   }
   return state;
 }
+
+export default coursesReducer

@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
-// connect to socket
-import RoomHeader from './roomHeader'
-import MessageList from './messageList'
-import ChatInputBar from './chatInputBar'
+import Chat from './chat'
+import actions from '../../redux/actions/index'
+import { connect } from 'react-redux'
 
-export default class Room extends Component {
-
-  componentDidMount = () => {
-    // fetch room messages
-  }
-
+class Room extends Component {
   render() {
-    const { params } = this.props
-    return (
-      <div>
-        <RoomHeader roomName={params.roomName}/>
-        <MessageList />
-        <ChatInputBar />
-      </div>
-    )
+    const { params, socket, activeRoom } = this.props
+
+    if (socket && activeRoom) {
+      return (
+        <Chat roomName={params.roomName} socket={socket} activeRoom={activeRoom}/>
+      )
+    } else {
+      return (<h5>Room Loading....</h5>)
+    }
   }
 }
+
+export default connect(
+  (state) => ({
+    socket: state.socket.socket,
+    rooms: state.user.current_user.joinedRoom,
+    current_user: state.user.current_user,
+    activeRoom: state.user.activeRoom
+  }),
+  actions
+)(Room)
