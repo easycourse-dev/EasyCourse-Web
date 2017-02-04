@@ -35,13 +35,15 @@ class SideBarContent extends Component {
   }
 
   render() {
-    const { courses, rooms, displayName } = this.props
+    const { courses, rooms, displayName, settingsSidebarOpen } = this.props
     if (!courses && !rooms) {
       return <div>Loading...</div>
     }
     return (
       <div>
-        <UserButton displayName={displayName}/>
+        <UserButton
+          displayName={displayName}
+        />
         <h4 style={{ textAlign: 'center'}}>Courses</h4>
         <ul style={{ listStyle: 'none'}}>
           {this.renderRooms(courses, rooms)}
@@ -63,7 +65,8 @@ export default connect(
   (state) => ({
     displayName: state.user.current_user.displayName,
     courses: state.user.current_user.joinedCourse,
-    rooms: state.user.current_user.joinedRoom
+    rooms: state.user.current_user.joinedRoom,
+    settingsSidebarOpen: state.settings.settingsSidebarOpen
   }),
   actions
 )(withRouter(SideBarContent))

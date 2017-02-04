@@ -3,6 +3,7 @@ import navbarLinks from './navbarLinks'
 import universities from './universities'
 import user from './user'
 import messages from './messages'
+import settings from './settings'
 
 module.exports = {
   ...courses,
@@ -10,4 +11,5 @@ module.exports = {
   ...universities,
   ...user,
   ...messages,
+  ...settings
 }

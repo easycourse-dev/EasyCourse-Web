@@ -11,3 +11,7 @@
 .UserPropertiesPopoverListItem:hover {
   background-color: #efefef;
 }
+
+.SettingsSideBar {
+  background-color: #fbfbfb !important;
+}
