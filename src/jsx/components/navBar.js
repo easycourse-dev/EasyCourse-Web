@@ -6,13 +6,21 @@ import { connect } from 'react-redux'
 import actions from '../redux/actions/index'
 
 class NavBar extends Component {
+  onHeaderClick() {
+    if (localStorage.getItem('authToken')) {
+      this.props.router.push('/home');
+    } else {
+      this.props.router.push('/public');
+    }
+  }
+
   render() {
     return (
       <Navbar className="Navbar">
         <Row>
           <Col lg={10} md={10} lgOffset={1} mdOffset={1} style={{padding: '0'}}>
             <Navbar.Header>
-              <h3 onClick={() => this.props.router.push('/home')} className="BrandName">
+              <h3 onClick={() => {this.onHeaderClick()}} className="BrandName">
                 EasyCourse
               </h3>
               <Navbar.Toggle className="NavbarToggle" />
