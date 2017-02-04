@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Row, Col, NavItem } from 'react-bootstrap';
 import Footer from './components/footer';
+import NavBar from './components/navBar';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Router } from 'react-router';
+import { Router, withRouter } from 'react-router';
 
-export default class Docs extends Component {
+class Docs extends Component {
 
   render() {
     return (
       <div className="Docs SignInBackground">
+        <NavBar />
         <div className="container">
           <Row className="DocsRow">
             <Col lg={4} lgOffset={4} md={6} mdOffset={3} sm={8} smOffset={2}>
@@ -17,14 +19,11 @@ export default class Docs extends Component {
                   Documentations
                 </h2>
                 <div className="DocsCardsHolder">
-                  <LinkContainer className="DocsCard" to="docs/terms" onClick={() => {}}>
-                    <NavItem className="DocsCardTitle">Terms</NavItem>
-                  </LinkContainer>
-                  {/* <div className="DocsCard" onClick={() => {window.open("docs/terms",'_self',false)}}>
-                    <a action="push" className="DocsCardTitle" href="docs/terms">Terms</a>
-                  </div> */}
-                  <div className="DocsCard" onClick={() => {window.open("docs/privacy",'_self',false)}}>
-                    <a action="push" className="DocsCardTitle" href="docs/privacy">Privacy</a>
+                  <div className="DocsCard" onClick={() => this.props.router.push('/docs/terms')}>
+                    <a action="push" className="DocsCardTitle" href="/terms">Terms</a>
+                  </div>
+                  <div className="DocsCard" onClick={() => this.props.router.push('/docs/privacy')}>
+                    <a action="push" className="DocsCardTitle" href="/privacy">Privacy</a>
                   </div>
                 </div>
               </div>
@@ -38,3 +37,5 @@ export default class Docs extends Component {
     );
   }
 }
+
+export default withRouter(Docs)

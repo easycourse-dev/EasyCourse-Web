@@ -24,6 +24,7 @@
   display: block;
   color: #fbfbfb;
   margin-top: -8px;
+  cursor: pointer;
 }
 
 .TermsPricacyLink:focus, .TermsPricacyLink:hover {

@@ -12,10 +12,9 @@ class Footer extends Component {
               <p className="FooterText">
                 @2016 Colevate Inc.
               </p>
-              <a
-                className="TermsPricacyLink"
-                onClick={() => this.props.router.push('/docs')}
-              >Terms and privacy</a>
+              <a className="TermsPricacyLink"
+                onClick={() => this.props.router.push('/docs')}>
+                Terms and privacy</a>
             </Col>
           </Row>
         </div>

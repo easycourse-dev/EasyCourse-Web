@@ -131,10 +131,9 @@ ReactDOM.render(
           </Route>
         </Route>
         <Route path="signin" component={SignIn} />
-        <Route path="docs" component={Docs} >
-          <Route path="/privacy" component={Privacy} />
-          <Route path="/terms" component={Terms} />
-        </Route>
+        <Route path="docs" component={Docs} />
+        <Route path="docs/privacy" component={Privacy} />
+        <Route path="docs/terms" component={Terms} />
         <Route path="forgotPassword" component={ForgotPassword} />
       </Route>
     </Router>
