@@ -163,12 +163,12 @@ const resetPassword = (password, passwordConfirmation, token) => {
     const config = { headers: {"auth": token} }
     const body = {newPassword: password}
     axios.post(`${ROOT_URL}/resetPassword`, body, config)
-    .then(res => {
-     dispatch({ type: UPDATE_PASSWORD, payload: res.status })
-    })
-    .catch(error => {
-     dispatch({ type: UPDATE_PASSWORD, payload: error })
-    })
+	    .then(res => {
+	     dispatch({ type: UPDATE_PASSWORD, payload: res.status })
+	    })
+	    .catch(error => {
+	     dispatch({ type: UPDATE_PASSWORD, payload: error })
+	    })
 	}
 }
 
@@ -181,7 +181,11 @@ const validateToken = (token) => {
 				dispatch({ type: VALIDATE_TOKEN_SUCCESS, payload: res })
 			})
 			.catch(error => {
-				dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error })
+				if (error.response.data.error === "Invalid token") {
+					dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error.response.data.error })
+				} else {
+					dispatch({ type: VALIDATE_TOKEN_FAILURE, payload: error.response.data.error.name })
+				}
 			})
 	}
 }

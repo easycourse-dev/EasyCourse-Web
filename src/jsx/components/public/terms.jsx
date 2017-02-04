@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Footer from '../footer';
+import NavBar from '../navBar';
 
 export default class Terms extends Component {
 
   render() {
     return (
       <div className="Docs SignInBackground">
+        <NavBar />
         <div className="container">
           <Row className="DocsRow">
             <Col lg={8} lgOffset={2} md={6} mdOffset={3} sm={8} smOffset={2}>

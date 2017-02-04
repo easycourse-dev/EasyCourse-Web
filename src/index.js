@@ -52,7 +52,24 @@ function getRoom(rooms, urlRoomName) {
   return rooms.filter(room => room.name === urlRoomName)
 }
 
-if (localStorage.getItem('authToken')) {
+function isUserGoingToDocs() {
+  const urlPathArray = window.location.pathname.split('/');
+  if (urlPathArray[1] === 'docs') {
+    return {
+      goingDocs: true,
+      location: urlPathArray[2]
+    };
+  }
+  return { goingDocs: false };
+}
+
+if (isUserGoingToDocs().goingDocs) { // If user wanting to view docs
+  if (isUserGoingToDocs().location) {
+    browserHistory.push('/docs/' + isUserGoingToDocs().location);
+  } else {
+    browserHistory.push('/docs');
+  }
+} else if (localStorage.getItem('authToken')) { // If user is already logged in
 
   // get the current url and parse for course and room (bookmarked urls)
   const urlPathArray = window.location.pathname.split('/')
@@ -118,8 +135,6 @@ if (localStorage.getItem('authToken')) {
   browserHistory.push('/public');
 }
 
-
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
@@ -131,10 +146,9 @@ ReactDOM.render(
           </Route>
         </Route>
         <Route path="signin" component={SignIn} />
-        <Route path="docs" component={Docs} >
-          <Route path="/privacy" component={Privacy} />
-          <Route path="/terms" component={Terms} />
-        </Route>
+        <Route path="docs" component={Docs} />
+        <Route path="docs/privacy" component={Privacy} />
+        <Route path="docs/terms" component={Terms} />
         <Route path="forgotPassword" component={ForgotPassword} />
       </Route>
     </Router>

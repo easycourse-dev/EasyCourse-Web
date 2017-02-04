@@ -74,16 +74,21 @@ class ForgotPassword extends Component {
   }
 
   componentWillMount() {
-    const { location, validateTokenResponseError } = this.props
+    const { location } = this.props
     let token = location.query.token
     this.setState({
       token
     })
     this.props.validateToken(token)
+  }
 
+  componentDidMount() {
     setTimeout(() => {
+      const { validateTokenResponseError } = this.props
       if (validateTokenResponseError) {
-          this.setState({ showTokenModal: true })
+        this.setState({
+          showTokenModal: true
+        })
       }
     }, 1000)
   }

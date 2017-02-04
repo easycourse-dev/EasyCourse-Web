@@ -39,9 +39,9 @@ class SignIn extends Component {
                   <div className="SignInForm">
                     {
                       initialSignUpComplete ?
-                        <SignUpSetup/>
+                      <SignUpSetup/>
                       :
-                        this.state.showSignup ? <Signup /> : <Login />
+                      this.state.showSignup ? <Signup /> : <Login />
                     }
                     <div className="SignInSwitchButtonWrapper">
                       <a className="SignInSwitch btn btn-link" id="SignInSwitch" onClick={() => this.setState({showSignup: !this.state.showSignup})}>
@@ -49,26 +49,22 @@ class SignIn extends Component {
                           this.state.showSignup ?
                           'Already have an account?'
                           :
-                          "Don't have an account?"
+                          'Dont have an account?'
                         }
                       </a>
                     </div>
                   </div>
-                  <p className="SignInFooterText">
-                    @2016 Colevate Inc.
-                  </p>
                 </Col>
               </Row>
             </div>
           </ReactCSSTransitionGroup>
+          <Footer />
         </div>
       </div>
-    );
+      );
+    }
   }
-}
 
-export default connect(
-  (state) =>({
+  export default connect((state) => ({
     initialSignUpComplete: state.user.initialSignUpComplete
-  })
-)(SignIn);
+  }))(SignIn);
