@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../redux/actions/index'
+import ItemCheckbox from '../itemCheckbox'
 
 class ChooseSchoolList extends Component {
 
@@ -26,10 +27,9 @@ class ChooseSchoolList extends Component {
             key={'University' + key}
             className="SignupListItem"
             onClick={() => this.props.removeSelectedUniversity()}
-            style={{ paddingTop: 19, paddingLeft: 10}}
           >
             <p>{university.name}</p>
-            <i className="fa fa-check" aria-hidden="true" style={{ float: 'right', paddingBottom: 10}}></i>
+            <ItemCheckbox />
           </div>
         )
       } else {
@@ -39,7 +39,6 @@ class ChooseSchoolList extends Component {
             key={'University' + key}
             className="SignupListItem"
             onClick={() => this.props.addSelectedUniversity(university._id)}
-            style={{ paddingTop: 19, paddingLeft: 10}}
           >
             <p>{university.name}</p>
           </div>
