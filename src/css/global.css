@@ -1,26 +1,35 @@
 /*Global Design Settings*/
 body {
-  background-color: #FCFCFC;
-  font-family: 'Lato', 'Arial', sans-serif;
-  font-weight: 300;
-  text-rendering: optimizeLegibility;
+	background-color: #FCFCFC;
+	font-family: 'Lato', 'Arial', sans-serif;
+	font-weight: 300;
+	text-rendering: optimizeLegibility;
 }
 
 h5 {
-  font-size: 16px;
+	font-size: 16px;
 }
 
 p {
-  font-size: 18px;
+	font-size: 18px;
 }
 
 .form-control:focus {
-  border-color: white;
+	border-color: white;
 }
 
 /*container*/
 @media (min-width: 1440px) {
-  .container {
-      width: 1400px;
-  }
+	.container {
+		width: 1400px;
+	}
+}
+
+.ClearTextButton, .ClearTextButton:focus, .ClearTextButton:hover,
+.ClearTextButton:hover:focus {
+	float: right;
+	margin-top: -30px;
+	background: transparent;
+	border: 0;
+	color: #FBFBFB;
 }

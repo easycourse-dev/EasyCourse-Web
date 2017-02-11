@@ -11,7 +11,7 @@ export default class Terms extends Component {
         <NavBar />
         <div className="container">
           <Row className="DocsRow">
-            <Col lg={8} lgOffset={2} md={6} mdOffset={3} sm={8} smOffset={2}>
+            <Col lg={8} lgOffset={2} md={8} mdOffset={2} sm={8} smOffset={2}>
               <div className="DocWrapper">
                 <h3 style={{textAlign: "center"}}>MOBILE APPLICATION END USER LICENSE AGREEMENT</h3>
 

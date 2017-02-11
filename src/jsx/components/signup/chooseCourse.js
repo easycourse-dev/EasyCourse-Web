@@ -31,6 +31,12 @@ class ChooseCourse extends Component {
     this.props.finishSignup(universityId, selectedCourses, displayName)
   }
 
+	clearText = () => {
+		this.setState({searchText: ''});
+		this.props.clearSkip();
+		this.props.clearSearchText();
+	}
+
   render() {
     const { selectedCourses } = this.props
     const { searchText } = this.state
@@ -43,15 +49,18 @@ class ChooseCourse extends Component {
           <form>
             <FormGroup>
               <FormControl
+								className="SignupCourseSearch"
                 type="text"
                 value={searchText}
                 placeholder="e.g. CS 240"
+								style={{borderColor: '#2BBBAD'}}
                 onChange={(e) => this.handleChange(e)}
               />
+							<Button className="ClearTextButton fa fa-times" onClick={() => { this.clearText() }} style={{visibility: this.state.searchText.length > 0 ? 'visible' : 'hidden'}}/>
             </FormGroup>
           </form>
         </div>
-        <div style={{ overflowY: 'scroll', height: 270}}>
+        <div className="SignupCourseScroll" style={{ overflowY: 'scroll', height: 270}}>
           <ChooseCourseList />
         </div>
         <div>

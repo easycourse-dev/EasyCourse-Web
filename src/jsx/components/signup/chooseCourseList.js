@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../redux/actions/index'
 import Waypoint from 'react-waypoint'
+import ItemCheckbox from '../itemCheckbox'
 const truncate = require('truncate')
 
 class ChooseCourseList extends Component {
@@ -33,8 +34,8 @@ class ChooseCourseList extends Component {
                 onClick={() => this.onRemoveSelectedCourse(course)}
               >
                 <p>{course.name}</p>
-                <small>{truncate(course.title, 40)}</small>
-                <i className="fa fa-check" aria-hidden="true" style={{ float: 'right'}}></i>
+                <small>{truncate(course.title, 35)}</small>
+                <ItemCheckbox />
               </div>
             </li>
           )
@@ -46,7 +47,7 @@ class ChooseCourseList extends Component {
                 onClick={() => this.onAddCourse(course)}
               >
                 <p>{course.name}</p>
-                <small>{truncate(course.title, 40)}</small>
+                <small>{truncate(course.title, 35)}</small>
               </div>
             </li>
           )
@@ -60,9 +61,9 @@ class ChooseCourseList extends Component {
               className="SignupListItem"
               onClick={() => this.onRemoveSelectedCourse(course)}
             >
-              <i className="fa fa-check" aria-hidden="true" style={{ float: 'right'}}></i>
               <p>{course.name}</p>
-              <small>{truncate(course.title, 40)}</small>
+              <small>{truncate(course.title, 35)}</small>
+							<ItemCheckbox />
             </div>
           </li>
         )

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Row, Col, NavItem } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import Footer from './components/footer';
 import NavBar from './components/navBar';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Router, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 
 class Docs extends Component {
 

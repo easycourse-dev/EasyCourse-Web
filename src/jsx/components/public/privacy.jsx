@@ -11,7 +11,7 @@ export default class Terms extends Component {
         <NavBar />
         <div className="container">
           <Row className="DocsRow">
-            <Col lg={8} lgOffset={2} md={6} mdOffset={3} sm={8} smOffset={2}>
+            <Col lg={8} lgOffset={2} md={8} mdOffset={2} sm={8} smOffset={2}>
               <div className="DocWrapper">
                 <h3 style={{textAlign: "center"}}>PRIVACY POLICY</h3>
                 <p style={{textAlign: "center"}}>This Privacy Policy was last updated on Jan 04, 2017</p><br />
