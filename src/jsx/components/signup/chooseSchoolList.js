@@ -28,8 +28,8 @@ class ChooseSchoolList extends Component {
             className="SignupListItem"
             onClick={() => this.props.removeSelectedUniversity()}
           >
-            <p>{university.name}</p>
-            <ItemCheckbox />
+            <p className="SignupSchoolName">{university.name}</p>
+            <ItemCheckbox className="SignupSchoolCheckbox" />
           </div>
         )
       } else {
@@ -40,7 +40,7 @@ class ChooseSchoolList extends Component {
             className="SignupListItem"
             onClick={() => this.props.addSelectedUniversity(university._id)}
           >
-            <p>{university.name}</p>
+            <p className="SignupSchoolName">{university.name}</p>
           </div>
         )
       }
