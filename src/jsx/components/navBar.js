@@ -27,14 +27,10 @@ class NavBar extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                <LinkContainer to="/home">
-                  <NavItem className="NavbarLinks">Home</NavItem>
-                </LinkContainer>
+								<NavItem onClick={() => {this.onHeaderClick()}} className="NavbarLinks">Home</NavItem>
                 <NavItem className="NavbarLinks" href="https://goo.gl/forms/Ny7oCjYQ9gCI6GrE2" target="_blank">Join Us</NavItem>
                 <LinkContainer to="/signin">
-                  <NavItem
-                    className="NavbarLinks NavbarSignIn"
-                  >Sign In</NavItem>
+                  <NavItem className="NavbarLinks NavbarSignIn" >Sign In</NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>
