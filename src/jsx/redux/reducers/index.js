@@ -8,17 +8,19 @@ import universityReducer from './universities'
 import coursesReducer from './courses'
 import socketReducer from './socket'
 import messagesReducer from './messages'
+import settingsReducer from './settings'
 import { reducer as form } from 'redux-form'
 
 const rootReducer = combineReducers({
   routing: routerReducer,
   user: userReducer,
+  settings: settingsReducer,
   navbarLinks: navbarLinksReducer,
   university: universityReducer,
   courses: coursesReducer,
   socket: socketReducer,
   messages: messagesReducer,
   form: form,
-});
+})
 
-export default rootReducer;
+export default rootReducer
