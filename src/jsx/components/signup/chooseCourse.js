@@ -60,7 +60,7 @@ class ChooseCourse extends Component {
             </FormGroup>
           </form>
         </div>
-        <div style={{ overflowY: 'scroll', height: 270}}>
+        <div className="SignupCourseScroll" style={{ overflowY: 'scroll', height: 270}}>
           <ChooseCourseList />
         </div>
         <div>

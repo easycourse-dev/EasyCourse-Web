@@ -34,7 +34,7 @@ class ChooseCourseList extends Component {
                 onClick={() => this.onRemoveSelectedCourse(course)}
               >
                 <p>{course.name}</p>
-                <small>{truncate(course.title, 40)}</small>
+                <small>{truncate(course.title, 35)}</small>
                 <ItemCheckbox />
               </div>
             </li>
@@ -47,7 +47,7 @@ class ChooseCourseList extends Component {
                 onClick={() => this.onAddCourse(course)}
               >
                 <p>{course.name}</p>
-                <small>{truncate(course.title, 40)}</small>
+                <small>{truncate(course.title, 35)}</small>
               </div>
             </li>
           )
@@ -62,7 +62,7 @@ class ChooseCourseList extends Component {
               onClick={() => this.onRemoveSelectedCourse(course)}
             >
               <p>{course.name}</p>
-              <small>{truncate(course.title, 40)}</small>
+              <small>{truncate(course.title, 35)}</small>
 							<ItemCheckbox />
             </div>
           </li>
