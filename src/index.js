@@ -26,10 +26,12 @@ const history = syncHistoryWithStore(browserHistory, store)
 import { Router, Route } from 'react-router';
 import io from 'socket.io-client'
 import messageActions from './jsx/redux/actions/messages'
+import languageActions from './jsx/redux/actions/language'
 
 // Components
-import './index.css';
-import App from './App';
+import './index.css'
+import 'react-select/dist/react-select.css'
+import App from './App'
 
 import Public from './jsx/public'
 import Home from './jsx/home'
@@ -70,7 +72,6 @@ if (isUserGoingToDocs().goingDocs) { // If user wanting to view docs
     browserHistory.push('/docs');
   }
 } else if (localStorage.getItem('authToken')) { // If user is already logged in
-
   // get the current url and parse for course and room (bookmarked urls)
   const urlPathArray = window.location.pathname.split('/')
   let savedCourse = ''
@@ -85,8 +86,10 @@ if (isUserGoingToDocs().goingDocs) { // If user wanting to view docs
 
   let authToken = localStorage.getItem('authToken')
   let socket = io.connect('https://zengjintaotest.com/', { query: `token=${authToken}` })
+  console.log('Initial Socket: ', socket)
   socket.on('connect', () => {
     socket.emit('syncUser', 1, (data, error) => {
+      console.log('Socket syncUser data: ', data)
       if (data.user.joinedRoom.length === 0) {
         store.dispatch({ type: USER_INITIAL_SIGNUP_SUCCESS })
 
@@ -114,6 +117,8 @@ if (isUserGoingToDocs().goingDocs) { // If user wanting to view docs
         })
 
         const routing = store.getState().routing
+
+        store.dispatch(languageActions.getLanguages())
 
         if (initialPath.length < 1) {
           initialPath = routing.locationBeforeTransitions.pathname
