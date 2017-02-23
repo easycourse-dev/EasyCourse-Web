@@ -9,6 +9,7 @@ import coursesReducer from './courses'
 import socketReducer from './socket'
 import messagesReducer from './messages'
 import settingsReducer from './settings'
+import language from './language'
 import { reducer as form } from 'redux-form'
 
 const rootReducer = combineReducers({
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   socket: socketReducer,
   messages: messagesReducer,
   form: form,
+  language: language
 })
 
 export default rootReducer

@@ -5,7 +5,6 @@ import actions from '../../../redux/actions/index'
 import { withRouter } from 'react-router'
 
 import RoomButton from './roomButton'
-import UserButton from './userButton'
 
 class SideBarContent extends Component {
 
@@ -41,9 +40,12 @@ class SideBarContent extends Component {
     }
     return (
       <div>
-        <UserButton
-          displayName={displayName}
-        />
+        <div
+          className="UserButton"
+          onClick={() => this.props.toggleSettingsSidebar(!settingsSidebarOpen)}
+        >
+          <h4 style={{ textAlign: 'center'}}>Hi, {displayName}!</h4>
+        </div>
         <h4 style={{ textAlign: 'center'}}>Courses</h4>
         <ul style={{ listStyle: 'none'}}>
           {this.renderRooms(courses, rooms)}
