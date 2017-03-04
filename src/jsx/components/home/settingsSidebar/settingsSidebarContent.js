@@ -3,6 +3,7 @@ import actions from '../../../redux/actions/index'
 import { connect } from 'react-redux'
 import { Modal, FormGroup, ControlLabel, Button } from 'react-bootstrap'
 import Select from 'react-select'
+import CircleImageView from '../../circleImageView'
 
 class SettingsSidebarContent extends Component {
   state = {
@@ -38,7 +39,7 @@ class SettingsSidebarContent extends Component {
   }
 
   handleSelectedValuesChange = (values) => {
-    this.setState({ selectedValues: values }) 
+    this.setState({ selectedValues: values })
   }
 
   render() {
@@ -46,9 +47,9 @@ class SettingsSidebarContent extends Component {
 
     return (
       <div>
-        <div className="text-center">
-          <i className="fa fa-user fa-5x" aria-hidden="true"></i>
-        </div>
+        <div className="SettingsSidebarImagePositioning">
+					<CircleImageView className="CenteringImage" size="lg" url={currentUser.avatarUrl}/>
+				</div>
         <hr />
         <div className="text-center">
           <strong>{currentUser.displayName}</strong>

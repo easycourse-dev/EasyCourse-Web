@@ -7,7 +7,6 @@ import { Row, Col } from 'react-bootstrap'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 import NavBar from './components/navBar'
-import Footer from './components/footer'
 
 class SignIn extends Component {
   state = {

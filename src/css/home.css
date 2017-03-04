@@ -4,8 +4,14 @@
   padding-top: 64px;
 }
 
-.UserButton:hover {
-  background-color: #efefef;
+.CircleImageView {
+	display: inline-block;
+	margin: auto 10px;
+	border-radius: 50px;
+}
+
+.CenteringImage {
+	margin: 0 auto;
 }
 
 .UserPropertiesPopoverListItem:hover {

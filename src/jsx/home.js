@@ -21,6 +21,7 @@ class Home extends Component {
 
     return (
       <Sidebar
+				sidebarClassName="SideBar"
         sidebar={sidebarContent}
         open={true}
         docked={true}

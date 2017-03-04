@@ -5,6 +5,7 @@ import actions from '../../../redux/actions/index'
 import { withRouter } from 'react-router'
 
 import RoomButton from './roomButton'
+import CircleImageView from '../../circleImageView'
 
 class SideBarContent extends Component {
 
@@ -34,18 +35,22 @@ class SideBarContent extends Component {
   }
 
   render() {
-    const { courses, rooms, displayName, settingsSidebarOpen } = this.props
+    const { courses, rooms, user, settingsSidebarOpen } = this.props
     if (!courses && !rooms) {
       return <div>Loading...</div>
     }
     return (
       <div>
+
         <div
           className="UserButton"
-          onClick={() => this.props.toggleSettingsSidebar(!settingsSidebarOpen)}
-        >
-          <h4 style={{ textAlign: 'center'}}>Hi, {displayName}!</h4>
+          onClick={() => this.props.toggleSettingsSidebar(!settingsSidebarOpen)} >
+					<div className="UserButtonContentWrapper">
+						<CircleImageView size="md" url={user.avatarUrl}/>
+	          <h4 style={{ textAlign: 'center', margin: 'auto 0'}}>Hi, {user.displayName}!</h4>
+					</div>
         </div>
+
         <h4 style={{ textAlign: 'center'}}>Courses</h4>
         <ul style={{ listStyle: 'none'}}>
           {this.renderRooms(courses, rooms)}
@@ -65,7 +70,7 @@ class SideBarContent extends Component {
 
 export default connect(
   (state) => ({
-    displayName: state.user.current_user.displayName,
+    user: state.user.current_user,
     courses: state.user.current_user.joinedCourse,
     rooms: state.user.current_user.joinedRoom,
     settingsSidebarOpen: state.settings.settingsSidebarOpen
